@@ -88,28 +88,26 @@ class Tmsm_Admin_Cleanup_Admin {
 
 	}
 
-	/**
-	 * Polylang: Display a country flag or the name of the language as a "post state"
-	 *
-	 * @param array    $post_states An array of post display states.
-	 * @param \WP_Post $post        The current post object.
-	 *
-	 * @return array A filtered array of post display states.
+	/*
+	 * Remove Dashboard Meta Boxes
 	 */
-	public function polylang_display_post_states_language( $post_states, $post ) {
-		if( is_plugin_active( 'polylang/polylang.php' ) ){
-			if(is_array(get_the_terms( $post, 'language' ))){
-				foreach(get_the_terms( $post, 'language' ) as $language){
-					if(file_exists(POLYLANG_DIR . '/flags/' . $language->slug . '.png')){
-						$post_states['polylang'] = '<img src="data:image/png;base64,' . base64_encode( file_get_contents( POLYLANG_DIR . '/flags/' . $language->slug . '.png' ) ).'">';
-					}
-					else{
-						$post_states['polylang'] = $language->name;
-					}
-				}
-			}
-		}
-		return $post_states;
+	public function remove_dashboard_boxes(){
+		remove_meta_box('e-dashboard-overview', 'dashboard', 'normal'); // Elementor
+		remove_meta_box('dashboard_primary', 'dashboard', 'normal');
+		remove_meta_box('dashboard_quick_press', 'dashboard', 'normal');
+		remove_meta_box('dashboard_incoming_links', 'dashboard', 'normal');
+	}
+
+	/**
+	 * Filter by PDF in Medias
+	 *
+	 * @param $post_mime_types
+	 *
+	 * @return mixed
+	 */
+	function post_mime_types_pdf( $post_mime_types ) {
+		$post_mime_types['application/pdf'] = array( __( 'PDFs', 'tmsm-admin-cleanup' ), __( 'Manage PDFs', 'tmsm-admin-cleanup' ), _n_noop( 'PDF <span class="count">(%s)</span>', 'PDFs <span class="count">(%s)</span>' ) );
+		return $post_mime_types;
 	}
 
 	/**
@@ -161,7 +159,29 @@ class Tmsm_Admin_Cleanup_Admin {
 		echo ' font-family: "dashicons" !important;';
 		echo '}';
 
+		// iThemes Security
+		echo '#toplevel_page_itsec div.wp-menu-image:before, .it-icon-itsec:before {';
+		echo ' content: "\f332" !important;';
+		echo ' font-family: "dashicons" !important;';
+		echo '}';
+
+		// WPML
+		echo '#toplevel_page_sitepress-multilingual-cms-menu-languages div.wp-menu-image img {display:none}';
+		echo '#toplevel_page_sitepress-multilingual-cms-menu-languages div.wp-menu-image:before {';
+		echo ' content: "\f326" !important;';
+		echo ' font-family: "dashicons" !important;';
+		echo '}';
+
 		echo '</style>';
+	}
+
+	/**
+	 * Remove WP menu in admin toolbar
+	 */
+	function remove_wp_logo_from_admin_bar()
+	{
+		global $wp_admin_bar;
+		$wp_admin_bar->remove_menu('wp-logo');
 	}
 
 	/**
@@ -229,6 +249,20 @@ class Tmsm_Admin_Cleanup_Admin {
 			return;
 		}
 		$menu[ $woo ][0] = __( 'Orders', 'woocommerce' );
+	}
+
+	/**
+	 * Rename BackWPup menu to Backup
+	 */
+	public function menu_backwpup() {
+		global $menu;
+		// Pinpoint menu item
+		$woo = self::recursive_array_search( 'BackWPup', $menu );
+		// Validate
+		if ( ! $woo ) {
+			return;
+		}
+		$menu[$woo][0] = __('Backups', 'backwpup');
 	}
 
 
@@ -389,6 +423,30 @@ class Tmsm_Admin_Cleanup_Admin {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Polylang: Display a country flag or the name of the language as a "post state"
+	 *
+	 * @param array    $post_states An array of post display states.
+	 * @param \WP_Post $post        The current post object.
+	 *
+	 * @return array A filtered array of post display states.
+	 */
+	public function polylang_display_post_states_language( $post_states, $post ) {
+		if( is_plugin_active( 'polylang/polylang.php' ) ){
+			if(is_array(get_the_terms( $post, 'language' ))){
+				foreach(get_the_terms( $post, 'language' ) as $language){
+					if(file_exists(POLYLANG_DIR . '/flags/' . $language->slug . '.png')){
+						$post_states['polylang'] = '<img src="data:image/png;base64,' . base64_encode( file_get_contents( POLYLANG_DIR . '/flags/' . $language->slug . '.png' ) ).'">';
+					}
+					else{
+						$post_states['polylang'] = $language->name;
+					}
+				}
+			}
+		}
+		return $post_states;
 	}
 
 	/**

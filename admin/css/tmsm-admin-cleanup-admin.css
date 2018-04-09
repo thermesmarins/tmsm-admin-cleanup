@@ -1,4 +1,5 @@
-/**
- * All of the CSS for your admin-specific functionality should be
- * included in this file.
- */
+.wpseo_content_wrapper #sidebar-container,
+.yoast_premium_upsell_admin_block
+{
+  display: none;
+}

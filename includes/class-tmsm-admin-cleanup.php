@@ -157,6 +157,11 @@ class Tmsm_Admin_Cleanup {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
+		// Dashboard
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'remove_dashboard_boxes');
+
+		// Jetpack
+		$this->loader->add_filter( 'jetpack_just_in_time_msgs', $plugin_admin, '__return_false');
 
 		// Users
 		$this->loader->add_filter( 'manage_users_columns', $plugin_admin, 'users_columns' );
@@ -164,20 +169,28 @@ class Tmsm_Admin_Cleanup {
 		$this->loader->add_filter( 'manage_users_sortable_columns', $plugin_admin, 'users_sortable_columns', 10, 1 );
 		$this->loader->add_action( 'login_redirect', $plugin_admin, 'redirect_shop_managers', 10, 3 );
 
+		// Medias
+		$this->loader->add_filter( 'post_mime_types', $plugin_admin, 'post_mime_types_pdf', 999, 1 );
+
 		// Menu
+		$this->loader->add_action( 'wp_before_admin_bar_render', $plugin_admin, 'remove_wp_logo_from_admin_bar', 999 );
 		$this->loader->add_filter( 'admin_head', $plugin_admin, 'menu_icons', 999 );
 		$this->loader->add_filter( 'admin_head', $plugin_admin, 'hide_woocommerce', 999 );
 		$this->loader->add_filter( 'admin_head', $plugin_admin, 'menu_woocommerce', 999 );
+		$this->loader->add_filter( 'admin_head', $plugin_admin, 'menu_backwpup', 999 );
 		$this->loader->add_filter( 'admin_head', $plugin_admin, 'menu_customers', 999 );
 		//$this->loader->add_filter( 'admin_head', $plugin_admin, 'order_export', 999 );
 		$this->loader->add_filter( 'admin_menu', $plugin_admin, 'menu_mailjet', 999 );
 		$this->loader->add_filter( 'admin_menu', $plugin_admin, 'menu_discounts', 999 );
 
+		// Polylang
+		$this->loader->add_filter( 'display_post_states', $plugin_admin, 'polylang_display_post_states_language', 10, 2 );
+
 		// WP Rocket
 		$this->loader->add_filter( 'get_rocket_option_wl_plugin_name', $plugin_admin, 'wprocket_name', 10 );
 
-		// Polylang
-		$this->loader->add_filter( 'display_post_states', $plugin_admin, 'polylang_display_post_states_language', 10, 2 );
+		// Content Blocks (formerly Custom Post Widget)
+		$this->loader->add_filter( 'content_block_post_type', $plugin_admin, '__return_true', 10 );
 
 		// WooCommerce
 		$this->loader->add_filter( 'woocommerce_enable_admin_help_tab', $plugin_admin, 'woocommerce_enable_admin_help_tab' );
