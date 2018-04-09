@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       TMSM Admin Cleanup
  * Plugin URI:        https://github.com/thermesmarins/tmsm-admin-cleanup
- * Description:       Customization of the admin for Thermes Marins de Saint-Malo
+ * Description:       Customization and Cleanup of the admin for Thermes Marins de Saint-Malo
  * Version:           1.0.0
  * Author:            Nicolas Mollet
  * Author URI:        https://github.com/nicomollet
@@ -39,20 +39,20 @@ define( 'TMSM_ADMIN_CLEANUP_VERSION', '1.0.0' );
 
 /**
  * The code that runs during plugin activation.
- * This action is documented in includes/class-tmsm-admin-cleanup-activator.php
+ * This action is documented in includes/class-tmsm-admin-cleanup-install.php
  */
 function activate_tmsm_admin_cleanup() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-tmsm-admin-cleanup-activator.php';
-	Tmsm_Admin_Cleanup_Activator::activate();
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-tmsm-admin-cleanup-install.php';
+	Tmsm_Woocommerce_Admin_Cleanup_Install::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
- * This action is documented in includes/class-tmsm-admin-cleanup-deactivator.php
+ * This action is documented in includes/class-tmsm-admin-cleanup-install.php
  */
 function deactivate_tmsm_admin_cleanup() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-tmsm-admin-cleanup-deactivator.php';
-	Tmsm_Admin_Cleanup_Deactivator::deactivate();
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-tmsm-admin-cleanup-install.php';
+	Tmsm_Woocommerce_Admin_Cleanup_Install::deactivate();
 }
 
 register_activation_hook( __FILE__, 'activate_tmsm_admin_cleanup' );
