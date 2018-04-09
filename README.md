@@ -1,4 +1,4 @@
-TMSM WooCommerce Admin Cleanup
+TMSM Admin Cleanup
 =================
 
 Admin cleanup for Thermes Marins de Saint-Malo
