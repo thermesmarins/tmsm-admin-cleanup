@@ -19,3 +19,4 @@ Features
 * Medias: filter by PDF
 * Dashboard: remove boxes
 * Content Blocks: allow posts to be translated by Polylang
+* Gravity Forms: Label Visibility Settings

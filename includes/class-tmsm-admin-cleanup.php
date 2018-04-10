@@ -190,7 +190,10 @@ class Tmsm_Admin_Cleanup {
 		$this->loader->add_filter( 'get_rocket_option_wl_plugin_name', $plugin_admin, 'wprocket_name', 10 );
 
 		// Content Blocks (formerly Custom Post Widget)
-		$this->loader->add_filter( 'content_block_post_type', $plugin_admin, '__return_true', 10 );
+		$this->loader->add_filter( 'content_block_post_type', $plugin_admin, 'content_block_post_type_public', 10 );
+
+		// Gravity Forms
+		$this->loader->add_filter( 'gform_enable_field_label_visibility_settings', $plugin_admin, 'gravityforms_label_visibility', 10 ); // Label Visibility
 
 		// WooCommerce
 		$this->loader->add_filter( 'woocommerce_enable_admin_help_tab', $plugin_admin, 'woocommerce_enable_admin_help_tab' );

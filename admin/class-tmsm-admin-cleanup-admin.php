@@ -72,7 +72,7 @@ class Tmsm_Admin_Cleanup_Admin {
 	 */
 	public function enqueue_scripts() {
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/tmsm-admin-cleanup-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/tmsm-admin-cleanup-admin.js', array( 'jquery' ), $this->version, true );
 
 		$translation_array = array(
 			'urls' => [
@@ -468,6 +468,24 @@ class Tmsm_Admin_Cleanup_Admin {
 	 */
 	public function wprocket_name(){
 		return __( 'Cache', 'tmsm-admin-cleanup' );
+	}
+
+	/**
+	 * Content Blocks: Public or not
+	 *
+	 * @return bool
+	 */
+	public function content_block_post_type_public(){
+		return true;
+	}
+
+	/**
+	 * Gravity Forms: Label Visibility
+	 *
+	 * @return bool
+	 */
+	public function gravityforms_label_visibility(){
+		return true;
 	}
 
 	/**
