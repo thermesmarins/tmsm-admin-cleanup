@@ -3,3 +3,46 @@
 {
   display: none;
 }
+
+/* Gravity Forms admin menu icon */
+#toplevel_page_gf_edit_forms .wp-menu-image:before, .gform_media_link .gform_media_icon:before  {
+  content: "\f314";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  line-height: 1;
+  font-family: dashicons;
+  font-weight: 400;
+  font-style: normal;
+  vertical-align: top;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+  text-decoration: inherit;
+}
+#toplevel_page_gf_edit_forms .wp-menu-image, .gform_media_link .gform_media_icon{
+  background: none !important;
+}
+
+.gform_media_link .gform_media_icon:before {
+  font: 400 18px/1 dashicons;
+  speak: none;
+  -webkit-font-smoothing: antialiased;
+  padding: 0;
+
+}
+.gform_media_link .gform_media_icon {
+  width: 18px;
+  height: 18px;
+  vertical-align: text-top;
+  margin: 0 2px;
+  display: inline-block;
+  padding: 0;
+  float: none;
+  margin: 0 4px 0 0;
+}
+.gform_media_link .gform_media_icon + div {
+  display: inline-block;
+  padding-left: 0 !important;
+
+}

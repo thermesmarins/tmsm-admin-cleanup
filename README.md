@@ -7,7 +7,7 @@ Features
 -----------
 
 * Renames menu items: "WooCommerce" to "Orders"
-* Change menu icons for: WooCommerce, Yoast, WPML, iThemes Security
+* Change menu icons for: WooCommerce, Yoast, WPML, iThemes Security, Gravity Forms
 * Roles/Users:
     * Adds "Customers" menu
     * Sort users by registered field
