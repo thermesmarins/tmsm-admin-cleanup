@@ -6,8 +6,8 @@ Admin cleanup for Thermes Marins de Saint-Malo
 Features
 -----------
 
-* Renames menu items: "WooCommerce" to "Orders"
-* Change menu icons for: WooCommerce, Yoast, WPML, iThemes Security, Gravity Forms
+* Renames menu items: "WooCommerce" to "Orders", "Theme Panel" to "Ocean"
+* Change menu icons for: WooCommerce, Yoast, WPML, iThemes Security, Gravity Forms, Elementor, Ocean, Hustle
 * Roles/Users:
     * Adds "Customers" menu
     * Sort users by registered field

@@ -1,7 +1,106 @@
+/* WooCommerce admin menu icons */
+#adminmenu #toplevel_page_woocommerce .menu-icon-generic div.wp-menu-image::before{content: "\f174" !important;font-family: "dashicons" !important;}
+#adminmenu #menu-posts-shop_order     .menu-icon-shop_order div.wp-menu-image:before{content: "\f174" !important;font-family: "dashicons" !important;}
+#adminmenu #menu-posts-shop_coupon    .menu-icon-shop_coupon div.wp-menu-image:before{content: "\f524" !important;font-family: "dashicons" !important;}
+#adminmenu #menu-posts-product        .menu-icon-product div.wp-menu-image:before{content: "\f312" !important;font-family: "dashicons" !important;}
+#adminmenu #toplevel_page_wc-reports  .menu-icon-generic div.wp-menu-image:before{content: "\f239" !important;font-family: "dashicons" !important; font-size: 20px !important;}
+
+/* Yoast SEO admin menu icons */
+#adminmenu #toplevel_page_wpseo_dashboard .dashicons-before img {
+  display: none
+}
+
+#adminmenu #toplevel_page_wpseo_dashboard div.wp-menu-image.svg {
+  background-size: 0 !important;
+}
+
+#adminmenu #toplevel_page_wpseo_dashboard .wp-has-submenu div.wp-menu-image:before {
+  content: "\f239" !important;
+  font-family: "dashicons" !important;
+  font-size: 20px;
+  display: inline-block;
+}
+
+#adminmenu #toplevel_page_yst_ga_dashboard .dashicons-before img {
+  display: none
+}
+
+#adminmenu #toplevel_page_yst_ga_dashboard div.wp-menu-image.svg {
+  background-size: 0 !important;
+}
+
+#adminmenu #toplevel_page_yst_ga_dashboard .wp-has-submenu div.wp-menu-image:before {
+  content: "\f239" !important;
+  font-family: "dashicons" !important;
+  font-size: 20px;
+  display: inline-block;
+}
+
+/* Yoast SEO Remove notices */
 .wpseo_content_wrapper #sidebar-container,
 .yoast_premium_upsell_admin_block
 {
   display: none;
+}
+
+/* Mailjet */
+#toplevel_page_wp_mailjet_options_top_menu div.wp-menu-image img {
+  display: none
+}
+
+#toplevel_page_wp_mailjet_options_top_menu div.wp-menu-image:before {
+  content: "\f466" !important;
+  font-family: "dashicons" !important;
+}
+
+/* Backwpup */
+#adminmenu #toplevel_page_backwpup .dashicons-before img {
+  display: none
+}
+
+#adminmenu #toplevel_page_backwpup .wp-has-submenu div.wp-menu-image:before {
+  content: "\f468" !important;
+  font-family: "dashicons" !important;
+}
+
+/* WPML */
+#toplevel_page_sitepress-multilingual-cms-menu-languages div.wp-menu-image img {
+  display: none
+}
+
+#toplevel_page_sitepress-multilingual-cms-menu-languages div.wp-menu-image:before {
+  content: "\f326" !important;
+  font-family: "dashicons" !important;
+}
+
+/* Hustle */
+#toplevel_page_hustle div.wp-menu-image:before {
+  content: "\f488" !important;
+  font-family: "dashicons" !important;
+}
+#toplevel_page_hustle div.wp-menu-image img{
+  display: none;
+}
+
+/* Elementor */
+#toplevel_page_elementor div.wp-menu-image:before {
+  content: "\f538" !important;
+  font-family: "dashicons" !important;
+  font-size: 20px !important;
+  margin-top: 0 !important;
+}
+
+/* Ocean */
+#toplevel_page_oceanwp-panel div.wp-menu-image:before {
+  content: "\f538" !important;
+  font-family: "dashicons" !important;
+
+}
+
+/* iThemes Security */
+#toplevel_page_itsec div.wp-menu-image:before, .it-icon-itsec:before {
+  content: "\f332" !important;
+  font-family: "dashicons" !important;
 }
 
 /* Gravity Forms admin menu icon */

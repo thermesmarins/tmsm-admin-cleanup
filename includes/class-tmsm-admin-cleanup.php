@@ -154,7 +154,7 @@ class Tmsm_Admin_Cleanup {
 
 		$plugin_admin = new Tmsm_Admin_Cleanup_Admin( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
+		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles', 999 );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
 		// Dashboard
@@ -174,7 +174,6 @@ class Tmsm_Admin_Cleanup {
 
 		// Menu
 		$this->loader->add_action( 'wp_before_admin_bar_render', $plugin_admin, 'remove_wp_logo_from_admin_bar', 999 );
-		$this->loader->add_filter( 'admin_head', $plugin_admin, 'menu_icons', 999 );
 		$this->loader->add_filter( 'admin_head', $plugin_admin, 'hide_woocommerce', 999 );
 		$this->loader->add_filter( 'admin_head', $plugin_admin, 'menu_woocommerce', 999 );
 		$this->loader->add_filter( 'admin_head', $plugin_admin, 'menu_backwpup', 999 );
@@ -182,6 +181,7 @@ class Tmsm_Admin_Cleanup {
 		//$this->loader->add_filter( 'admin_head', $plugin_admin, 'order_export', 999 );
 		$this->loader->add_filter( 'admin_menu', $plugin_admin, 'menu_mailjet', 999 );
 		$this->loader->add_filter( 'admin_menu', $plugin_admin, 'menu_discounts', 999 );
+		$this->loader->add_filter( 'admin_menu', $plugin_admin, 'menu_ocean', 999 );
 
 		// Polylang
 		$this->loader->add_filter( 'display_post_states', $plugin_admin, 'polylang_display_post_states_language', 10, 2 );

@@ -111,71 +111,6 @@ class Tmsm_Admin_Cleanup_Admin {
 	}
 
 	/**
-	 * Menus icons
-	 */
-	public function menu_icons() {
-		echo '<style type="text/css">';
-
-		// WooCommerce
-		echo '#adminmenu #toplevel_page_woocommerce .menu-icon-generic div.wp-menu-image:before{content: "\f174" !important;font-family: "dashicons" !important;}';
-		echo '#adminmenu #menu-posts-shop_order     .menu-icon-shop_order div.wp-menu-image:before{content: "\f174" !important;font-family: "dashicons" !important;}';
-		echo '#adminmenu #menu-posts-shop_coupon    .menu-icon-shop_coupon div.wp-menu-image:before{content: "\f524" !important;font-family: "dashicons" !important;}';
-		echo '#adminmenu #menu-posts-product        .menu-icon-product div.wp-menu-image:before{content: "\f312" !important;font-family: "dashicons" !important;}';
-		echo '#adminmenu #toplevel_page_wc-reports  .menu-icon-generic div.wp-menu-image:before{content: "\f239" !important;font-family: "dashicons" !important; font-size: 20px !important;}';
-
-		// Yoast SEO
-		echo '#adminmenu #toplevel_page_wpseo_dashboard .dashicons-before img{display:none}';
-		echo '#adminmenu #toplevel_page_wpseo_dashboard div.wp-menu-image.svg {';
-		echo ' background-size: 0 !important;';
-		echo '}';
-		echo '#adminmenu #toplevel_page_wpseo_dashboard .wp-has-submenu div.wp-menu-image:before {';
-		echo ' content: "\f239" !important;';
-		echo ' font-family: "dashicons" !important;';
-		echo ' font-size: 20px;';
-		echo ' display: inline-block;';
-		echo '}';
-		echo '#adminmenu #toplevel_page_yst_ga_dashboard .dashicons-before img{display:none}';
-		echo '#adminmenu #toplevel_page_yst_ga_dashboard div.wp-menu-image.svg {';
-		echo ' background-size: 0 !important;';
-		echo '}';
-		echo '#adminmenu #toplevel_page_yst_ga_dashboard .wp-has-submenu div.wp-menu-image:before {';
-		echo ' content: "\f239" !important;';
-		echo ' font-family: "dashicons" !important;';
-		echo ' font-size: 20px;';
-		echo ' display: inline-block;';
-		echo '}';
-
-		// Mailjet
-		echo '#toplevel_page_wp_mailjet_options_top_menu div.wp-menu-image img {display:none}';
-		echo '#toplevel_page_wp_mailjet_options_top_menu div.wp-menu-image:before {';
-		echo ' content: "\f466" !important;';
-		echo ' font-family: "dashicons" !important;';
-		echo '}';
-
-		// Backwpup
-		echo '#adminmenu #toplevel_page_backwpup .dashicons-before img{display:none}';
-		echo '#adminmenu #toplevel_page_backwpup .wp-has-submenu div.wp-menu-image:before {';
-		echo ' content: "\f468" !important;';
-		echo ' font-family: "dashicons" !important;';
-		echo '}';
-
-		// iThemes Security
-		echo '#toplevel_page_itsec div.wp-menu-image:before, .it-icon-itsec:before {';
-		echo ' content: "\f332" !important;';
-		echo ' font-family: "dashicons" !important;';
-		echo '}';
-
-		// WPML
-		echo '#toplevel_page_sitepress-multilingual-cms-menu-languages div.wp-menu-image img {display:none}';
-		echo '#toplevel_page_sitepress-multilingual-cms-menu-languages div.wp-menu-image:before {';
-		echo ' content: "\f326" !important;';
-		echo ' font-family: "dashicons" !important;';
-		echo '}';
-
-		echo '</style>';
-	}
-
-	/**
 	 * Remove WP menu in admin toolbar
 	 */
 	function remove_wp_logo_from_admin_bar()
@@ -242,13 +177,11 @@ class Tmsm_Admin_Cleanup_Admin {
 	 */
 	public function menu_woocommerce() {
 		global $menu;
-		// Pinpoint menu item
-		$woo = self::recursive_array_search( 'WooCommerce', $menu );
-		// Validate
-		if ( ! $woo ) {
+		$menu_item = self::recursive_array_search( 'WooCommerce', $menu );
+		if ( ! $menu_item ) {
 			return;
 		}
-		$menu[ $woo ][0] = __( 'Orders', 'woocommerce' );
+		$menu[ $menu_item ][0] = __( 'Orders', 'woocommerce' );
 	}
 
 	/**
@@ -256,15 +189,24 @@ class Tmsm_Admin_Cleanup_Admin {
 	 */
 	public function menu_backwpup() {
 		global $menu;
-		// Pinpoint menu item
-		$woo = self::recursive_array_search( 'BackWPup', $menu );
-		// Validate
-		if ( ! $woo ) {
+		$menu_item = self::recursive_array_search( 'BackWPup', $menu );
+		if ( ! $menu_item ) {
 			return;
 		}
-		$menu[$woo][0] = __('Backups', 'backwpup');
+		$menu[$menu_item][0] = __('Backups', 'backwpup');
 	}
 
+	/**
+	 * Rename BackWPup menu to Backup
+	 */
+	public function menu_ocean() {
+		global $menu;
+		$menu_item = self::recursive_array_search( 'Theme Panel', $menu );
+		if ( ! $menu_item ) {
+			return;
+		}
+		$menu[$menu_item][0] = __('Ocean', 'tmsm-frontend-optimizations');
+	}
 
 	/**
 	 * Shop Managers: redirect to orders
