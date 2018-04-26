@@ -517,4 +517,35 @@ class Tmsm_Admin_Cleanup_Admin {
 
 		return $views;
 	}
+
+	/**
+	 * WooCommerce PDF Invoices & Packing Slips: "Invoice" changed to "Order Receipt"
+	 *
+	 * @param $title
+	 *
+	 * @return mixed|string|void
+	 */
+	public function wpo_wcpdf_invoice_title($title){
+		return __('Order Receipt', 'tmsm-admin-cleanup');
+	}
+
+	/**
+	 * WooCommerce PDF Invoices & Packing Slips: limit export orders to statuses: completed, processing, processed
+	 *
+	 * @param $order_ids
+	 * @param $document_type
+	 *
+	 * @return mixed
+	 */
+	function wpo_wcpdf_process_order_ids_paid( $order_ids, $document_type ) {
+		foreach ($order_ids as $key => $order_id) {
+			$order = wc_get_order( $order_id );
+			$allowed_statuses = array( 'completed', 'processing', 'processed' );
+
+			if ( !in_array($order->get_status(), $allowed_statuses) ) {
+				unset( $order_ids[$key] );
+			}
+		}
+		return $order_ids;
+	}
 }

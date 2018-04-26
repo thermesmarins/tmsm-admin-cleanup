@@ -145,3 +145,11 @@
   padding-left: 0 !important;
 
 }
+
+/* WooCommerce PDF Invoices & Packing Slips: hide Invoice PDF action when order status is cancelled/pending/failed */
+.status-wc-failed .wpo_wcpdf.invoice,
+.status-wc-cancelled .wpo_wcpdf.invoice,
+.status-wc-pending .wpo_wcpdf.invoice
+{
+  display: none !important;
+}

@@ -1,5 +1,11 @@
 ### Unreleased ###
 
+### 1.0.3: April 26th, 2018
+* WooCommerce PDF Invoices & Packing Slips: 
+    * Hide Invoice PDF action when order status is cancelled/pending/failed
+    * Change "Invoice" to "Order Receipt"
+    * Limit export orders to statuses: completed, processing, processed
+
 ### 1.0.2: April 17th, 2018
 * Menu icons refactoring
 * Menu icon for Elementor

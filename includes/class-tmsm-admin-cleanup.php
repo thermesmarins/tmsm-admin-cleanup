@@ -203,8 +203,12 @@ class Tmsm_Admin_Cleanup {
 		$this->loader->add_filter( 'wc_order_statuses', $plugin_admin, 'woocommerce_rename_order_statuses_processing', 999, 1 );
 		$this->loader->add_filter( 'bulk_actions-edit-shop_order', $plugin_admin, 'woocommerce_rename_bulk_actions_processing', 50, 1 );
 		$this->loader->add_filter( 'views_edit-shop_order', $plugin_admin, 'woocommerce_orders_sort_views', 50, 1 );
-
 		remove_action( 'admin_notices', 'woothemes_updater_notice');
+
+		// WooCommerce PDF Invoices & Packing Slips
+		$this->loader->add_filter( 'wpo_wcpdf_invoice_title', $plugin_admin, 'wpo_wcpdf_invoice_title', 50, 1 );
+		$this->loader->add_filter( 'wpo_wcpdf_process_order_ids', $plugin_admin, 'wpo_wcpdf_process_order_ids_paid', 50, 1 );
+
 	}
 
 	/**
