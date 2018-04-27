@@ -153,3 +153,8 @@
 {
   display: none !important;
 }
+
+/* WooCommerce PDF Invoices & Packing Slips: hide meta box Send email */
+#wpo_wcpdf_send_emails{
+  display: none;
+}
