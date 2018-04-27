@@ -206,8 +206,9 @@ class Tmsm_Admin_Cleanup {
 		remove_action( 'admin_notices', 'woothemes_updater_notice');
 
 		// WooCommerce PDF Invoices & Packing Slips
-		$this->loader->add_filter( 'wpo_wcpdf_invoice_title', $plugin_admin, 'wpo_wcpdf_invoice_title', 50, 1 );
-		$this->loader->add_filter( 'wpo_wcpdf_process_order_ids', $plugin_admin, 'wpo_wcpdf_process_order_ids_paid', 50, 1 );
+		$this->loader->add_filter( 'wpo_wcpdf_invoice_title', $plugin_admin, 'wpo_wcpdf_invoice_title', 50, 2 );
+		$this->loader->add_filter( 'wpo_wcpdf_process_order_ids', $plugin_admin, 'wpo_wcpdf_process_order_ids_paid', 50, 2 );
+		$this->loader->add_filter( 'wpo_wcpdf_template_styles', $plugin_admin, 'wpo_wcpdf_template_styles', 50, 2 );
 
 	}
 

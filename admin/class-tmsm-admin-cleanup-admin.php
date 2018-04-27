@@ -521,12 +521,13 @@ class Tmsm_Admin_Cleanup_Admin {
 	/**
 	 * WooCommerce PDF Invoices & Packing Slips: "Invoice" changed to "Order Receipt"
 	 *
-	 * @param $title
+	 * @param string $title
+	 * @param \\WPO\\WC\\PDF_Invoices\\Documents\\Order_Document $document
 	 *
-	 * @return mixed|string|void
+	 * @return string
 	 */
-	public function wpo_wcpdf_invoice_title($title){
-		return __('Order Receipt', 'tmsm-admin-cleanup');
+	public function wpo_wcpdf_invoice_title($title, $document){
+		return __('Order Receipt', 'tmsm-admin-cleanup'). ' ('.$document->order_id.')';
 	}
 
 	/**
@@ -547,5 +548,30 @@ class Tmsm_Admin_Cleanup_Admin {
 			}
 		}
 		return $order_ids;
+	}
+
+	/**
+	 * WooCommerce PDF Invoices & Packing Slips: style PDF with CSS
+	 *
+	 * @param $css
+	 * @param $document
+	 *
+	 * @return string
+	 */
+	function wpo_wcpdf_template_styles($css, $document){
+		$css .= '
+		body{font-size: 10pt; color: #666}
+		.wc-item-meta{font-size: 9pt;}
+		.invoice-number th, .invoice-number td{font-weight: bold}
+		.order-details thead th {
+			background-color: #666;
+			border-color: #666;
+		}
+		table.totals tr.order_total td,
+		table.totals tr.order_total th {
+			border-color: #666;
+		}
+		';
+		return $css;
 	}
 }
