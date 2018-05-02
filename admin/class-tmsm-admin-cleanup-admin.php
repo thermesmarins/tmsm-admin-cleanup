@@ -376,17 +376,8 @@ class Tmsm_Admin_Cleanup_Admin {
 	 * @return array A filtered array of post display states.
 	 */
 	public function polylang_display_post_states_language( $post_states, $post ) {
-		if( is_plugin_active( 'polylang/polylang.php' ) ){
-			if(is_array(get_the_terms( $post, 'language' ))){
-				foreach(get_the_terms( $post, 'language' ) as $language){
-					if(file_exists(POLYLANG_DIR . '/flags/' . $language->slug . '.png')){
-						$post_states['polylang'] = '<img src="data:image/png;base64,' . base64_encode( file_get_contents( POLYLANG_DIR . '/flags/' . $language->slug . '.png' ) ).'">';
-					}
-					else{
-						$post_states['polylang'] = $language->name;
-					}
-				}
-			}
+		if ( function_exists( 'pll_get_post_language' ) ) {
+			$post_states['polylang'] = pll_get_post_language( $post->ID, 'flag' );
 		}
 		return $post_states;
 	}
@@ -567,8 +558,7 @@ class Tmsm_Admin_Cleanup_Admin {
 			background-color: #666;
 			border-color: #666;
 		}
-		table.totals tr.order_total td,
-		table.totals tr.order_total th {
+		table.totals tr.order_total * {
 			border-color: #666;
 		}
 		';
