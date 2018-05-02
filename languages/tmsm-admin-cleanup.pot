@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: TMSM WooCommerce Custom Admin\n"
-"POT-Creation-Date: 2018-04-09 14:51+0200\n"
+"POT-Creation-Date: 2018-05-02 10:30+0200\n"
 "PO-Revision-Date: 2014-10-24 21:08+0100\n"
 "Last-Translator: Nicolas Mollet <nico.mollet@gmail.com>\n"
 "Language-Team: Nicolas Mollet <nico.mollet@gmail.com>\n"
@@ -17,3 +17,93 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ..\n"
+
+#: ../admin/class-tmsm-admin-cleanup-admin.php:82
+msgid "Export"
+msgstr ""
+
+#: ../admin/class-tmsm-admin-cleanup-admin.php:109
+msgid "PDFs"
+msgstr ""
+
+#: ../admin/class-tmsm-admin-cleanup-admin.php:109
+msgid "Manage PDFs"
+msgstr ""
+
+#: ../admin/class-tmsm-admin-cleanup-admin.php:131
+#: ../admin/class-tmsm-admin-cleanup-admin.php:132
+msgid "Customers"
+msgstr ""
+
+#: ../admin/class-tmsm-admin-cleanup-admin.php:146
+msgid "Change your mailjet settings"
+msgstr ""
+
+#: ../admin/class-tmsm-admin-cleanup-admin.php:147
+msgid "Mailjet"
+msgstr ""
+
+#: ../admin/class-tmsm-admin-cleanup-admin.php:165
+#: ../admin/class-tmsm-admin-cleanup-admin.php:166
+msgid "Pricing & Discounts"
+msgstr ""
+
+#: ../admin/class-tmsm-admin-cleanup-admin.php:184
+msgid "Orders"
+msgstr ""
+
+#: ../admin/class-tmsm-admin-cleanup-admin.php:196
+msgid "Backups"
+msgstr ""
+
+#: ../admin/class-tmsm-admin-cleanup-admin.php:208
+msgid "Ocean"
+msgstr ""
+
+#: ../admin/class-tmsm-admin-cleanup-admin.php:273
+#: ../admin/class-tmsm-admin-cleanup-admin.php:274
+msgid "Export Orders"
+msgstr ""
+
+#: ../admin/class-tmsm-admin-cleanup-admin.php:290
+msgid "Registered"
+msgstr ""
+
+#: ../admin/class-tmsm-admin-cleanup-admin.php:319
+msgid "Y/m/d"
+msgstr ""
+
+#: ../admin/class-tmsm-admin-cleanup-admin.php:321
+msgid "Y/m/d g:i:s a"
+msgstr ""
+
+#: ../admin/class-tmsm-admin-cleanup-admin.php:412
+msgid "Cache"
+msgstr ""
+
+#: ../admin/class-tmsm-admin-cleanup-admin.php:453
+#: ../admin/class-tmsm-admin-cleanup-admin.php:480
+msgctxt "Order status"
+msgid "Paid"
+msgstr ""
+
+#: ../admin/class-tmsm-admin-cleanup-admin.php:467
+msgid "M j, Y"
+msgstr ""
+
+#: ../admin/class-tmsm-admin-cleanup-admin.php:480
+msgctxt "Order status"
+msgid "Processing"
+msgstr ""
+
+#: ../admin/class-tmsm-admin-cleanup-admin.php:493
+msgid "Mark paid"
+msgstr ""
+
+#: ../admin/class-tmsm-admin-cleanup-admin.php:530
+msgid "Order Receipt"
+msgstr ""
+
+#: ../includes/class-tmsm-admin-cleanup-install.php:65
+msgid "Orders Manager"
+msgstr ""

@@ -24,3 +24,4 @@ Features
     * Hide Invoice PDF action when order status is cancelled/pending/failed
     * Change "Invoice" to "Order Receipt"
     * Limit export orders to statuses: completed, processing, processed
+    * Customize PDF appearence

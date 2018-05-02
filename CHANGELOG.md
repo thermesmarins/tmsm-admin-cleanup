@@ -1,5 +1,10 @@
 ### Unreleased ###
 
+### 1.0.4: May 2nd, 2018
+* WooCommerce PDF Invoices & Packing Slips: 
+    * Customize appearence of PDF via CSS
+    * Update FR localization
+
 ### 1.0.3: April 26th, 2018
 * WooCommerce PDF Invoices & Packing Slips: 
     * Hide Invoice PDF action when order status is cancelled/pending/failed
