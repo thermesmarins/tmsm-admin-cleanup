@@ -560,8 +560,8 @@ class Tmsm_Admin_Cleanup_Admin {
 	 */
 	function wpo_wcpdf_template_styles($css, $document){
 		$css .= '
-		body{font-size: 10pt; color: #666}
-		.wc-item-meta{font-size: 9pt;}
+		body{font-size: 11pt; color: #666}
+		.wc-item-meta{font-size: 11pt;}
 		.invoice-number th, .invoice-number td{font-weight: bold}
 		.order-details thead th {
 			background-color: #666;
