@@ -99,6 +99,15 @@ class Tmsm_Admin_Cleanup_Admin {
 	}
 
 	/**
+	 * Jetpack disable Just In Time
+	 *
+	 * @return bool
+	 */
+	public function jetpack_just_in_time_msgs(){
+		return false;
+	}
+
+	/**
 	 * Filter by PDF in Medias
 	 *
 	 * @param $post_mime_types

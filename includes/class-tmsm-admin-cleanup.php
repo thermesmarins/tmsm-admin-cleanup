@@ -161,7 +161,7 @@ class Tmsm_Admin_Cleanup {
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'remove_dashboard_boxes');
 
 		// Jetpack
-		$this->loader->add_filter( 'jetpack_just_in_time_msgs', $plugin_admin, '__return_false');
+		$this->loader->add_filter( 'jetpack_just_in_time_msgs', $plugin_admin, 'jetpack_just_in_time_msgs');
 
 		// Users
 		$this->loader->add_filter( 'manage_users_columns', $plugin_admin, 'users_columns' );
