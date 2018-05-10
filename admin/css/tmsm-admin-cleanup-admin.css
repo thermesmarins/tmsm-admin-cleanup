@@ -94,7 +94,9 @@
 #toplevel_page_oceanwp-panel div.wp-menu-image:before {
   content: "\f538" !important;
   font-family: "dashicons" !important;
-
+}
+.oceanwp-review, .oceanwp-octify, .oceanwp-kinsta{
+  display: none;
 }
 
 /* iThemes Security */
