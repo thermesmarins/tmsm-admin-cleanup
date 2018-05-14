@@ -1,4 +1,5 @@
 ### Unreleased ###
+* Fix PDF title if order number is empty
 
 ### 1.0.4: May 2nd, 2018
 * WooCommerce PDF Invoices & Packing Slips: 
