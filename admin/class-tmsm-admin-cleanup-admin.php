@@ -527,7 +527,11 @@ class Tmsm_Admin_Cleanup_Admin {
 	 * @return string
 	 */
 	public function wpo_wcpdf_invoice_title($title, $document){
-		return __('Order Receipt', 'tmsm-admin-cleanup'). ' ('.$document->order_id.')';
+		$title = __('Order Receipt', 'tmsm-admin-cleanup');
+		if(!empty($document->order_id)){
+			$title .= ' ('.$document->order_id.')';
+		}
+		return __('Order Receipt', 'tmsm-admin-cleanup');
 	}
 
 	/**
