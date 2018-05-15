@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: StormBringer Wordpress theme\n"
-"POT-Creation-Date: 2018-05-02 10:30+0200\n"
-"PO-Revision-Date: 2018-05-02 10:30+0200\n"
+"POT-Creation-Date: 2018-05-15 13:33+0200\n"
+"PO-Revision-Date: 2018-05-15 13:33+0200\n"
 "Last-Translator: Nicolas Mollet <nico.mollet@gmail.com>\n"
 "Language-Team: Nicolas Mollet <nico.mollet@gmail.com>\n"
 "Language: fr\n"
@@ -18,63 +18,61 @@ msgstr ""
 "X-Poedit-SearchPath-1: ..\n"
 
 #: ../admin/class-tmsm-admin-cleanup-admin.php:82
-#, fuzzy
-#| msgid "Export Orders"
 msgid "Export"
-msgstr "Exporter Commandes"
+msgstr "Exporter"
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:109
+#: ../admin/class-tmsm-admin-cleanup-admin.php:118
 msgid "PDFs"
 msgstr "PDF"
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:109
+#: ../admin/class-tmsm-admin-cleanup-admin.php:118
 msgid "Manage PDFs"
 msgstr "Gérer les PDF"
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:131
-#: ../admin/class-tmsm-admin-cleanup-admin.php:132
+#: ../admin/class-tmsm-admin-cleanup-admin.php:140
+#: ../admin/class-tmsm-admin-cleanup-admin.php:141
 msgid "Customers"
 msgstr "Clients"
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:146
+#: ../admin/class-tmsm-admin-cleanup-admin.php:155
 msgid "Change your mailjet settings"
 msgstr "Modifier vos réglages Mailjet"
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:147
+#: ../admin/class-tmsm-admin-cleanup-admin.php:156
 msgid "Mailjet"
 msgstr "Mailjet"
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:165
-#: ../admin/class-tmsm-admin-cleanup-admin.php:166
+#: ../admin/class-tmsm-admin-cleanup-admin.php:174
+#: ../admin/class-tmsm-admin-cleanup-admin.php:175
 msgid "Pricing & Discounts"
 msgstr "Promotions"
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:184
+#: ../admin/class-tmsm-admin-cleanup-admin.php:193
 msgid "Orders"
 msgstr "Commandes"
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:196
+#: ../admin/class-tmsm-admin-cleanup-admin.php:205
 msgid "Backups"
 msgstr "Sauvegardes"
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:208
+#: ../admin/class-tmsm-admin-cleanup-admin.php:217
 msgid "Ocean"
 msgstr "Ocean"
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:273
-#: ../admin/class-tmsm-admin-cleanup-admin.php:274
+#: ../admin/class-tmsm-admin-cleanup-admin.php:282
+#: ../admin/class-tmsm-admin-cleanup-admin.php:283
 msgid "Export Orders"
 msgstr "Exporter Commandes"
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:290
+#: ../admin/class-tmsm-admin-cleanup-admin.php:299
 msgid "Registered"
 msgstr "Inscription"
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:319
+#: ../admin/class-tmsm-admin-cleanup-admin.php:328
 msgid "Y/m/d"
 msgstr "Y/m/d"
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:321
+#: ../admin/class-tmsm-admin-cleanup-admin.php:330
 msgid "Y/m/d g:i:s a"
 msgstr "Y/m/d H:i:s"
 
@@ -101,7 +99,12 @@ msgstr "En cours"
 msgid "Mark paid"
 msgstr "Marquer payée"
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:530
+#: ../admin/class-tmsm-admin-cleanup-admin.php:560
+msgid "Order paid"
+msgstr "Commande payée"
+
+#: ../admin/class-tmsm-admin-cleanup-admin.php:574
+#: ../admin/class-tmsm-admin-cleanup-admin.php:578
 msgid "Order Receipt"
 msgstr "Reçu de commande"
 

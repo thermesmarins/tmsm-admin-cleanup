@@ -519,6 +519,50 @@ class Tmsm_Admin_Cleanup_Admin {
 	}
 
 	/**
+	 * WooCommerce: Add Web Hook Order Paid
+	 *
+	 * @param array $topic_hooks Existing topic hooks.
+	 *
+	 * @return array
+	 */
+	function woocommerce_webhook_topic_hooks_order_paid( $topic_hooks ) {
+		$new_hooks = array(
+			'order.paid' => array(
+				'woocommerce_payment_complete',
+			),
+		);
+		return array_merge( $topic_hooks, $new_hooks );
+	}
+
+	/**
+	 * WooCommerce: Add Web Hook Topic Paid
+	 *
+	 * @param array $topic_events Existing topic hooks.
+	 *
+	 * @return array
+	 */
+	function woocommerce_valid_webhook_events_paid( $topic_events ) {
+		$new_events = array(
+			'paid',
+		);
+		return array_merge( $topic_events, $new_events );
+	}
+
+	/**
+	 * WooCommerce: Add Web Hook Order Paid i18n
+	 *
+	 * @param array $topics Array of topics with the i18n proper name.
+	 *
+	 * @return array
+	 */
+	function woocommerce_webhook_topics_order_paid( $topics ) {
+		$new_topics = array(
+			'order.paid' => __( 'Order paid', 'tmsm-admin-cleanup' ),
+		);
+		return array_merge( $topics, $new_topics );
+	}
+
+	/**
 	 * WooCommerce PDF Invoices & Packing Slips: "Invoice" changed to "Order Receipt"
 	 *
 	 * @param string $title
