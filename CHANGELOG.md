@@ -1,5 +1,6 @@
 ### Unreleased ###
 * WooCommerce webhook trigger "order.paid"
+* Dashboard: remove welcome and Ocean news
 
 ### 1.0.5: May 14nd, 2018
 * Fix PDF title if order number is empty
