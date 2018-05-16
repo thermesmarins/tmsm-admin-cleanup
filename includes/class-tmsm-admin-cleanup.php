@@ -183,6 +183,9 @@ class Tmsm_Admin_Cleanup {
 		$this->loader->add_filter( 'admin_menu', $plugin_admin, 'menu_discounts', 999 );
 		$this->loader->add_filter( 'admin_menu', $plugin_admin, 'menu_ocean', 999 );
 
+		// Ocean
+		$this->loader->add_filter( 'oceanwp_news_enabled', $plugin_admin, 'oceanwp_news_enabled', 10 );
+
 		// Polylang
 		$this->loader->add_filter( 'display_post_states', $plugin_admin, 'polylang_display_post_states_language', 10, 2 );
 

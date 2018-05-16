@@ -377,6 +377,13 @@ class Tmsm_Admin_Cleanup_Admin {
 	}
 
 	/**
+	 * OceanWP: Disables Dashboard Widget News
+	 */
+	public function oceanwp_news_enabled(){
+		return true;
+	}
+
+	/**
 	 * Polylang: Display a country flag or the name of the language as a "post state"
 	 *
 	 * @param array    $post_states An array of post display states.
