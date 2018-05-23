@@ -1,5 +1,6 @@
 ### Unreleased ###
-* WooCommerce webhook trigger "order.paid"
+* WooCommerce: Webhook trigger "order.paid"
+* WooCommerce: action buttons colors
 * Dashboard: remove welcome and Ocean news
 * WooCommerce PDF Invoices & Packing Slips: Remove Action button
 

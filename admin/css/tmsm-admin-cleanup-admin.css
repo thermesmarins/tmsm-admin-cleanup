@@ -5,6 +5,16 @@
 #adminmenu #menu-posts-product        .menu-icon-product div.wp-menu-image:before{content: "\f312" !important;font-family: "dashicons" !important;}
 #adminmenu #toplevel_page_wc-reports  .menu-icon-generic div.wp-menu-image:before{content: "\f239" !important;font-family: "dashicons" !important; font-size: 20px !important;}
 
+/* WooCommerce action buttons */
+.column-wc_actions .complete {
+  background: #c8d7e1;
+  color: #2e4453;
+}
+.column-wc_actions a.processing:after{
+  background: #c6e1c6;
+  color: #5b841b;
+}
+
 /* Yoast SEO admin menu icons */
 #adminmenu #toplevel_page_wpseo_dashboard .dashicons-before img {
   display: none
