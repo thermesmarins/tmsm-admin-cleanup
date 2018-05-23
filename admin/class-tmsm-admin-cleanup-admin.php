@@ -653,7 +653,7 @@ class Tmsm_Admin_Cleanup_Admin {
 	 * @return array
 	 */
 	static function wpo_wcpdf_allowed_statuses(){
-		$allowed_statuses = array( 'completed', 'processing', 'processed' );
+		$allowed_statuses = array( 'completed', 'processing', 'processed', 'on-hold' );
 		return $allowed_statuses;
 	}
 }
