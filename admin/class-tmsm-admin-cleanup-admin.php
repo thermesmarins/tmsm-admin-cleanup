@@ -582,7 +582,7 @@ class Tmsm_Admin_Cleanup_Admin {
 		if(!empty($document->order_id)){
 			$title .= ' ('.$document->order_id.')';
 		}
-		return __('Order Receipt', 'tmsm-admin-cleanup');
+		return $title;
 	}
 
 	/**
