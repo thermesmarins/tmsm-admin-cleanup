@@ -20,8 +20,10 @@ Features
 * Dashboard: remove boxes
 * Content Blocks: allow posts to be translated by Polylang
 * Gravity Forms: Label Visibility Settings
+* WooCommerce webhook trigger "order.paid"
 * WooCommerce PDF Invoices & Packing Slips: 
     * Hide Invoice PDF action when order status is cancelled/pending/failed
     * Change "Invoice" to "Order Receipt"
     * Limit export orders to statuses: completed, processing, processed
     * Customize PDF appearence
+    * Remove Action button

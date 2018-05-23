@@ -1,7 +1,7 @@
 ### Unreleased ###
 * WooCommerce webhook trigger "order.paid"
 * Dashboard: remove welcome and Ocean news
-* GoogleTagManager: scripts in footer
+* WooCommerce PDF Invoices & Packing Slips: Remove Action button
 
 ### 1.0.5: May 14nd, 2018
 * Fix PDF title if order number is empty

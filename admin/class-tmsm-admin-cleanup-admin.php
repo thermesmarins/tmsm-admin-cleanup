@@ -596,9 +596,8 @@ class Tmsm_Admin_Cleanup_Admin {
 	function wpo_wcpdf_process_order_ids_paid( $order_ids, $document_type ) {
 		foreach ($order_ids as $key => $order_id) {
 			$order = wc_get_order( $order_id );
-			$allowed_statuses = array( 'completed', 'processing', 'processed' );
 
-			if ( !in_array($order->get_status(), $allowed_statuses) ) {
+			if ( !in_array($order->get_status(), self::wpo_wcpdf_allowed_statuses()) ) {
 				unset( $order_ids[$key] );
 			}
 		}
@@ -606,7 +605,7 @@ class Tmsm_Admin_Cleanup_Admin {
 	}
 
 	/**
-	 * WooCommerce PDF Invoices & Packing Slips: style PDF with CSS
+	 * WooCommerce PDF Invoices & Packing Slips: Style PDF with CSS
 	 *
 	 * @param $css
 	 * @param $document
@@ -627,5 +626,34 @@ class Tmsm_Admin_Cleanup_Admin {
 		}
 		';
 		return $css;
+	}
+
+	/**
+	 * WooCommerce PDF Invoices & Packing Slips: Remove Action button
+	 *
+	 * @param array $listing_actions
+	 * @param WC_Order $order
+	 *
+	 * @return array
+	 */
+	public function wpo_wcpdf_listing_actions($listing_actions, $order){
+
+		if(!empty($listing_actions['invoice'])){
+			if(!in_array($order->get_status(), self::wpo_wcpdf_allowed_statuses() ) ){
+				unset($listing_actions['invoice']);
+			}
+		}
+
+		return $listing_actions;
+	}
+
+	/**
+	 * WooCommerce PDF Invoices & Packing Slips: Allowed Statuses
+	 *
+	 * @return array
+	 */
+	static function wpo_wcpdf_allowed_statuses(){
+		$allowed_statuses = array( 'completed', 'processing', 'processed' );
+		return $allowed_statuses;
 	}
 }

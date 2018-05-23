@@ -217,6 +217,7 @@ class Tmsm_Admin_Cleanup {
 		$this->loader->add_filter( 'wpo_wcpdf_invoice_title', $plugin_admin, 'wpo_wcpdf_invoice_title', 50, 2 );
 		$this->loader->add_filter( 'wpo_wcpdf_process_order_ids', $plugin_admin, 'wpo_wcpdf_process_order_ids_paid', 50, 2 );
 		$this->loader->add_filter( 'wpo_wcpdf_template_styles', $plugin_admin, 'wpo_wcpdf_template_styles', 50, 2 );
+		$this->loader->add_filter( 'wpo_wcpdf_listing_actions', $plugin_admin, 'wpo_wcpdf_listing_actions', 50, 2 );
 
 	}
 
