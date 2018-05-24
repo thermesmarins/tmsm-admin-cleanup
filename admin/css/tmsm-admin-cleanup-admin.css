@@ -170,3 +170,12 @@
 #wpo_wcpdf_send_emails{
   display: none;
 }
+
+/* Tracking La Poste */
+td.la_poste_tracking.column-la_poste_tracking {
+  font-size: 10px;
+  line-height: normal !important;
+}
+td.la_poste_tracking.column-la_poste_tracking a {
+  font-size: 11px;
+}
