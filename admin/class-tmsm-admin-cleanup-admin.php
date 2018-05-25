@@ -149,18 +149,41 @@ class Tmsm_Admin_Cleanup_Admin {
 	 */
 	public function menu_mailjet(){
 
-		global $current_user;
-		if(user_can($current_user, 'manage_options')){
-			add_submenu_page( 'options-general.php',
-				__( 'Change your mailjet settings', 'wp-mailjet' ),
-				__( 'Mailjet', 'wp-mailjet' ),
-				'read',
-				'wp_mailjet_options_top_menu',
-				'manage_options'
-			);
+		if(class_exists('WP_Mailjet')){
+			global $current_user;
+			if(user_can($current_user, 'manage_options')){
+				add_submenu_page( 'options-general.php',
+					__( 'Change your mailjet settings', 'wp-mailjet' ),
+					__( 'Mailjet', 'wp-mailjet' ),
+					'manage_options',
+					'wp_mailjet_options_top_menu',
+					''
+				);
+			}
+			remove_menu_page('wp_mailjet_options_top_menu');
 		}
 
-		remove_menu_page('wp_mailjet_options_top_menu');
+	}
+
+	/**
+	 * MailChimp: Move admin menu to submenu of Settings
+	 *
+	 * @since    1.0.6
+	 */
+	public function menu_mailchimp() {
+
+		if(class_exists('MailChimp_WooCommerce_Admin')){
+			global $current_user;
+			add_submenu_page( 'options-general.php',
+				'MailChimp - WooCommerce Setup',
+				'MailChimp',
+				'manage_options',
+				'mailchimp-woocommerce',
+				''
+			);
+			remove_menu_page('mailchimp-woocommerce');
+		}
+
 	}
 
 	/**

@@ -162,7 +162,6 @@ class Tmsm_Admin_Cleanup {
 		remove_action('welcome_panel', 'wp_welcome_panel');
 		$this->loader->add_filter( 'oceanwp_news_enabled', $plugin_admin, 'oceanwp_news_enabled', 10 );
 
-
 		// Jetpack
 		$this->loader->add_filter( 'jetpack_just_in_time_msgs', $plugin_admin, 'jetpack_just_in_time_msgs');
 
@@ -185,6 +184,7 @@ class Tmsm_Admin_Cleanup {
 		$this->loader->add_filter( 'admin_menu', $plugin_admin, 'menu_mailjet', 999 );
 		$this->loader->add_filter( 'admin_menu', $plugin_admin, 'menu_discounts', 999 );
 		$this->loader->add_filter( 'admin_menu', $plugin_admin, 'menu_ocean', 999 );
+		$this->loader->add_filter( 'admin_menu', $plugin_admin, 'menu_mailchimp', 999 );
 
 		// Polylang
 		$this->loader->add_filter( 'display_post_states', $plugin_admin, 'polylang_display_post_states_language', 10, 2 );

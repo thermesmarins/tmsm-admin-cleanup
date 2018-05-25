@@ -1,9 +1,12 @@
 ### Unreleased ###
+
+### 1.0.6: May 25nd, 2018
 * WooCommerce: Webhook trigger "order.paid"
 * WooCommerce: action buttons colors
 * Dashboard: remove welcome and Ocean news
 * WooCommerce PDF Invoices & Packing Slips: Remove Action button
-
+* MailChimp: move admin menu to submenu of settings
+ 
 ### 1.0.5: May 14nd, 2018
 * Fix PDF title if order number is empty
 * Plugin logo
