@@ -656,4 +656,5 @@ class Tmsm_Admin_Cleanup_Admin {
 		$allowed_statuses = array( 'completed', 'processing', 'processed', 'on-hold' );
 		return $allowed_statuses;
 	}
+
 }
