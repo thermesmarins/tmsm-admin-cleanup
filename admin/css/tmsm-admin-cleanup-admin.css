@@ -108,6 +108,9 @@
 .oceanwp-review, .oceanwp-octify, .oceanwp-kinsta{
   display: none;
 }
+#accordion-section-oceanwp_upsell_section{
+  display: none;
+}
 
 /* iThemes Security */
 #toplevel_page_itsec div.wp-menu-image:before, .it-icon-itsec:before {
