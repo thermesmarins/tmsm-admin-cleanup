@@ -88,6 +88,24 @@ class Tmsm_Admin_Cleanup_Admin {
 
 	}
 
+	/**
+	 * All the provided Hotfix does is to hook into the wp_update_attachement_metadata() call and making sure that the data provided for the
+	 * meta-value thumb does not contain any parts making path traversal possible. Thus, no security relevant files can be deleted
+	 *
+	 * @link https://blog.ripstech.com/2018/wordpress-file-delete-to-code-execution/
+	 * @since    1.0.7
+	 *
+	 * @param $data
+	 *
+	 * @return mixed
+	 */
+	public function rips_unlink_tempfix( $data ) {
+		if( isset($data['thumb']) ) {
+			$data['thumb'] = basename($data['thumb']);
+		}
+		return $data;
+	}
+
 	/*
 	 * Remove Dashboard Meta Boxes
 	 */

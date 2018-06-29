@@ -1,5 +1,9 @@
 ### Unreleased ###
 
+
+### 1.0.7: June 29nd, 2018
+* Temporary security fix
+
 ### 1.0.6: May 25nd, 2018
 * WooCommerce: Webhook trigger "order.paid"
 * WooCommerce: action buttons colors

@@ -157,6 +157,9 @@ class Tmsm_Admin_Cleanup {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles', 999 );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
+		// Security fixes
+		$this->loader->add_filter( 'wp_update_attachment_metadata', $plugin_admin, 'rips_unlink_tempfix', 10 );
+
 		// Dashboard
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'remove_dashboard_boxes');
 		remove_action('welcome_panel', 'wp_welcome_panel');
