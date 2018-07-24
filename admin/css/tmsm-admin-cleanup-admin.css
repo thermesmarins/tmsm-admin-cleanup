@@ -187,3 +187,8 @@ td.la_poste_tracking.column-la_poste_tracking a {
 .updraft-ad-container, .easy-updates-manager-dashnotice{
   display: none;
 }
+
+/* Duplicate Post ads */
+#duplicate-post-notice{
+  display: none;
+}
