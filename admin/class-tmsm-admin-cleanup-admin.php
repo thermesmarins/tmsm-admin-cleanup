@@ -201,7 +201,26 @@ class Tmsm_Admin_Cleanup_Admin {
 			);
 			remove_menu_page('mailchimp-woocommerce');
 		}
+	}
 
+	/**
+	 * MailChimp: Move admin menu to submenu of Settings
+	 *
+	 * @since    1.0.8
+	 */
+	public function menu_smush() {
+
+		if(class_exists('WpSmushitAdmin')){
+			global $current_user;
+			add_submenu_page( 'options-general.php',
+				esc_html__( "Smush", "wp-smushit" ),
+				esc_html__( "Smush", "wp-smushit" ),
+				'manage_options',
+				'smush',
+				''
+			);
+			remove_menu_page('smush');
+		}
 	}
 
 	/**
