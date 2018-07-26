@@ -192,3 +192,8 @@ td.la_poste_tracking.column-la_poste_tracking a {
 #duplicate-post-notice{
   display: none;
 }
+
+/* Imagify ads */
+.imagify-sidebar-section, #imagify-get-pricing-modal{
+  display: none;
+}
