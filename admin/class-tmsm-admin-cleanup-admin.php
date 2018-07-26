@@ -717,4 +717,20 @@ class Tmsm_Admin_Cleanup_Admin {
 		return $allowed_statuses;
 	}
 
+
+	/**
+	 * ACF Disable Autocomplete
+	 */
+	function acf_input_disable_autocomplete() {
+
+		?>
+		<script type="text/javascript">
+          (function($) {
+            $('.acf-input-wrap input, .acf-input textarea').attr('autocomplete', 'disableacf');
+          })(jQuery);
+		</script>
+		<?php
+
+	}
+
 }

@@ -1,5 +1,6 @@
 ### Unreleased ###
 * Move SmushIt to submenu
+* ACF Disable Autocomplete
 
 ### 1.0.7: June 29nd, 2018
 * Temporary security fix
