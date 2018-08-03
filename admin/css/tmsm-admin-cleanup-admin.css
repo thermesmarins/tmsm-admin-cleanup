@@ -48,7 +48,8 @@
 
 /* Yoast SEO Remove notices */
 .wpseo_content_wrapper #sidebar-container,
-.yoast_premium_upsell_admin_block
+.yoast_premium_upsell_admin_block,
+.yoast-alert
 {
   display: none;
 }
@@ -197,3 +198,4 @@ td.la_poste_tracking.column-la_poste_tracking a {
 .imagify-sidebar-section, #imagify-get-pricing-modal{
   display: none;
 }
+
