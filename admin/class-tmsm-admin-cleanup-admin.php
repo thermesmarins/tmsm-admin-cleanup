@@ -158,7 +158,7 @@ class Tmsm_Admin_Cleanup_Admin {
 			__( 'Customers', 'woocommerce' ),
 			__( 'Customers', 'woocommerce' ),
 			'list_users',
-			'users.php?role=customer&orderby=id&order=desc'
+			'admin.php?page=wc-reports&tab=customers&report=customer_list'
 		);
 	}
 

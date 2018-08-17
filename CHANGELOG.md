@@ -1,6 +1,7 @@
 ### Unreleased ###
 * Move SmushIt to submenu
 * ACF Disable Autocomplete
+* Change link to Customers admin menu
 
 ### 1.0.7: June 29nd, 2018
 * Temporary security fix
