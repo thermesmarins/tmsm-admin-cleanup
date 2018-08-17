@@ -2,6 +2,7 @@
 * Move SmushIt to submenu
 * ACF Disable Autocomplete
 * Change link to Customers admin menu
+* Remove admin footer
 
 ### 1.0.7: June 29nd, 2018
 * Temporary security fix

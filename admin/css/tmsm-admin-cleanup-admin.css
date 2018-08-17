@@ -195,7 +195,11 @@ td.la_poste_tracking.column-la_poste_tracking a {
 }
 
 /* Imagify ads */
-.imagify-sidebar-section, #imagify-get-pricing-modal{
-  display: none;
+.imagify-sidebar-section, #imagify-get-pricing-modal, .imagify-notice, .imagify-notice.imagify-notice {
+  display: none !important;
 }
 
+/* WP */
+#wpfooter{
+  display: none !important;
+}
