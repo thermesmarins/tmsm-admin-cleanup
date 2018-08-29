@@ -733,4 +733,20 @@ class Tmsm_Admin_Cleanup_Admin {
 
 	}
 
+	/**
+	 * Elementor: Shortcode with sanitized name as hint
+	 *
+	 * @param string $column_name
+	 * @param int $post_id
+	 */
+	public function elementor_admin_columns_content( $column_name, $post_id ) {
+		if ( 'shortcode' === $column_name ) {
+			// %s = shortcode, %d = post_id
+			$post = get_post($post_id);
+			$slug = get_post_field( 'post_name', $post );
+
+			$shortcode = esc_attr( sprintf( '[%s id="%d" hint="%s"]', 'elementor-template', $post_id, $slug ) );
+			printf( '<input class="elementor-shortcode-input" type="text" readonly onfocus="this.select()" value="%s" />', $shortcode );
+		}
+	}
 }

@@ -226,6 +226,9 @@ class Tmsm_Admin_Cleanup {
 		// ACF
 		$this->loader->add_action( 'acf/input/admin_footer', $plugin_admin, 'acf_input_disable_autocomplete' );
 
+		// Elementor
+		$this->loader->add_action( 'manage_elementor_library_posts_custom_column', $plugin_admin, 'elementor_admin_columns_content', -10, 2 );
+
 	}
 
 	/**
