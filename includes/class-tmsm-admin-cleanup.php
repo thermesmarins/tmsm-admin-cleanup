@@ -229,6 +229,9 @@ class Tmsm_Admin_Cleanup {
 		// Elementor
 		$this->loader->add_action( 'manage_elementor_library_posts_custom_column', $plugin_admin, 'elementor_admin_columns_content', -10, 2 );
 
+		// Yoast
+		$this->loader->add_filter( 'pll_translate_post_meta', $plugin_admin, 'yoast_translate_meta', 50, 3 );
+
 	}
 
 	/**

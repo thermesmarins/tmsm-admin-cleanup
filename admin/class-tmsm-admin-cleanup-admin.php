@@ -749,4 +749,21 @@ class Tmsm_Admin_Cleanup_Admin {
 			printf( '<input class="elementor-shortcode-input" type="text" readonly onfocus="this.select()" value="%s" />', $shortcode );
 		}
 	}
+
+	/**
+	 * YoastSEO: do not copy title and metadesc
+	 *
+	 * @since 1.0.9
+	 *
+	 * @param mixed  $value Meta value
+	 * @param string $key   Meta key
+	 * @param string $lang  Language of target
+	 * @return mixed
+	 */
+	public function yoast_translate_meta( $value, $key, $lang ) {
+		if ( '_yoast_wpseo_title' === $key || '_yoast_wpseo_metadesc' === $key ) {
+			$value = null;
+		}
+		return $value;
+	}
 }
