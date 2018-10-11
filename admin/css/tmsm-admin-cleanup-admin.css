@@ -188,7 +188,7 @@ td.la_poste_tracking.column-la_poste_tracking a {
 }
 
 /* Easy Updates Manager ads */
-.updraft-ad-container, .easy-updates-manager-dashnotice{
+.updraft-ad-container, #easy-updates-manager-dashnotice{
   display: none;
 }
 

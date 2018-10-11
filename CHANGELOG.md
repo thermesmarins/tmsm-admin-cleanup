@@ -1,4 +1,5 @@
 * YoastSEO: do not copy title and metadesc
+* Hide Easy Updates Manager ads
 
 ### 1.0.8: August 29th, 2018
 * Move SmushIt to submenu
