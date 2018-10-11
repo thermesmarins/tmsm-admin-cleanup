@@ -1,3 +1,4 @@
+### 1.0.9: October 11th, 2018
 * YoastSEO: do not copy title and metadesc
 * Hide Easy Updates Manager ads
 * Fix for Elementor template conditions not compatible with Polylang
