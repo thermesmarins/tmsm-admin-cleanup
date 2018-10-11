@@ -1,3 +1,5 @@
+* Check if Polylang is installed
+
 ### 1.0.9: October 11th, 2018
 * YoastSEO: do not copy title and metadesc
 * Hide Easy Updates Manager ads

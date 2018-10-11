@@ -191,8 +191,10 @@ class Tmsm_Admin_Cleanup {
 		$this->loader->add_filter( 'admin_menu', $plugin_admin, 'menu_smush', 999 );
 
 		// Polylang
-		$this->loader->add_filter( 'display_post_states', $plugin_admin, 'polylang_display_post_states_language', 10, 2 );
-		$this->loader->add_action( 'parse_query', $plugin_admin, 'polylang_elementor_library_conditions_parse_query', 1, 1 );
+		if(defined('POLYLANG_VERSION')){
+			$this->loader->add_filter( 'display_post_states', $plugin_admin, 'polylang_display_post_states_language', 10, 2 );
+			$this->loader->add_action( 'parse_query', $plugin_admin, 'polylang_elementor_library_conditions_parse_query', 1, 1 );
+		}
 
 		// WP Rocket
 		$this->loader->add_filter( 'get_rocket_option_wl_plugin_name', $plugin_admin, 'wprocket_name', 10 );
