@@ -459,6 +459,19 @@ class Tmsm_Admin_Cleanup_Admin {
 	}
 
 	/**
+	 * Fix for Elementor template conditions not compatible with Polylang
+	 *
+	 * @link https://github.com/polylang/polylang/issues/152#issuecomment-320602328
+	 *
+	 * @param WP_Query $query
+	 */
+	function polylang_elementor_library_conditions_parse_query( $query ) {
+		if ( is_admin() && $query->query_vars['post_type'] === 'elementor_library' && $query->query_vars['meta_key'] === '_elementor_conditions' ) {
+			$query->set( 'lang', '' );
+		}
+	}
+
+	/**
 	 * Empty WP Rocket cache on save product
 	 *
 	 * @param $product

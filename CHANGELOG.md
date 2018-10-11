@@ -1,5 +1,6 @@
 * YoastSEO: do not copy title and metadesc
 * Hide Easy Updates Manager ads
+* Fix for Elementor template conditions not compatible with Polylang
 
 ### 1.0.8: August 29th, 2018
 * Move SmushIt to submenu
