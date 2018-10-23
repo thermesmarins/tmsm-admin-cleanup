@@ -109,7 +109,7 @@
   content: "\f538" !important;
   font-family: "dashicons" !important;
 }
-.oceanwp-review, .oceanwp-octify, .oceanwp-kinsta{
+.oceanwp-review, .oceanwp-octify, .oceanwp-kinsta, .owp-sticky-notice{
   display: none;
 }
 body #customize-theme-controls #accordion-section-oceanwp_upsell_section{
