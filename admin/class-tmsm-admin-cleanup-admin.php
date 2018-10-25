@@ -466,7 +466,8 @@ class Tmsm_Admin_Cleanup_Admin {
 	 * @param WP_Query $query
 	 */
 	function polylang_elementor_library_conditions_parse_query( $query ) {
-		if ( is_admin() && $query->query_vars['post_type'] === 'elementor_library' && $query->query_vars['meta_key'] === '_elementor_conditions' ) {
+		if ( is_admin() && ! empty( $query->query_vars['post_type'] ) && $query->query_vars['post_type'] === 'elementor_library'
+		     && ! empty( $query->query_vars['meta_key'] ) && $query->query_vars['meta_key'] === '_elementor_conditions' ) {
 			$query->set( 'lang', '' );
 		}
 	}

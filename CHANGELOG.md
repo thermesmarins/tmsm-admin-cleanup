@@ -1,4 +1,5 @@
 * Check if Polylang is installed
+* Check if query vars are set before testing them
 
 ### 1.0.9: October 11th, 2018
 * YoastSEO: do not copy title and metadesc
