@@ -92,6 +92,9 @@
 #toplevel_page_hustle div.wp-menu-image img{
   display: none;
 }
+.frash-notice{
+  display: none !important;
+}
 
 /* Elementor */
 #toplevel_page_elementor div.wp-menu-image:before {
