@@ -106,6 +106,10 @@
 .elementor-shortcode-input + .elementor-shortcode-input {
   display: none;
 }
+.elementor-message.is-dismissible{
+  display: none;
+}
+
 
 /* Ocean */
 #toplevel_page_oceanwp-panel div.wp-menu-image:before {
