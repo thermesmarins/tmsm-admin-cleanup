@@ -643,6 +643,28 @@ class Tmsm_Admin_Cleanup_Admin {
 		return array_merge( $topics, $new_topics );
 	}
 
+
+	/**
+	 * WooCommerce: Adds the order processing count to the menu.
+	 */
+	public function woocommerce_menu_order_count() {
+		global $submenu;
+
+		if ( isset( $submenu['edit.php?post_type=shop_order'] ) ) {
+			unset( $submenu['edit.php?post_type=shop_order'][0] );
+			$order_count = wc_processing_order_count();
+
+			foreach ( $submenu['edit.php?post_type=shop_order'] as $key => $menu_item ) {
+
+				if ( 0 === strpos( $menu_item[0], _x( 'Orders', 'Admin menu name', 'woocommerce' ) ) ) {
+					$submenu['edit.php?post_type=shop_order'][ $key ][0] .= ' <span class="awaiting-mod update-plugins count-' . esc_attr( $order_count ) . '"><span class="processing-count">' . number_format_i18n( $order_count ) . '</span></span>'; // WPCS: override ok.
+					break;
+				}
+			}
+		}
+	}
+
+
 	/**
 	 * WooCommerce PDF Invoices & Packing Slips: "Invoice" changed to "Order Receipt"
 	 *

@@ -219,6 +219,7 @@ class Tmsm_Admin_Cleanup {
 		$this->loader->add_filter( 'woocommerce_webhook_topic_hooks', $plugin_admin, 'woocommerce_webhook_topic_hooks_order_paid', 50, 1 );
 		$this->loader->add_filter( 'woocommerce_valid_webhook_events', $plugin_admin, 'woocommerce_valid_webhook_events_paid', 50, 1 );
 		$this->loader->add_filter( 'woocommerce_webhook_topics', $plugin_admin, 'woocommerce_webhook_topics_order_paid', 50, 1 );
+		$this->loader->add_action( 'admin_head', $plugin_admin, 'woocommerce_menu_order_count');
 
 		// WooCommerce PDF Invoices & Packing Slips
 		$this->loader->add_filter( 'wpo_wcpdf_invoice_title', $plugin_admin, 'wpo_wcpdf_invoice_title', 50, 2 );

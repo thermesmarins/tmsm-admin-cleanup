@@ -2,6 +2,7 @@
 * Check if query vars are set before testing them
 * Elementor ads
 * Hustle ads
+* Add order count in menu (for shop_order_manager role)
 
 ### 1.0.9: October 11th, 2018
 * YoastSEO: do not copy title and metadesc

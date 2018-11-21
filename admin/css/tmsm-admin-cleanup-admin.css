@@ -5,6 +5,12 @@
 #adminmenu #menu-posts-product        .menu-icon-product div.wp-menu-image:before{content: "\f312" !important;font-family: "dashicons" !important;}
 #adminmenu #toplevel_page_wc-reports  .menu-icon-generic div.wp-menu-image:before{content: "\f239" !important;font-family: "dashicons" !important; font-size: 20px !important;}
 
+/* WooCommerce status paid */
+.subsubsub .wc-processing a{
+  //color: #ca4a1f;
+  //font-weight: bold;
+}
+
 /* WooCommerce action buttons */
 .column-wc_actions .complete {
   background: #c8d7e1;
