@@ -219,3 +219,8 @@ td.la_poste_tracking.column-la_poste_tracking a {
 #wpfooter{
   display: none !important;
 }
+
+/* ACF */
+.ac-notice.is-dismissible{
+  display: none;
+}
