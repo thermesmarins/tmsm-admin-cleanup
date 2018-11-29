@@ -444,6 +444,13 @@ class Tmsm_Admin_Cleanup_Admin {
 	}
 
 	/**
+	 * Disable WooCommerce reviews dashboard widget
+	 */
+	public function disable_woocommerce_reviews_remove_dashboard_widgets(){
+		remove_meta_box( 'woocommerce_dashboard_recent_reviews', 'dashboard', 'normal');
+	}
+
+	/**
 	 * Polylang: Display a country flag or the name of the language as a "post state"
 	 *
 	 * @param array    $post_states An array of post display states.
