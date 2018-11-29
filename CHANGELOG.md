@@ -6,6 +6,7 @@
 * Remove ACF ads
 * Disable Connect your store to WooCommerce.com to receive extensions updates and support admin notice
 * Disable WooCommerce reviews dashboard widget
+* Disable WooCommerce status dashboard widget
 
 ### 1.0.9: October 11th, 2018
 * YoastSEO: do not copy title and metadesc

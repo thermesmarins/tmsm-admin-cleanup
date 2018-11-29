@@ -444,10 +444,14 @@ class Tmsm_Admin_Cleanup_Admin {
 	}
 
 	/**
-	 * Disable WooCommerce reviews dashboard widget
+	 * Disable WooCommerce dashboard widget
+	 *
+	 * @since 1.1.0
 	 */
-	public function disable_woocommerce_reviews_remove_dashboard_widgets(){
-		remove_meta_box( 'woocommerce_dashboard_recent_reviews', 'dashboard', 'normal');
+	public function woocommerce_remove_dashboard_widgets(){
+		remove_meta_box( 'woocommerce_dashboard_recent_reviews', 'dashboard', 'normal' );
+		remove_meta_box( 'woocommerce_dashboard_status', 'dashboard', 'normal' );
+
 	}
 
 	/**

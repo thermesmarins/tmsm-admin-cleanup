@@ -164,7 +164,7 @@ class Tmsm_Admin_Cleanup {
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'remove_dashboard_boxes');
 		remove_action('welcome_panel', 'wp_welcome_panel');
 		$this->loader->add_filter( 'oceanwp_news_enabled', $plugin_admin, 'oceanwp_news_enabled', 10 );
-		$this->loader->add_action( 'wp_dashboard_setup', $plugin_admin, 'disable_woocommerce_reviews_remove_dashboard_widgets', 10 );
+		$this->loader->add_action( 'wp_dashboard_setup', $plugin_admin, 'woocommerce_remove_dashboard_widgets', 10 );
 
 		// Jetpack
 		$this->loader->add_filter( 'jetpack_just_in_time_msgs', $plugin_admin, 'jetpack_just_in_time_msgs');
