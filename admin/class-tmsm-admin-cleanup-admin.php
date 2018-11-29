@@ -512,6 +512,17 @@ class Tmsm_Admin_Cleanup_Admin {
 	}
 
 	/**
+	 * Disable Connect your store to WooCommerce.com to receive extensions updates and support admin notice
+	 *
+	 * @since 1.1.0
+	 *
+	 * @return bool
+	 */
+	public function woocommerce_helper_suppress_admin_notices(){
+		return true;
+	}
+
+	/**
 	 * Remove tour guide
 	 *
 	 * @since 1.0.7

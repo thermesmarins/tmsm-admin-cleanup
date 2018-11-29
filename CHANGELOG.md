@@ -4,6 +4,7 @@
 * Hustle ads
 * Add order count in menu (for shop_order_manager role)
 * Remove ACF ads
+* Disable Connect your store to WooCommerce.com to receive extensions updates and support admin notice
 
 ### 1.0.9: October 11th, 2018
 * YoastSEO: do not copy title and metadesc
