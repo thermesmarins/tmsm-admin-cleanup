@@ -8,6 +8,7 @@
 * Disable WooCommerce reviews dashboard widget
 * Disable WooCommerce status dashboard widget
 * Remove OptinMonster ads
+* Mailjet new version
 
 ### 1.0.9: October 11th, 2018
 * YoastSEO: do not copy title and metadesc
