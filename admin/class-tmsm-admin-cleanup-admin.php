@@ -167,18 +167,18 @@ class Tmsm_Admin_Cleanup_Admin {
 	 */
 	public function menu_mailjet(){
 
-		if(class_exists('WP_Mailjet')){
+		if ( defined('MAILJET_VERSION')) {
 			global $current_user;
-			if(user_can($current_user, 'manage_options')){
+			if ( user_can( $current_user, 'manage_options' ) ) {
 				add_submenu_page( 'options-general.php',
 					__( 'Change your mailjet settings', 'wp-mailjet' ),
 					__( 'Mailjet', 'wp-mailjet' ),
 					'manage_options',
-					'wp_mailjet_options_top_menu',
+					'mailjet_settings_page',
 					''
 				);
 			}
-			remove_menu_page('wp_mailjet_options_top_menu');
+			remove_menu_page('mailjet_settings_page');
 		}
 
 	}
