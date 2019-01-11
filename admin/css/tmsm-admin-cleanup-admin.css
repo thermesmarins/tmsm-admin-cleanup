@@ -54,8 +54,7 @@
 
 /* Yoast SEO Remove notices */
 .wpseo_content_wrapper #sidebar-container,
-.yoast_premium_upsell_admin_block,
-.yoast-alert
+.yoast_premium_upsell_admin_block
 {
   display: none;
 }
