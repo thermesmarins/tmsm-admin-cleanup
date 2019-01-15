@@ -1,3 +1,5 @@
+* Fix text size in PDF invoice
+
 ### 1.1.0: January 14th, 2018
 * Check if Polylang is installed
 * Check if query vars are set before testing them

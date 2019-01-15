@@ -734,6 +734,8 @@ class Tmsm_Admin_Cleanup_Admin {
 		$css .= '
 		body{font-size: 11pt; color: #666}
 		.wc-item-meta{font-size: 11pt;}
+		.shop-address{font-size:10px}
+		#footer{font-size:10px}
 		.invoice-number th, .invoice-number td{font-weight: bold}
 		.order-details thead th {
 			background-color: #666;
