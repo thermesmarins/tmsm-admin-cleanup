@@ -1,3 +1,5 @@
+### 1.1.1: March 27th, 2019
+* WooCommerce: on product admin page, create a button leading to product report
 * Fix text size in PDF invoice
 
 ### 1.1.0: January 14th, 2018
