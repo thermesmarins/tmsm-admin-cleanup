@@ -217,6 +217,8 @@ class Tmsm_Admin_Cleanup {
 		$this->loader->add_filter( 'bulk_actions-edit-shop_order', $plugin_admin, 'woocommerce_rename_bulk_actions_processing', 50, 1 );
 		$this->loader->add_filter( 'views_edit-shop_order', $plugin_admin, 'woocommerce_orders_sort_views', 50, 1 );
 		remove_action( 'admin_notices', 'woothemes_updater_notice');
+		$this->loader->add_action( 'post_submitbox_misc_actions', $plugin_admin, 'woocommerce_product_report_button', -10, 1 );
+		remove_action( 'admin_notices', 'woothemes_updater_notice');
 
 		// WooCommerce Web Hook Order Paid
 		$this->loader->add_filter( 'woocommerce_webhook_topic_hooks', $plugin_admin, 'woocommerce_webhook_topic_hooks_order_paid', 50, 1 );

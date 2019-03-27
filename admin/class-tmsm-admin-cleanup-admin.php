@@ -622,6 +622,37 @@ class Tmsm_Admin_Cleanup_Admin {
 	}
 
 	/**
+	 * WooCommerce: on product admin page, create a button leading to product report
+	 *
+	 * @since 1.1.11
+	 *
+	 * @param WP_Post $post The post being edited.
+	 */
+	function woocommerce_product_report_button( $post ) {
+		if ( get_post_type($post) == 'product' ) {
+			$product = wc_get_product($post->ID);
+
+			$link             = add_query_arg( 'page', 'wc-reports', admin_url( 'admin.php' ) );
+			$link             = add_query_arg( 'tab', 'orders', $link );
+			$link             = add_query_arg( 'report', 'sales_by_product', $link );
+			$link             = add_query_arg( 'range', 'year', $link );
+			$link             = add_query_arg( 'product_ids', [$product->get_id()], $link );
+			?>
+
+			<div class="misc-pub-section curtime misc-pub-curtime misc-pub-section-product-report">
+				<span id="timestamp">
+					<?php
+					printf( __( 'Total sales: %s', 'tmsm-admin-cleanup' ), '<b>' . number_format_i18n( $product->get_total_sales() ) . '</b>' );
+					?>
+				</span>
+				<a href="<?php echo $link;?>" class="" role="button"><span aria-hidden="true"><?php _e( 'View report', 'tmsm-admin-cleanup' ); ?></span> <span class="screen-reader-text"><?php _e( 'View report', 'tmsm-admin-cleanup' ); ?></span></a>
+
+			</div>
+			<?php
+		}
+	}
+
+	/**
 	 * WooCommerce: Add Web Hook Order Paid
 	 *
 	 * @param array $topic_hooks Existing topic hooks.
