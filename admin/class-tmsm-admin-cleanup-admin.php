@@ -204,7 +204,7 @@ class Tmsm_Admin_Cleanup_Admin {
 	}
 
 	/**
-	 * MailChimp: Move admin menu to submenu of Settings
+	 * Smush: Move admin menu to submenu of Settings
 	 *
 	 * @since    1.0.8
 	 */
@@ -220,6 +220,26 @@ class Tmsm_Admin_Cleanup_Admin {
 				''
 			);
 			remove_menu_page('smush');
+		}
+	}
+
+	/**
+	 * Kinsta: Move admin menu to submenu of Settings
+	 *
+	 * @since    1.0.8
+	 */
+	public function menu_kinsta() {
+		if(defined('KINSTAMU_VERSION')){
+
+			add_submenu_page( 'options-general.php',
+				'Kinsta',
+				'Kinsta',
+				'manage_options',
+				'kinsta-tools',
+				''
+			);
+
+			remove_menu_page('kinsta-tools');
 		}
 	}
 
@@ -266,7 +286,7 @@ class Tmsm_Admin_Cleanup_Admin {
 	}
 
 	/**
-	 * Rename BackWPup menu to Backup
+	 * Rename Theme Panel menu to Ocean
 	 */
 	public function menu_ocean() {
 		global $menu;
