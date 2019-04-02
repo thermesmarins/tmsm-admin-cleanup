@@ -1,5 +1,5 @@
 * Move Kinsta menu to settings
-
+* Hide Kinsta clear cache button in admin bar
 
 ### 1.1.1: March 27th, 2019
 * WooCommerce: on product admin page, create a button leading to product report

@@ -233,3 +233,8 @@ td.la_poste_tracking.column-la_poste_tracking a {
 .om-review-notice{
   display: none;
 }
+
+/* Kinsta */
+#wp-admin-bar-kinsta-cache{
+  display: none;
+}
