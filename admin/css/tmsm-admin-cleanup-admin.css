@@ -238,3 +238,11 @@ td.la_poste_tracking.column-la_poste_tracking a {
 #wp-admin-bar-kinsta-cache{
   display: none;
 }
+
+/* Role shop_order_manager */
+.role-shop_order_manager #menu-posts,
+.role-shop_order_manager #menu-comments,
+.role-shop_order_manager #menu-tools,
+.role-shop_order_manager #menu-media{
+  display: none;
+}

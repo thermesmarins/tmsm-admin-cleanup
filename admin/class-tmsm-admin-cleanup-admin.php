@@ -471,7 +471,20 @@ class Tmsm_Admin_Cleanup_Admin {
 	public function woocommerce_remove_dashboard_widgets(){
 		remove_meta_box( 'woocommerce_dashboard_recent_reviews', 'dashboard', 'normal' );
 		remove_meta_box( 'woocommerce_dashboard_status', 'dashboard', 'normal' );
+	}
 
+	/**
+	 * Admin Body Class: Add Role
+	 *
+	 * @param array    $classes An array of classes
+	 *
+	 * @return array Returned classes
+	 */
+	public function admin_body_class_role( $classes ) {
+		$current_user = new WP_User(get_current_user_id());
+		$user_role = array_shift($current_user->roles);
+		$classes .= ' role-'. $user_role;
+		return $classes;
 	}
 
 	/**

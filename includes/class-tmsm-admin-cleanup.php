@@ -165,6 +165,7 @@ class Tmsm_Admin_Cleanup {
 		remove_action('welcome_panel', 'wp_welcome_panel');
 		$this->loader->add_filter( 'oceanwp_news_enabled', $plugin_admin, 'oceanwp_news_enabled', 10 );
 		$this->loader->add_action( 'wp_dashboard_setup', $plugin_admin, 'woocommerce_remove_dashboard_widgets', 10 );
+		$this->loader->add_filter( 'admin_body_class', $plugin_admin, 'admin_body_class_role', 10, 1 );
 
 		// Jetpack
 		$this->loader->add_filter( 'jetpack_just_in_time_msgs', $plugin_admin, 'jetpack_just_in_time_msgs');
