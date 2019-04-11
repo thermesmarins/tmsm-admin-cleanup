@@ -244,6 +244,18 @@ class Tmsm_Admin_Cleanup_Admin {
 	}
 
 	/**
+	 * CRMPerks: Remove admin menu
+	 *
+	 * @since    1.1.3
+	 */
+	public function menu_crmperks() {
+		if(class_exists('vxg_freshdesk')){
+
+			remove_menu_page('vx-addons');
+		}
+	}
+
+	/**
 	 *  Pricing & Discounts: Move admin menu to submenu of Products
 	 */
 	public function menu_discounts(){

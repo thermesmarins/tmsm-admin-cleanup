@@ -1,3 +1,5 @@
+* Remove CRMPerks menu
+
 ### 1.1.2: April 9th, 2019
 * Move Kinsta menu to settings
 * Hide Kinsta clear cache button in admin bar

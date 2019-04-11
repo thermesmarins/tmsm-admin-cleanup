@@ -192,6 +192,7 @@ class Tmsm_Admin_Cleanup {
 		$this->loader->add_filter( 'admin_menu', $plugin_admin, 'menu_mailchimp', 999 );
 		$this->loader->add_filter( 'admin_menu', $plugin_admin, 'menu_smush', 999 );
 		$this->loader->add_filter( 'admin_menu', $plugin_admin, 'menu_kinsta', 999 );
+		$this->loader->add_filter( 'admin_menu', $plugin_admin, 'menu_crmperks', 999 );
 
 		// Polylang
 		if(defined('POLYLANG_VERSION')){
@@ -206,7 +207,6 @@ class Tmsm_Admin_Cleanup {
 		$this->loader->add_filter( 'content_block_post_type', $plugin_admin, 'content_block_post_type_public', 10 );
 
 		// Gravity Forms
-
 		$this->loader->add_filter( 'gform_enable_field_label_visibility_settings', $plugin_admin, 'gravityforms_label_visibility', 10 ); // Label Visibility
 
 		// WooCommerce
@@ -242,6 +242,7 @@ class Tmsm_Admin_Cleanup {
 
 		// Yoast
 		$this->loader->add_filter( 'pll_translate_post_meta', $plugin_admin, 'yoast_translate_meta', 50, 3 );
+
 
 	}
 
