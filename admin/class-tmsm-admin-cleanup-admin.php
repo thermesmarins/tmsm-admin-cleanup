@@ -256,6 +256,26 @@ class Tmsm_Admin_Cleanup_Admin {
 	}
 
 	/**
+	 * OptinMonster: Move admin menu to submenu of Settings
+	 *
+	 * @since    1.1.3
+	 */
+	public function menu_optinmonster() {
+		if(class_exists('OMAPI')){
+
+			add_submenu_page( 'options-general.php',
+				'OptinMonster',
+				'OptinMonster',
+				'manage_options',
+				'optin-monster-api-settings',
+				''
+			);
+
+			remove_menu_page('optin-monster-api-settings');
+		}
+	}
+
+	/**
 	 *  Pricing & Discounts: Move admin menu to submenu of Products
 	 */
 	public function menu_discounts(){

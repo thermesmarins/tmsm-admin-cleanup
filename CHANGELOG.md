@@ -1,3 +1,4 @@
+* OptinMonster: Move admin menu to submenu of Settings
 * Remove CRMPerks menu
 
 ### 1.1.2: April 9th, 2019
