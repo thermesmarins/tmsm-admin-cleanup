@@ -13,7 +13,7 @@ Features
     * Sort users by registered field
     * Adds new role "Shop Orders Manager"
 * Redirect login for role "Shop Manager" and "Shop Orders Manager" to go directly to orders page
-* Moves Mailjet, MailChimp, Smushit to submenu of Settings
+* Moves Mailjet, MailChimp, Smushit, CRMPerks, OptinMonster, Kinsta to submenu of Settings
 * Polylang: display languages as post_state with country flag
 * WP Rocket: empty cache on save product
 * Medias: filter by PDF
