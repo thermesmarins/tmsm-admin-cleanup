@@ -246,3 +246,11 @@ td.la_poste_tracking.column-la_poste_tracking a {
 .role-shop_order_manager #menu-media{
   display: none;
 }
+
+/* Rank Math menu icon */
+#adminmenu #toplevel_page_rank-math .wp-has-submenu div.wp-menu-image:before {
+  content: "\f239" !important;
+}
+#adminmenu #toplevel_page_rank-math .wp-has-submenu div.wp-menu-image img {
+  display: none;
+}

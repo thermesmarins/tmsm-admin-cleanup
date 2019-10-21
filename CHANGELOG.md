@@ -1,3 +1,5 @@
+* Rank Math menu icon
+
 ### 1.1.3: April 11th, 2019
 * OptinMonster: Move admin menu to submenu of Settings
 * Remove CRMPerks menu
