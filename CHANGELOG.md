@@ -1,3 +1,5 @@
+* WooCommerce PDF Invoices & Packing Slips: hide ads 
+
 ### 1.1.4: November 13th, 2019
 * Rank Math menu icon
 * Preview Emails for WooCommerce: remove notices
