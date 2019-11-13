@@ -254,3 +254,8 @@ td.la_poste_tracking.column-la_poste_tracking a {
 #adminmenu #toplevel_page_rank-math .wp-has-submenu div.wp-menu-image img {
   display: none;
 }
+
+/* Preview Emails for WooCommerce */
+.woocommerce_page_digthis-woocommerce-preview-emails .notice-warning{
+  display: none;
+}
