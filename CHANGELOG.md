@@ -1,4 +1,5 @@
 * WooCommerce PDF Invoices & Packing Slips: hide ads 
+* Setup interval for redirecting the user to the admin email confirmation screen: desable the redirection
 
 ### 1.1.4: November 13th, 2019
 * Rank Math menu icon

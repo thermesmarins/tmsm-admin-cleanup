@@ -520,6 +520,17 @@ class Tmsm_Admin_Cleanup_Admin {
 	}
 
 	/**
+	 * Filters the interval for redirecting the user to the admin email confirmation screen.
+	 * If `0` (zero) is returned, the user will not be redirected.
+	 *
+	 * @param int Interval time (in seconds).
+	 */
+	public function admin_email_check_interval( $interval ) {
+		$interval = 0;
+		return $interval;
+	}
+
+	/**
 	 * Polylang: Display a country flag or the name of the language as a "post state"
 	 *
 	 * @param array    $post_states An array of post display states.
