@@ -1,3 +1,4 @@
+### 1.1.5: November 21st, 2019
 * WooCommerce PDF Invoices & Packing Slips: hide ads 
 * Setup interval for redirecting the user to the admin email confirmation screen: desable the redirection
 
