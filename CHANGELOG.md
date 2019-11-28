@@ -1,3 +1,4 @@
+### 1.1.6: November 28st, 2019
 * Fix Rank Math menu icon
 
 ### 1.1.5: November 21st, 2019
