@@ -211,12 +211,12 @@ td.la_poste_tracking.column-la_poste_tracking a {
 
 /* Easy Updates Manager ads */
 .updraft-ad-container, #easy-updates-manager-dashnotice{
-  display: none;
+  display: none !important;
 }
 
 /* Duplicate Post ads */
 #duplicate-post-notice{
-  display: none;
+  display: none !important;
 }
 
 /* Imagify ads */
@@ -231,17 +231,17 @@ td.la_poste_tracking.column-la_poste_tracking a {
 
 /* ACF */
 .ac-notice.is-dismissible{
-  display: none;
+  display: none !important;
 }
 
 /* OptinMonster */
 .om-review-notice{
-  display: none;
+  display: none !important;
 }
 
 /* Kinsta */
 #wp-admin-bar-kinsta-cache{
-  display: none;
+  display: none !important;
 }
 
 /* Role shop_order_manager */
