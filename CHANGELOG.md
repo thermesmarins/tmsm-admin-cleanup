@@ -1,3 +1,5 @@
+* Remove La Poste Tracking CSS override
+
 ### 1.1.6: November 28st, 2019
 * Fix Rank Math menu icon
 
