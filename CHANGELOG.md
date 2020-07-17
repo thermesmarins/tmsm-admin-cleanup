@@ -1,4 +1,6 @@
+### 1.1.7: July 17th, 2020
 * Remove La Poste Tracking CSS override
+* Force hiding ads
 
 ### 1.1.6: November 28st, 2019
 * Fix Rank Math menu icon
