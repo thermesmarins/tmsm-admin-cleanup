@@ -183,25 +183,6 @@ class Tmsm_Admin_Cleanup_Admin {
 
 	}
 
-	/**
-	 * MailChimp: Move admin menu to submenu of Settings
-	 *
-	 * @since    1.0.6
-	 */
-	public function menu_mailchimp() {
-
-		if(class_exists('MailChimp_WooCommerce_Admin')){
-			global $current_user;
-			add_submenu_page( 'options-general.php',
-				'MailChimp - WooCommerce Setup',
-				'MailChimp',
-				'manage_options',
-				'mailchimp-woocommerce',
-				''
-			);
-			remove_menu_page('mailchimp-woocommerce');
-		}
-	}
 
 	/**
 	 * Smush: Move admin menu to submenu of Settings

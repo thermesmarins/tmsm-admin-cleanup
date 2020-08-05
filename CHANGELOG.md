@@ -1,3 +1,5 @@
+* Remove MailChimp menu override
+
 ### 1.1.7: July 17th, 2020
 * Remove La Poste Tracking CSS override
 * Force hiding ads

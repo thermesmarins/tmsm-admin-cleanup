@@ -190,7 +190,6 @@ class Tmsm_Admin_Cleanup {
 		$this->loader->add_filter( 'admin_menu', $plugin_admin, 'menu_mailjet', 999 );
 		$this->loader->add_filter( 'admin_menu', $plugin_admin, 'menu_discounts', 999 );
 		$this->loader->add_filter( 'admin_menu', $plugin_admin, 'menu_ocean', 999 );
-		$this->loader->add_filter( 'admin_menu', $plugin_admin, 'menu_mailchimp', 999 );
 		$this->loader->add_filter( 'admin_menu', $plugin_admin, 'menu_smush', 999 );
 		$this->loader->add_filter( 'admin_menu', $plugin_admin, 'menu_kinsta', 999 );
 		$this->loader->add_filter( 'admin_menu', $plugin_admin, 'menu_crmperks', 999 );
