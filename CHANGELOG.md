@@ -1,3 +1,4 @@
+### 1.1.8: August 5th, 2020
 * Remove MailChimp menu override
 * Remove Mailjet menu override until access are fixed
 
