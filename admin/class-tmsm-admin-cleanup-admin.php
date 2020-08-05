@@ -168,7 +168,7 @@ class Tmsm_Admin_Cleanup_Admin {
 	public function menu_mailjet(){
 
 		if ( defined('MAILJET_VERSION')) {
-			global $current_user;
+			/*global $current_user;
 			if ( user_can( $current_user, 'manage_options' ) ) {
 				add_submenu_page( 'options-general.php',
 					__( 'Change your mailjet settings', 'wp-mailjet' ),
@@ -178,7 +178,29 @@ class Tmsm_Admin_Cleanup_Admin {
 					''
 				);
 			}
-			remove_menu_page('mailjet_settings_page');
+			remove_menu_page('mailjet_settings_page');*/
+
+			//remove_menu_page('mailjet_settings_page');
+			//if (current_user_can(MailjetPlugin\Includes\SettingsPages\UserAccessSettings::ACCESS_CAP_NAME)) {
+			/*add_submenu_page(
+					'options-general.php',
+					__( 'Mailjet', 'wp-mailjet' ),
+					__( 'Mailjet', 'wp-mailjet' ),
+					'manage_options',
+					'mailjet_initial_settings_page_html',
+					''
+				);
+			add_submenu_page( 'options-general.php',
+				'aaa',
+				'bbb',
+				'manage_options',
+				'aaa',
+				''
+			);*/
+
+			//add_submenu_page( 'options-general.php', __( 'Mailjet', 'wp-mailjet' ), __( 'Mailjet', 'wp-mailjet' ), 'manage_options', 'mailjet_settings_page', array(new MailjetPlugin\Includes\SettingsPages\InitialSettings(), 'mailjet_initial_settings_page_html'));
+			//}
+
 		}
 
 	}

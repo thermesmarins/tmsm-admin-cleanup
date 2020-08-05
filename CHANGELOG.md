@@ -1,4 +1,5 @@
 * Remove MailChimp menu override
+* Remove Mailjet menu override until access are fixed
 
 ### 1.1.7: July 17th, 2020
 * Remove La Poste Tracking CSS override
