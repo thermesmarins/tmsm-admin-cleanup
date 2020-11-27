@@ -1,3 +1,5 @@
+* Easy Updates Manager expiry notice
+
 ### 1.1.9: October 22nd, 2020
 * Remove Members review notice
 

@@ -201,7 +201,7 @@ body #customize-theme-controls #accordion-section-oceanwp_upsell_section{
 }
 
 /* Easy Updates Manager ads */
-.updraft-ad-container, #easy-updates-manager-dashnotice{
+.updraft-ad-container, #easy-updates-manager-dashnotice, .updraftmanagermessage.error{
   display: none !important;
 }
 
