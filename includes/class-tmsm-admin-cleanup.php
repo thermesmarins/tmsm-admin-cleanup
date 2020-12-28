@@ -167,6 +167,7 @@ class Tmsm_Admin_Cleanup {
 		$this->loader->add_action( 'wp_dashboard_setup', $plugin_admin, 'woocommerce_remove_dashboard_widgets', 10 );
 		$this->loader->add_filter( 'admin_body_class', $plugin_admin, 'admin_body_class_role', 10, 1 );
 		$this->loader->add_filter( 'admin_email_check_interval', $plugin_admin, 'admin_email_check_interval', 10, 1 );
+		$this->loader->add_filter( 'display_post_states', $plugin_admin, 'display_post_states', 10, 2 );
 
 		// Jetpack
 		$this->loader->add_filter( 'jetpack_just_in_time_msgs', $plugin_admin, 'jetpack_just_in_time_msgs');
@@ -211,7 +212,7 @@ class Tmsm_Admin_Cleanup {
 		$this->loader->add_filter( 'gform_enable_field_label_visibility_settings', $plugin_admin, 'gravityforms_label_visibility', 10 ); // Label Visibility
 
 		// WooCommerce
-		$this->loader->add_filter( 'woocommerce_helper_suppress_admin_notices', $plugin_admin, 'woocommerce_helper_suppress_admin_notices', 10 ); // Remove notices
+		$this->loader->add_filter( 'woocommerce_helper_suppress_admin_notices', $plugin_admin, 'woocommerce_helper_suppress_admin_notices', 10 );
 		$this->loader->add_filter( 'woocommerce_enable_admin_help_tab', $plugin_admin, 'woocommerce_enable_admin_help_tab' );
 		$this->loader->add_action( 'woocommerce_admin_process_product_object', $plugin_admin, 'wprocket_empty_cache_on_save_product' );
 		$this->loader->add_filter( 'woocommerce_admin_order_date_format', $plugin_admin, 'woocommerce_admin_order_date_format' );

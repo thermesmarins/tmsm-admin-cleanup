@@ -511,9 +511,9 @@ class Tmsm_Admin_Cleanup_Admin {
 	/**
 	 * Admin Body Class: Add Role
 	 *
-	 * @param array    $classes An array of classes
+	 * @param string    $classes An array of classes
 	 *
-	 * @return array Returned classes
+	 * @return string Returned classes
 	 */
 	public function admin_body_class_role( $classes ) {
 		$current_user = new WP_User(get_current_user_id());
@@ -527,10 +527,65 @@ class Tmsm_Admin_Cleanup_Admin {
 	 * If `0` (zero) is returned, the user will not be redirected.
 	 *
 	 * @param int Interval time (in seconds).
+	 *
+	 * @return int
 	 */
 	public function admin_email_check_interval( $interval ) {
 		$interval = 0;
 		return $interval;
+	}
+
+	/**
+	 * Filters the default post display states used in the posts list table.
+	 *
+	 * @param string[] $post_states An array of post display states.
+	 * @param WP_Post  $post        The current post object.
+	 *
+	 * @return array
+	 */
+	public function display_post_states( array $post_states, WP_Post $post ){
+
+		//print_r($post_states);
+		if($post->post_type === 'product'){
+			$date_string = __( '%1$s at %2$s', 'tmsm-admin-cleanup' );
+
+
+			if(!empty($post_states['scheduled'])){
+
+				$date = sprintf(
+					$date_string,
+					date_i18n( get_option( 'date_format' ), strtotime( $post->post_date ) ),
+					date_i18n( get_option( 'time_format' ), strtotime( $post->post_date ) )
+				);
+				$post_states['scheduled'] = sprintf(_x( 'Scheduled on %s', 'post status', 'tmsm-admin-cleanup' ), $date);
+			}
+
+			if(function_exists('expirationdate_add_column_page')){
+				$expirationdate_timestamp = get_post_meta($post->ID,'_expiration-date',true);
+
+				if(!empty($expirationdate_timestamp)){
+					$date = sprintf(
+						$date_string,
+						date_i18n( get_option( 'date_format' ), $expirationdate_timestamp ),
+						date_i18n( get_option( 'time_format' ), $expirationdate_timestamp )
+					);
+
+					$date_label = sprintf(_x( 'Expires on %s', 'post status', 'tmsm-admin-cleanup' ), $date);
+
+					if(!empty($post_states['scheduled'])){
+						$post_states['scheduled'] .=' , '.$date_label;
+					}
+					else{
+						$post_states['scheduled'] = $date_label;
+					}
+
+				}
+
+			}
+
+		}
+		//print_r($post_states);
+		return $post_states;
 	}
 
 	/**
@@ -543,7 +598,9 @@ class Tmsm_Admin_Cleanup_Admin {
 	 */
 	public function polylang_display_post_states_language( $post_states, $post ) {
 		if ( function_exists( 'pll_get_post_language' ) ) {
-			$post_states['polylang'] = pll_get_post_language( $post->ID, 'flag' );
+			if ( ! empty( pll_get_post_language( $post->ID, 'flag' ) ) ) {
+				$post_states['polylang'] = pll_get_post_language( $post->ID, 'flag' );
+			}
 		}
 		return $post_states;
 	}
