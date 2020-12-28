@@ -1,3 +1,4 @@
+### 1.2.0: December 28th, 2020
 * Easy Updates Manager expiry notice
 * Remove Woo Store Vacation upsell notice
 
