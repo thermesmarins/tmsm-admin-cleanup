@@ -290,3 +290,7 @@ body #customize-theme-controls #accordion-section-oceanwp_upsell_section{
 #rocketcdn-promote-notice{
   display: none !important;
 }
+
+.notice-preload-running{
+  display: none !important;
+}

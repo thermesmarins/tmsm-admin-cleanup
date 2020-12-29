@@ -1,4 +1,5 @@
 * Remove WP Rocket CDN ad
+* Remove WP Rocket preloading notice
 
 ### 1.3.1: December 29th, 2020
 * Fix Expiration Date had wrong timezone offset
