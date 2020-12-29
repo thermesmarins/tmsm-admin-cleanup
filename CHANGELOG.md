@@ -1,3 +1,4 @@
+### 1.3.1: December 29th, 2020
 * Fix Expiration Date had wrong timezone offset
 
 ### 1.3.0: December 29th, 2020

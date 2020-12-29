@@ -543,7 +543,7 @@ class Tmsm_Admin_Cleanup_Admin {
 	 *
 	 * @return array
 	 */
-	public function display_post_states( array $post_states, WP_Post $post ){
+	public function display_post_states_expire( array $post_states, WP_Post $post ){
 
 		$date_string = __( '%1$s at %2$s', 'tmsm-admin-cleanup' );
 
@@ -583,17 +583,17 @@ class Tmsm_Admin_Cleanup_Admin {
 
 		$label = '';
 		if ( function_exists( 'expirationdate_add_column_page' ) ) {
-			$date_string = __( '%1$s at %2$s', 'tmsm-admin-cleanup' );
+			$date_format = sprintf( __( '%1$s at %2$s', 'tmsm-admin-cleanup' ), get_option( 'date_format' ), get_option( 'time_format' ) );
 			$expirationdate_timestamp = get_post_meta( $post_id, '_expiration-date', true );
 
 			if ( ! empty( $expirationdate_timestamp ) ) {
-				$date = sprintf(
-					$date_string,
-					date_i18n( get_option( 'date_format' ), $expirationdate_timestamp ),
-					date_i18n( get_option( 'time_format' ), $expirationdate_timestamp )
-				);
 
-				$label = sprintf( _x( 'Expires on %s', 'post status', 'tmsm-admin-cleanup' ), $date );
+				$date_in_local_timezone = get_date_from_gmt( date( 'Y-m-d H:i:s', $expirationdate_timestamp ) );
+
+				$seconds_since_local_1_jan_1970 = (new DateTime( $date_in_local_timezone, new DateTimeZone( 'UTC' ) ))->getTimestamp();
+
+
+				$label = sprintf( _x( 'Expires on %s', 'post status', 'tmsm-admin-cleanup' ), date_i18n( $date_format, $seconds_since_local_1_jan_1970 ) );
 			}
 
 		}
