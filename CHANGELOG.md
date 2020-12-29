@@ -1,3 +1,4 @@
+### 1.3.0: December 29th, 2020
 * Expire date shown for product in list table 
 * Hide post expirator column
 
