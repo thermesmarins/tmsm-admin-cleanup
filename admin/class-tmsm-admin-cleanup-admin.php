@@ -545,48 +545,62 @@ class Tmsm_Admin_Cleanup_Admin {
 	 */
 	public function display_post_states( array $post_states, WP_Post $post ){
 
-		//print_r($post_states);
-		if($post->post_type === 'product'){
-			$date_string = __( '%1$s at %2$s', 'tmsm-admin-cleanup' );
+		$date_string = __( '%1$s at %2$s', 'tmsm-admin-cleanup' );
+
+		if(!empty($post_states['scheduled'])){
+
+			$date = sprintf(
+				$date_string,
+				date_i18n( get_option( 'date_format' ), strtotime( $post->post_date ) ),
+				date_i18n( get_option( 'time_format' ), strtotime( $post->post_date ) )
+			);
+			$post_states['scheduled'] = sprintf(_x( 'Scheduled on %s', 'post status', 'tmsm-admin-cleanup' ), $date);
+		}
 
 
+		if($expiration_date_label = $this->expiration_date_label( $post->ID )){
 			if(!empty($post_states['scheduled'])){
+				$post_states['scheduled'] .=' , '.$expiration_date_label;
+			}
+			else{
+				$post_states['scheduled'] = $expiration_date_label;
+			}
+		}
 
+
+		return $post_states;
+	}
+
+
+	/**
+	 * Get the expiration date label
+	 *
+	 * @param int $post_id
+	 *
+	 * @return string
+	 */
+	private function expiration_date_label( int $post_id){
+
+		$label = '';
+		if ( function_exists( 'expirationdate_add_column_page' ) ) {
+			$date_string = __( '%1$s at %2$s', 'tmsm-admin-cleanup' );
+			$expirationdate_timestamp = get_post_meta( $post_id, '_expiration-date', true );
+
+			if ( ! empty( $expirationdate_timestamp ) ) {
 				$date = sprintf(
 					$date_string,
-					date_i18n( get_option( 'date_format' ), strtotime( $post->post_date ) ),
-					date_i18n( get_option( 'time_format' ), strtotime( $post->post_date ) )
+					date_i18n( get_option( 'date_format' ), $expirationdate_timestamp ),
+					date_i18n( get_option( 'time_format' ), $expirationdate_timestamp )
 				);
-				$post_states['scheduled'] = sprintf(_x( 'Scheduled on %s', 'post status', 'tmsm-admin-cleanup' ), $date);
-			}
 
-			if(function_exists('expirationdate_add_column_page')){
-				$expirationdate_timestamp = get_post_meta($post->ID,'_expiration-date',true);
-
-				if(!empty($expirationdate_timestamp)){
-					$date = sprintf(
-						$date_string,
-						date_i18n( get_option( 'date_format' ), $expirationdate_timestamp ),
-						date_i18n( get_option( 'time_format' ), $expirationdate_timestamp )
-					);
-
-					$date_label = sprintf(_x( 'Expires on %s', 'post status', 'tmsm-admin-cleanup' ), $date);
-
-					if(!empty($post_states['scheduled'])){
-						$post_states['scheduled'] .=' , '.$date_label;
-					}
-					else{
-						$post_states['scheduled'] = $date_label;
-					}
-
-				}
-
+				$label = sprintf( _x( 'Expires on %s', 'post status', 'tmsm-admin-cleanup' ), $date );
 			}
 
 		}
-		//print_r($post_states);
-		return $post_states;
+		return $label;
 	}
+
+
 
 	/**
 	 * Polylang: Display a country flag or the name of the language as a "post state"

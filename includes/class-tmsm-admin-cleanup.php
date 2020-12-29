@@ -159,6 +159,8 @@ class Tmsm_Admin_Cleanup {
 
 		// Security fixes
 		$this->loader->add_filter( 'wp_update_attachment_metadata', $plugin_admin, 'rips_unlink_tempfix', 10 );
+		remove_filter ('manage_posts_columns', 'expirationdate_add_column', 10, 2);
+		remove_filter ('manage_pages_columns', 'expirationdate_add_column_page');
 
 		// Dashboard
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'remove_dashboard_boxes');
