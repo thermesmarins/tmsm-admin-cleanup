@@ -291,6 +291,6 @@ body #customize-theme-controls #accordion-section-oceanwp_upsell_section{
   display: none !important;
 }
 
-.notice-preload-running{
+.notice-preload-running, .wpr-Content-tips, .wpr-Sidebar{
   display: none !important;
 }
