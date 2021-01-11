@@ -2,6 +2,7 @@
 * Remove WP Rocket preloading notice
 * Remove WP Rocket sidebar
 * Reorder Rank Math invasive admin menu
+* Change Members and Mailjet icons in admin menu
 
 ### 1.3.1: December 29th, 2020
 * Fix Expiration Date had wrong timezone offset

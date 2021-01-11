@@ -346,6 +346,7 @@ class Tmsm_Admin_Cleanup_Admin {
 			'rank-math' => 100,  // Rank Math
 			'jetpack' => 200,  // Jetpack
 			'gf_edit_forms' => 8, // Gravity Forms
+			'leadin_user_guide' => 100, // Gravity Forms
 		);
 		// helper function to move an element inside an array
 		function move_element(&$array, $a, $b) {
@@ -362,6 +363,7 @@ class Tmsm_Admin_Cleanup_Admin {
 
 		return $menu_order;
 	}
+
 	/**
 	 * Shop Managers: redirect to orders
 	 *
