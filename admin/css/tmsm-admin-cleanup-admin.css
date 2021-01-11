@@ -294,3 +294,50 @@ body #customize-theme-controls #accordion-section-oceanwp_upsell_section{
 .notice-preload-running, .wpr-Content-tips, .wpr-Sidebar{
   display: none !important;
 }
+
+/* Members */
+#adminmenu #toplevel_page_members .wp-has-submenu div.wp-menu-image:before {
+  content: "\f307" !important;
+  font-family: dashicons;
+  display: inline-block;
+  line-height: 1;
+  font-weight: 400;
+  font-style: normal;
+  speak: none;
+  text-decoration: inherit;
+  text-transform: none;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  vertical-align: top;
+  text-align: center;
+  transition: color .1s ease-in;
+}
+
+/* Mailjet */
+#adminmenu #toplevel_page_mailjet_settings_page .wp-has-submenu div.wp-menu-image:before {
+  content: "\f465" !important;
+  font-family: dashicons;
+  display: inline-block;
+  line-height: 1;
+  font-weight: 400;
+  font-style: normal;
+  speak: none;
+  text-decoration: inherit;
+  text-transform: none;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  vertical-align: top;
+  text-align: center;
+  transition: color .1s ease-in;
+}
+#adminmenu #toplevel_page_mailjet_settings_page img{
+  display: none;
+}
