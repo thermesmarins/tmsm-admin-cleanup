@@ -332,6 +332,36 @@ class Tmsm_Admin_Cleanup_Admin {
 		$menu[$menu_item][0] = __('Ocean', 'tmsm-frontend-optimizations');
 	}
 
+
+	/**
+	 * Reorder some plugins
+	 *
+	 * @param array $menu_order
+	 *
+	 * @return array
+	 */
+	function menu_order(array $menu_order){
+
+		$new_positions = array(
+			'rank-math' => 100,  // Rank Math
+			'jetpack' => 200,  // Jetpack
+			'gf_edit_forms' => 8, // Gravity Forms
+		);
+		// helper function to move an element inside an array
+		function move_element(&$array, $a, $b) {
+			$out = array_splice($array, $a, 1);
+			array_splice($array, $b, 0, $out);
+		}
+		// traverse through the new positions and move
+		// the items if found in the original menu_positions
+		foreach( $new_positions as $value => $new_index ) {
+			if( $current_index = array_search( $value, $menu_order ) ) {
+				move_element($menu_order, $current_index, $new_index);
+			}
+		}
+
+		return $menu_order;
+	}
 	/**
 	 * Shop Managers: redirect to orders
 	 *

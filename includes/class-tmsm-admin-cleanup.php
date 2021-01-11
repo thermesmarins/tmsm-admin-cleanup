@@ -199,6 +199,7 @@ class Tmsm_Admin_Cleanup {
 		$this->loader->add_filter( 'admin_menu', $plugin_admin, 'menu_kinsta', 999 );
 		$this->loader->add_filter( 'admin_menu', $plugin_admin, 'menu_crmperks', 999 );
 		$this->loader->add_filter( 'admin_menu', $plugin_admin, 'menu_optinmonster', 999 );
+		$this->loader->add_filter( 'menu_order', $plugin_admin, 'menu_order', 999, 1 );
 
 		// Polylang
 		if(defined('POLYLANG_VERSION')){
