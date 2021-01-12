@@ -2,7 +2,7 @@
 * Remove WP Rocket preloading notice
 * Remove WP Rocket sidebar
 * Reorder Rank Math, Jetpack, Hubspot, Gravity Forms admin menus
-* Change Members and Mailjet icons in admin menu
+* Change Members, Mailjet, Product Feed, MailChimp Discount icons in admin menu
 
 ### 1.3.1: December 29th, 2020
 * Fix Expiration Date had wrong timezone offset

@@ -119,7 +119,11 @@
 .elementor-message.is-dismissible{
   display: none;
 }
-
+#adminmenu #menu-posts-elementor_library .wp-menu-image:before{
+  content: "\f538" !important;
+  font-family: dashicons;
+  font-size: 20px;
+}
 
 /* Ocean */
 #toplevel_page_oceanwp-panel div.wp-menu-image:before {
@@ -342,8 +346,19 @@ body #customize-theme-controls #accordion-section-oceanwp_upsell_section{
   display: none;
 }
 
-#adminmenu #menu-posts-elementor_library .wp-menu-image:before{
-  content: "\f538" !important;
-  font-family: dashicons;
-  font-size: 20px;
+/* Product Feed Elite */
+#adminmenu #toplevel_page_woo-product-feed-elite-woocommerce-sea .wp-menu-image:before{
+  content: "\f319" !important;
+}
+#adminmenu #toplevel_page_woo-product-feed-elite-woocommerce-sea img{
+  display: none;
+}
+
+/* Mailchimp Discount */
+#adminmenu #toplevel_page_woocommerce-mailchimp-discount .wp-menu-image:before{
+  background-image: none !important;
+  content: "\f524" !important;
+  -webkit-filter: none;
+  filter: none;
+  top: auto;
 }
