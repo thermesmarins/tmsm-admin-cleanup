@@ -1,3 +1,5 @@
+* Changed licence from GPL 2 to GPL 3
+
 ### 1.3.2: January 12th, 2021
 * Remove WP Rocket CDN ad
 * Remove WP Rocket preloading notice
