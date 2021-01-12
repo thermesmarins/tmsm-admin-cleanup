@@ -341,3 +341,9 @@ body #customize-theme-controls #accordion-section-oceanwp_upsell_section{
 #adminmenu #toplevel_page_mailjet_settings_page img{
   display: none;
 }
+
+#adminmenu #menu-posts-elementor_library .wp-menu-image:before{
+  content: "\f538" !important;
+  font-family: dashicons;
+  font-size: 20px;
+}
