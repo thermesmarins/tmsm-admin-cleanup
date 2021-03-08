@@ -603,13 +603,14 @@ class Tmsm_Admin_Cleanup_Admin {
 		return $post_states;
 	}
 
-
 	/**
 	 * Get the expiration date label
 	 *
 	 * @param int $post_id
 	 *
+	 *
 	 * @return string
+	 * @throws Exception
 	 */
 	private function expiration_date_label( int $post_id){
 
