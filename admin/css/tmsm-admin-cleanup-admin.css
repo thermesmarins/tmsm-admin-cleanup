@@ -300,6 +300,12 @@ body #customize-theme-controls #accordion-section-oceanwp_upsell_section{
 }
 
 /* Members */
+#members-upgrade-header, #members-admin-header{
+  display: none !important;
+}
+#adminmenu #toplevel_page_members .wp-has-submenu div.wp-menu-image{
+  background-image: none !important;
+}
 #adminmenu #toplevel_page_members .wp-has-submenu div.wp-menu-image:before {
   content: "\f307" !important;
   font-family: dashicons;
@@ -362,3 +368,4 @@ body #customize-theme-controls #accordion-section-oceanwp_upsell_section{
   filter: none;
   top: auto;
 }
+
