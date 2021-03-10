@@ -1,5 +1,6 @@
 * Changed licence from GPL 2 to GPL 3
 * Remove Members upgrade branding and custom icon
+* Hide Rank Math Review Notice
 
 ### 1.3.2: January 12th, 2021
 * Remove WP Rocket CDN ad
