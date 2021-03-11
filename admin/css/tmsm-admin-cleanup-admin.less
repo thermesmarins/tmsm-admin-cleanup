@@ -1,108 +1,119 @@
 /* WooCommerce admin menu icons */
-#adminmenu #toplevel_page_woocommerce .menu-icon-generic div.wp-menu-image::before {
-  content: "\f174" !important;
-  font-family: "dashicons" !important;
-}
-#adminmenu #menu-posts-shop_order .menu-icon-shop_order div.wp-menu-image:before {
-  content: "\f174" !important;
-  font-family: "dashicons" !important;
-}
-#adminmenu #menu-posts-shop_coupon .menu-icon-shop_coupon div.wp-menu-image:before {
-  content: "\f524" !important;
-  font-family: "dashicons" !important;
-}
-#adminmenu #menu-posts-product .menu-icon-product div.wp-menu-image:before {
-  content: "\f312" !important;
-  font-family: "dashicons" !important;
-}
-#adminmenu #toplevel_page_wc-reports .menu-icon-generic div.wp-menu-image:before {
-  content: "\f239" !important;
-  font-family: "dashicons" !important;
-  font-size: 20px !important;
-}
+#adminmenu #toplevel_page_woocommerce .menu-icon-generic div.wp-menu-image::before{content: "\f174" !important;font-family: "dashicons" !important;}
+#adminmenu #menu-posts-shop_order     .menu-icon-shop_order div.wp-menu-image:before{content: "\f174" !important;font-family: "dashicons" !important;}
+#adminmenu #menu-posts-shop_coupon    .menu-icon-shop_coupon div.wp-menu-image:before{content: "\f524" !important;font-family: "dashicons" !important;}
+#adminmenu #menu-posts-product        .menu-icon-product div.wp-menu-image:before{content: "\f312" !important;font-family: "dashicons" !important;}
+#adminmenu #toplevel_page_wc-reports  .menu-icon-generic div.wp-menu-image:before{content: "\f239" !important;font-family: "dashicons" !important; font-size: 20px !important;}
+
 /* WooCommerce product report button */
-.misc-pub-section-product-report #timestamp:before {
+.misc-pub-section-product-report #timestamp:before{
   content: "\f239";
 }
+
 /* WooCommerce status paid */
-.subsubsub .wc-processing a {
+.subsubsub .wc-processing a{
   /*color: #ca4a1f;*/
   /*font-weight: bold;*/
 }
+
 /* WooCommerce action buttons */
-.column-wc_actions .complete {
-  background: #c8d7e1;
-  color: #2e4453;
+.column-wc_actions {
+    .complete {
+        background: #c8d7e1;
+        color: #2e4453;
+    }
+    a.processing:after{
+        background: #c6e1c6;
+        color: #5b841b;
+    }
 }
-.column-wc_actions a.processing:after {
-  background: #c6e1c6;
-  color: #5b841b;
-}
+
 /* Yoast SEO admin menu icons */
-#adminmenu #toplevel_page_wpseo_dashboard .dashicons-before img {
-  display: none;
+#adminmenu #toplevel_page_wpseo_dashboard{
+    .dashicons-before img {
+        display: none
+    }
+
+    div.wp-menu-image.svg {
+        background-size: 0 !important;
+    }
+
+    .wp-has-submenu div.wp-menu-image:before {
+        content: "\f239" !important;
+        font-family: "dashicons" !important;
+        font-size: 20px;
+        display: inline-block;
+    }
 }
-#adminmenu #toplevel_page_wpseo_dashboard div.wp-menu-image.svg {
-  background-size: 0 !important;
+
+#adminmenu #toplevel_page_yst_ga_dashboard{
+    .dashicons-before img {
+        display: none
+    }
+
+    div.wp-menu-image.svg {
+        background-size: 0 !important;
+    }
+
+    .wp-has-submenu div.wp-menu-image:before {
+        content: "\f239" !important;
+        font-family: "dashicons" !important;
+        font-size: 20px;
+        display: inline-block;
+    }
 }
-#adminmenu #toplevel_page_wpseo_dashboard .wp-has-submenu div.wp-menu-image:before {
-  content: "\f239" !important;
-  font-family: "dashicons" !important;
-  font-size: 20px;
-  display: inline-block;
-}
-#adminmenu #toplevel_page_yst_ga_dashboard .dashicons-before img {
-  display: none;
-}
-#adminmenu #toplevel_page_yst_ga_dashboard div.wp-menu-image.svg {
-  background-size: 0 !important;
-}
-#adminmenu #toplevel_page_yst_ga_dashboard .wp-has-submenu div.wp-menu-image:before {
-  content: "\f239" !important;
-  font-family: "dashicons" !important;
-  font-size: 20px;
-  display: inline-block;
-}
+
+
 /* Yoast SEO Remove notices */
 .wpseo_content_wrapper #sidebar-container,
-.yoast_premium_upsell_admin_block {
+.yoast_premium_upsell_admin_block
+{
   display: none;
 }
+
 /* Mailjet */
-#toplevel_page_wp_mailjet_options_top_menu div.wp-menu-image img {
-  display: none;
+#toplevel_page_wp_mailjet_options_top_menu{
+    div.wp-menu-image img {
+        display: none
+    }
+    div.wp-menu-image:before {
+        content: "\f466" !important;
+        font-family: "dashicons" !important;
+    }
 }
-#toplevel_page_wp_mailjet_options_top_menu div.wp-menu-image:before {
-  content: "\f466" !important;
-  font-family: "dashicons" !important;
-}
+
 /* Backwpup */
 #adminmenu #toplevel_page_backwpup .dashicons-before img {
-  display: none;
+  display: none
 }
+
 #adminmenu #toplevel_page_backwpup .wp-has-submenu div.wp-menu-image:before {
   content: "\f468" !important;
   font-family: "dashicons" !important;
 }
+
 /* WPML */
 #toplevel_page_sitepress-multilingual-cms-menu-languages div.wp-menu-image img {
-  display: none;
+  display: none
 }
+
 #toplevel_page_sitepress-multilingual-cms-menu-languages div.wp-menu-image:before {
   content: "\f326" !important;
   font-family: "dashicons" !important;
 }
+
 /* Hustle */
 #toplevel_page_hustle div.wp-menu-image:before {
   content: "\f488" !important;
   font-family: "dashicons" !important;
 }
-#toplevel_page_hustle div.wp-menu-image img {
+#toplevel_page_hustle div.wp-menu-image img{
   display: none;
 }
-.frash-notice {
+.frash-notice{
   display: none !important;
 }
+
 /* Elementor */
 #toplevel_page_elementor div.wp-menu-image:before {
   content: "\f538" !important;
@@ -113,38 +124,35 @@
 .elementor-shortcode-input + .elementor-shortcode-input {
   display: none;
 }
-.elementor-message.is-dismissible {
+.elementor-message.is-dismissible{
   display: none;
 }
-#adminmenu #menu-posts-elementor_library .wp-menu-image:before {
+#adminmenu #menu-posts-elementor_library .wp-menu-image:before{
   content: "\f538" !important;
   font-family: dashicons;
   font-size: 20px;
 }
+
 /* Ocean */
 #toplevel_page_oceanwp-panel div.wp-menu-image:before {
   content: "\f538" !important;
   font-family: "dashicons" !important;
 }
-.oceanwp-review,
-.oceanwp-octify,
-.oceanwp-kinsta,
-.owp-sticky-notice,
-.oe-rating-notice {
+.oceanwp-review, .oceanwp-octify, .oceanwp-kinsta, .owp-sticky-notice, .oe-rating-notice{
   display: none;
 }
-body #customize-theme-controls #accordion-section-oceanwp_upsell_section {
+body #customize-theme-controls #accordion-section-oceanwp_upsell_section{
   display: none !important;
 }
+
 /* iThemes Security */
-#toplevel_page_itsec div.wp-menu-image:before,
-.it-icon-itsec:before {
+#toplevel_page_itsec div.wp-menu-image:before, .it-icon-itsec:before {
   content: "\f332" !important;
   font-family: "dashicons" !important;
 }
+
 /* Gravity Forms admin menu icon */
-#toplevel_page_gf_edit_forms .wp-menu-image:before,
-.gform_media_link .gform_media_icon:before {
+#toplevel_page_gf_edit_forms .wp-menu-image:before, .gform_media_link .gform_media_icon:before  {
   content: "\f314";
   display: inline-block;
   width: 20px;
@@ -159,15 +167,16 @@ body #customize-theme-controls #accordion-section-oceanwp_upsell_section {
   -webkit-font-smoothing: antialiased;
   text-decoration: inherit;
 }
-#toplevel_page_gf_edit_forms .wp-menu-image,
-.gform_media_link .gform_media_icon {
+#toplevel_page_gf_edit_forms .wp-menu-image, .gform_media_link .gform_media_icon{
   background: none !important;
 }
+
 .gform_media_link .gform_media_icon:before {
   font: 400 18px/1 dashicons;
   speak: none;
   -webkit-font-smoothing: antialiased;
   padding: 0;
+
 }
 .gform_media_link .gform_media_icon {
   width: 18px;
@@ -182,67 +191,75 @@ body #customize-theme-controls #accordion-section-oceanwp_upsell_section {
 .gform_media_link .gform_media_icon + div {
   display: inline-block;
   padding-left: 0 !important;
+
 }
+
 /* WooCommerce PDF Invoices & Packing Slips: ads */
-.wpo-wcpdf-work-at-wpovernight,
-.wcpdf-extensions-ad {
+.wpo-wcpdf-work-at-wpovernight, .wcpdf-extensions-ad{
   display: none;
 }
+
 /* WooCommerce PDF Invoices & Packing Slips: hide Invoice PDF action when order status is cancelled/pending/failed */
 .status-wc-failed .wpo_wcpdf.invoice,
 .status-wc-cancelled .wpo_wcpdf.invoice,
-.status-wc-pending .wpo_wcpdf.invoice {
+.status-wc-pending .wpo_wcpdf.invoice
+{
   display: none !important;
 }
+
 /* WooCommerce PDF Invoices & Packing Slips: hide meta box Send email */
-#wpo_wcpdf_send_emails {
+#wpo_wcpdf_send_emails{
   display: none;
 }
+
 /* Easy Updates Manager ads */
-.updraft-ad-container,
-#easy-updates-manager-dashnotice,
-.updraftmanagermessage.error {
+.updraft-ad-container, #easy-updates-manager-dashnotice, .updraftmanagermessage.error{
   display: none !important;
 }
+
 /* Duplicate Post ads */
-#duplicate-post-notice {
+#duplicate-post-notice{
   display: none !important;
 }
+
 /* Imagify ads */
-.imagify-sidebar-section,
-#imagify-get-pricing-modal,
-.imagify-notice,
-.imagify-notice.imagify-notice {
+.imagify-sidebar-section, #imagify-get-pricing-modal, .imagify-notice, .imagify-notice.imagify-notice {
   display: none !important;
 }
+
 /* WP */
-#wpfooter {
+#wpfooter{
   display: none !important;
 }
+
 /* ACF */
-.ac-notice.is-dismissible {
+.ac-notice.is-dismissible{
   display: none !important;
 }
+
 /* OptinMonster */
-.om-review-notice {
+.om-review-notice{
   display: none !important;
 }
+
 /* Kinsta */
-#wp-admin-bar-kinsta-cache {
+#wp-admin-bar-kinsta-cache{
   display: none !important;
 }
+
 /* Role shop_order_manager */
 .role-shop_order_manager #menu-posts,
 .role-shop_order_manager #menu-comments,
 .role-shop_order_manager #menu-tools,
-.role-shop_order_manager #menu-media {
+.role-shop_order_manager #menu-media{
   display: none;
 }
+
 /* Rank Math */
-#rank_math_review_plugin_notice {
+#rank_math_review_plugin_notice{
   display: none !important;
 }
-#adminmenu #toplevel_page_rank-math .wp-has-submenu div.wp-menu-image {
+#adminmenu #toplevel_page_rank-math .wp-has-submenu div.wp-menu-image{
   background-image: none !important;
 }
 #adminmenu #toplevel_page_rank-math .wp-has-submenu div.wp-menu-image:before {
@@ -263,38 +280,41 @@ body #customize-theme-controls #accordion-section-oceanwp_upsell_section {
   font-size: 20px;
   vertical-align: top;
   text-align: center;
-  transition: color 0.1s ease-in;
+  transition: color .1s ease-in;
 }
 #adminmenu #toplevel_page_rank-math .wp-has-submenu div.wp-menu-image img {
   display: none;
 }
+
 /* Preview Emails for WooCommerce */
-.woocommerce_page_digthis-woocommerce-preview-emails .notice-warning {
+.woocommerce_page_digthis-woocommerce-preview-emails .notice-warning{
   display: none;
 }
+
 /* Members */
-.members-review-notice {
+.members-review-notice{
   display: none !important;
 }
+
 /* Woo Store Vacation */
-#woo-store-vacation-dismiss-upsell {
+#woo-store-vacation-dismiss-upsell{
   display: none !important;
 }
+
 /* WP Rocket */
-#rocketcdn-promote-notice {
+#rocketcdn-promote-notice{
   display: none !important;
 }
-.notice-preload-running,
-.wpr-Content-tips,
-.wpr-Sidebar {
+
+.notice-preload-running, .wpr-Content-tips, .wpr-Sidebar{
   display: none !important;
 }
+
 /* Members */
-#members-upgrade-header,
-#members-admin-header {
+#members-upgrade-header, #members-admin-header{
   display: none !important;
 }
-#adminmenu #toplevel_page_members .wp-has-submenu div.wp-menu-image {
+#adminmenu #toplevel_page_members .wp-has-submenu div.wp-menu-image{
   background-image: none !important;
 }
 #adminmenu #toplevel_page_members .wp-has-submenu div.wp-menu-image:before {
@@ -315,8 +335,9 @@ body #customize-theme-controls #accordion-section-oceanwp_upsell_section {
   font-size: 20px;
   vertical-align: top;
   text-align: center;
-  transition: color 0.1s ease-in;
+  transition: color .1s ease-in;
 }
+
 /* Mailjet */
 #adminmenu #toplevel_page_mailjet_settings_page .wp-has-submenu div.wp-menu-image:before {
   content: "\f465" !important;
@@ -336,35 +357,40 @@ body #customize-theme-controls #accordion-section-oceanwp_upsell_section {
   font-size: 20px;
   vertical-align: top;
   text-align: center;
-  transition: color 0.1s ease-in;
+  transition: color .1s ease-in;
 }
-#adminmenu #toplevel_page_mailjet_settings_page img {
+#adminmenu #toplevel_page_mailjet_settings_page img{
   display: none;
 }
+
 /* Product Feed Elite */
-#adminmenu #toplevel_page_woo-product-feed-elite-woocommerce-sea .wp-menu-image:before {
+#adminmenu #toplevel_page_woo-product-feed-elite-woocommerce-sea .wp-menu-image:before{
   content: "\f319" !important;
 }
-#adminmenu #toplevel_page_woo-product-feed-elite-woocommerce-sea img {
+#adminmenu #toplevel_page_woo-product-feed-elite-woocommerce-sea img{
   display: none;
 }
+
 /* Mailchimp Discount */
-#adminmenu #toplevel_page_woocommerce-mailchimp-discount .wp-menu-image:before {
+#adminmenu #toplevel_page_woocommerce-mailchimp-discount .wp-menu-image:before{
   background-image: none !important;
   content: "\f524" !important;
   -webkit-filter: none;
   filter: none;
   top: auto;
 }
+
 /* Complianz */
-#toplevel_page_complianz .wp-menu-image:before {
-  background-image: none !important;
-  content: "\f194" !important;
-  -webkit-filter: none;
-  filter: none;
-  top: auto;
+#toplevel_page_complianz{
+    .wp-menu-image:before{
+        background-image: none !important;
+        content: "\f194" !important;
+        -webkit-filter: none;
+        filter: none;
+        top: auto;
+    }
+    img{
+        display: none !important;
+    }
 }
-#toplevel_page_complianz img {
-  display: none !important;
-}
-/*# sourceMappingURL=tmsm-admin-cleanup-admin.css.map */
+

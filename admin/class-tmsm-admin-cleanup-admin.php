@@ -344,6 +344,7 @@ class Tmsm_Admin_Cleanup_Admin {
 
 		$new_positions = array(
 			'rank-math' => 100,  // Rank Math
+			'complianz' => 500,  // Complianz
 			'jetpack' => 200,  // Jetpack
 			'gf_edit_forms' => 8, // Gravity Forms
 			'leadin_user_guide' => 100, // Gravity Forms
