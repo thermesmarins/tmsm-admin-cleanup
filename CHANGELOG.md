@@ -1,3 +1,5 @@
+* WooCommerce menu icon compatibility for 5.1 version 
+
 ### 1.3.3: March 11th, 2021
 * Changed licence from GPL 2 to GPL 3
 * Remove Members upgrade branding and custom icon

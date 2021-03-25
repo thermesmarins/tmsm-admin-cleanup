@@ -306,6 +306,8 @@ class Tmsm_Admin_Cleanup_Admin {
 			return;
 		}
 		$menu[ $menu_item ][0] = __( 'Orders', 'woocommerce' );
+		$menu[ $menu_item ][4] = 'menu-top menu-icon-generic';
+		$menu[ $menu_item ][6] = 'dashicons-cart';
 	}
 
 	/**
