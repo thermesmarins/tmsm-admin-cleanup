@@ -1,4 +1,5 @@
 * WooCommerce menu icon compatibility for 5.1 version 
+* Mailjet: activated again menu order
 
 ### 1.3.3: March 11th, 2021
 * Changed licence from GPL 2 to GPL 3
