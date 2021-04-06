@@ -269,7 +269,7 @@ body #customize-theme-controls #accordion-section-oceanwp_upsell_section {
   display: none;
 }
 /* Members */
-.members-review-notice {
+#members_review_notice {
   display: none !important;
 }
 /* Woo Store Vacation */
