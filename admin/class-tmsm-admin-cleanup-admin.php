@@ -388,12 +388,16 @@ class Tmsm_Admin_Cleanup_Admin {
 	 * @access public
 	 */
 	public function hide_woocommerce() {
-		$roles = wp_get_current_user()->roles;
-		if ( is_array( $roles ) && isset( $roles[0] ) && $roles[0] == 'shop_order_manager' ):
-			echo '<style type="text/css">';
-			echo '#adminmenu #toplevel_page_woocommerce {display: none !important;}';
-			echo '</style>';
-		endif;
+		global $woocommerce;
+		if(version_compare($woocommerce->version, '4.5', '<')){
+			$roles = wp_get_current_user()->roles;
+			if ( is_array( $roles ) && isset( $roles[0] ) && $roles[0] == 'shop_order_manager' ):
+				echo '<style type="text/css">';
+				echo '#adminmenu #toplevel_page_woocommerce {display: none !important;}';
+				echo '</style>';
+			endif;
+		}
+
 	}
 
 	/**

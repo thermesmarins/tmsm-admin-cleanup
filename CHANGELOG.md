@@ -1,3 +1,5 @@
+* WooCommerce: Display again main menu for shop_order_managers
+
 ### 1.3.4: April 6th, 2021
 * WooCommerce: menu icon compatibility for 5.1 version 
 * Mailjet: activated again menu order
