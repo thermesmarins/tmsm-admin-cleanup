@@ -1,6 +1,7 @@
-* WooCommerce menu icon compatibility for 5.1 version 
+### 1.3.4: April 6th, 2021
+* WooCommerce: menu icon compatibility for 5.1 version 
 * Mailjet: activated again menu order
-* Members: hide reviewx notice (fix)
+* Members: hide review notice (fix)
 * WooCommerce PDF Invoices & Packing Slips: remove invoice number and invoice date (order info is enough)
 * WooCommerce PDF Invoices & Packing Slips: display used coupons in invoice PDF
 
