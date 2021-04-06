@@ -240,6 +240,7 @@ class Tmsm_Admin_Cleanup {
 		$this->loader->add_filter( 'wpo_wcpdf_process_order_ids', $plugin_admin, 'wpo_wcpdf_process_order_ids_paid', 50, 2 );
 		$this->loader->add_filter( 'wpo_wcpdf_template_styles', $plugin_admin, 'wpo_wcpdf_template_styles', 50, 2 );
 		$this->loader->add_filter( 'wpo_wcpdf_listing_actions', $plugin_admin, 'wpo_wcpdf_listing_actions', 50, 2 );
+		$this->loader->add_action( 'wpo_wcpdf_after_customer_notes', $plugin_admin, 'wpo_wcpdf_after_customer_notes', 100, 2 );
 
 		// ACF
 		$this->loader->add_action( 'acf/input/admin_footer', $plugin_admin, 'acf_input_disable_autocomplete' );

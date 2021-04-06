@@ -947,6 +947,21 @@ class Tmsm_Admin_Cleanup_Admin {
 	}
 
 	/**
+	 * WooCommerce PDF Invoices: display used coupons
+	 *
+	 * @param $type
+	 * @param WC_Order $order
+	 */
+	function wpo_wcpdf_after_customer_notes( $type, $order){
+		if($order->get_coupon_codes()){
+			echo '<h3>';
+			_e( 'Used coupons', 'tmsm-admin-cleanup' );
+			echo '</h3>';
+			echo implode("-", $order->get_coupon_codes());
+		}
+	}
+
+	/**
 	 * WooCommerce PDF Invoices & Packing Slips: Remove Action button
 	 *
 	 * @param array $listing_actions
@@ -974,7 +989,6 @@ class Tmsm_Admin_Cleanup_Admin {
 		$allowed_statuses = array( 'completed', 'processing', 'processed', 'on-hold', 'pending' );
 		return $allowed_statuses;
 	}
-
 
 	/**
 	 * ACF Disable Autocomplete

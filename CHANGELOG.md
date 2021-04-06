@@ -2,6 +2,7 @@
 * Mailjet: activated again menu order
 * Members: hide reviewx notice (fix)
 * WooCommerce PDF Invoices & Packing Slips: remove invoice number and invoice date (order info is enough)
+* WooCommerce PDF Invoices & Packing Slips: display used coupons in invoice PDF
 
 ### 1.3.3: March 11th, 2021
 * Changed licence from GPL 2 to GPL 3
