@@ -932,7 +932,7 @@ class Tmsm_Admin_Cleanup_Admin {
 		.wc-item-meta{font-size: 11pt;}
 		.shop-address{font-size:10px}
 		#footer{font-size:10px}
-		.invoice-number th, .invoice-number td{font-weight: bold}
+		.order-number th, .order-number td{font-weight: bold}
 		.order-details thead th {
 			background-color: #666;
 			border-color: #666;
@@ -940,6 +940,8 @@ class Tmsm_Admin_Cleanup_Admin {
 		table.totals tr.order_total * {
 			border-color: #666;
 		}
+		.invoice-number{display: none; !important}
+		.invoice-date{display: none; !important}
 		';
 		return $css;
 	}
