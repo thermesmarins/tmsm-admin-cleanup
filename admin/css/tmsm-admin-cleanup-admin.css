@@ -363,4 +363,7 @@ body #customize-theme-controls #accordion-section-oceanwp_upsell_section {
 #toplevel_page_complianz img {
   display: none !important;
 }
+.cmplz-review {
+  display: none !important;
+}
 /*# sourceMappingURL=tmsm-admin-cleanup-admin.css.map */
