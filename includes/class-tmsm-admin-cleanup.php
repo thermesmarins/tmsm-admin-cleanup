@@ -251,6 +251,8 @@ class Tmsm_Admin_Cleanup {
 		// Yoast
 		$this->loader->add_filter( 'pll_translate_post_meta', $plugin_admin, 'yoast_translate_meta', 50, 3 );
 
+		// BackUpWordPress / Fix disk_free_space banned function
+		remove_action( 'admin_init', 'HM\BackUpWordPress\set_server_config_notices' );
 
 	}
 
