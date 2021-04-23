@@ -1,3 +1,4 @@
+### 1.3.5: April 23rd, 2021
 * WooCommerce: Display again main menu for shop_order_managers
 * Complianz: Remove review notice
 * BackUpWordPress: Remove review notice
