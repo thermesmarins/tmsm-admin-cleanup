@@ -624,8 +624,8 @@ class Tmsm_Admin_Cleanup_Admin {
 	/**
 	 * Polylang: Display a country flag or the name of the language as a "post state"
 	 *
-	 * @param array    $post_states An array of post display states.
-	 * @param \WP_Post $post        The current post object.
+	 * @param array   $post_states An array of post display states.
+	 * @param WP_Post $post        The current post object.
 	 *
 	 * @return array A filtered array of post display states.
 	 */
@@ -968,12 +968,12 @@ class Tmsm_Admin_Cleanup_Admin {
 	/**
 	 * WooCommerce PDF Invoices & Packing Slips: Remove Action button
 	 *
-	 * @param array $listing_actions
+	 * @param array    $listing_actions
 	 * @param WC_Order $order
 	 *
 	 * @return array
 	 */
-	public function wpo_wcpdf_listing_actions($listing_actions, $order){
+	public function wpo_wcpdf_listing_actions( array $listing_actions, WC_Order $order){
 
 		if(!empty($listing_actions['invoice'])){
 			if(!in_array($order->get_status(), self::wpo_wcpdf_allowed_statuses() ) ){
@@ -990,8 +990,7 @@ class Tmsm_Admin_Cleanup_Admin {
 	 * @return array
 	 */
 	static function wpo_wcpdf_allowed_statuses(){
-		$allowed_statuses = array( 'completed', 'processing', 'processed', 'on-hold', 'pending' );
-		return $allowed_statuses;
+		return array( 'completed', 'processing', 'processed', 'on-hold', 'pending', 'preparation' );
 	}
 
 	/**
