@@ -1,4 +1,6 @@
 * WooCommerce PDF Invoices & Packing Slips: Add "In Preparation" WooCommerce status to allowed Invoice statuses
+* WooCommerce PDF Invoices & Packing Slips: New PDF icon
+* Shop Order admin screen: Remove unwanted boxes   
 
 ### 1.3.5: April 23rd, 2021
 * WooCommerce: Display again main menu for shop_order_managers

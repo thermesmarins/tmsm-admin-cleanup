@@ -205,6 +205,20 @@ body #customize-theme-controls #accordion-section-oceanwp_upsell_section{
 {
   display: none !important;
 }
+.button.wpo_wcpdf {
+    background-color: #ffe0e0;
+    color: #8c7171;
+    border-color: #8c7171;
+    &::after{
+        content: "\f498" !important;
+        font-size: inherit !important;
+        left: 0 !important;
+        color: inherit !important;
+    }
+    img{
+        display: none !important;
+    }
+}
 
 /* WooCommerce PDF Invoices & Packing Slips: hide meta box Send email */
 #wpo_wcpdf_send_emails{
@@ -401,3 +415,10 @@ body #customize-theme-controls #accordion-section-oceanwp_upsell_section{
     display: none !important;
 }
 
+
+// Remove boxes in Shop Order screen
+.wp-admin.post-type-shop_order{
+    #expirationdatediv, #cmplz_edit_meta_box, #wpo_wcpdf-data-input-box, #wpo_wcpdf_send_emails{
+        display: none;
+    }
+}

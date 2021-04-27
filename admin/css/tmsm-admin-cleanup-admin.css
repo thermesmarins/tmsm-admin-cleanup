@@ -190,6 +190,20 @@ body #customize-theme-controls #accordion-section-oceanwp_upsell_section {
 .status-wc-pending .wpo_wcpdf.invoice {
   display: none !important;
 }
+.button.wpo_wcpdf {
+  background-color: #ffe0e0;
+  color: #8c7171;
+  border-color: #8c7171;
+}
+.button.wpo_wcpdf::after {
+  content: "\f498" !important;
+  font-size: inherit !important;
+  left: 0 !important;
+  color: inherit !important;
+}
+.button.wpo_wcpdf img {
+  display: none !important;
+}
 /* WooCommerce PDF Invoices & Packing Slips: hide meta box Send email */
 #wpo_wcpdf_send_emails {
   display: none;
@@ -370,5 +384,11 @@ body #customize-theme-controls #accordion-section-oceanwp_upsell_section {
 #hmbkp-cta-message,
 #hmbkp-info-message {
   display: none !important;
+}
+.wp-admin.post-type-shop_order #expirationdatediv,
+.wp-admin.post-type-shop_order #cmplz_edit_meta_box,
+.wp-admin.post-type-shop_order #wpo_wcpdf-data-input-box,
+.wp-admin.post-type-shop_order #wpo_wcpdf_send_emails {
+  display: none;
 }
 /*# sourceMappingURL=tmsm-admin-cleanup-admin.css.map */
