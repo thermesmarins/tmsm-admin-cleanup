@@ -1,3 +1,5 @@
+* WooCommerce: Customize order completed and processing customer emails to protect local pickup and virtual informations 
+
 ### 1.3.6: April 24rd, 2021
 * WooCommerce PDF Invoices & Packing Slips: Add "In Preparation" WooCommerce status to allowed Invoice statuses
 * WooCommerce PDF Invoices & Packing Slips: New PDF icon

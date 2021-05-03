@@ -405,7 +405,6 @@ class Tmsm_Admin_Cleanup_Admin {
 	 *
 	 * @since  1.0.4
 	 * @access public
-	 * @deprecated
 	 */
 	public function order_export() {
 
@@ -819,6 +818,138 @@ class Tmsm_Admin_Cleanup_Admin {
 			</div>
 			<?php
 		}
+	}
+
+	/**
+	 * WooCommerce: customize email subject for customer processing email
+	 *
+	 * @param string   $subject
+	 * @param WC_Order $order
+	 * @param WC_Email $email
+	 *
+	 * @return string
+	 */
+	public function woocommerce_email_subject_customer_processing_order( string $subject, WC_Order $order, WC_Email $email ) {
+
+		// Order has local pickup
+		if ( $order->has_shipping_method( 'local_pickup' ) ) {
+			$subject = __( 'Your {site_title} order has been received!', 'tmsm-admin-cleanup' );
+		}
+
+		return $subject;
+	}
+
+	/**
+	 * WooCommerce: customize email heading for customer processing email
+	 *
+	 * @param string   $heading
+	 * @param WC_Order $order
+	 * @param WC_Email $email
+	 *
+	 * @return string
+	 */
+	public function woocommerce_email_heading_customer_processing_order( string $heading, WC_Order $order, WC_Email $email ) {
+
+		// Order has local pickup
+		if ( $order->has_shipping_method( 'local_pickup' ) ) {
+			$heading = __( 'Thank you for your order', 'tmsm-admin-cleanup' );
+		}
+
+		return $heading;
+	}
+
+	/**
+	 * WooCommerce: customize email additional content for customer processing email
+	 *
+	 * @param string   $additional_content
+	 * @param WC_Order $order
+	 * @param WC_Email $email
+	 *
+	 * @return string
+	 */
+	public function woocommerce_email_additional_content_customer_processing_order( string $additional_content, WC_Order $order, WC_Email $email ) {
+
+		// Order has local pickup
+		if ( $order->has_shipping_method( 'local_pickup' ) ) {
+			$additional_content = '';
+		}
+
+		return $additional_content;
+	}
+
+	/**
+	 * WooCommerce: customize email subject for customer completed email
+	 *
+	 * @param string   $subject
+	 * @param WC_Order $order
+	 * @param WC_Email $email
+	 *
+	 * @return string
+	 */
+	public function woocommerce_email_subject_customer_completed_order( string $subject, WC_Order $order, WC_Email $email ) {
+
+		// Order has local pickup
+		if ( $order->has_shipping_method( 'local_pickup' ) ) {
+			$subject = __( 'Your {site_title} order is available for local pickup', 'tmsm-admin-cleanup' );
+		}
+		else{
+			// Order is virtual
+			if ( $order->needs_shipping_address() == false){
+				$subject = __( 'Your {site_title} order is now complete', 'tmsm-admin-cleanup' );
+			}
+		}
+
+		return $subject;
+	}
+
+	/**
+	 * WooCommerce: customize email heading for customer completed email
+	 *
+	 * @param string   $heading
+	 * @param WC_Order $order
+	 * @param WC_Email $email
+	 *
+	 * @return string
+	 */
+	public function woocommerce_email_heading_customer_completed_order( string $heading, WC_Order $order, WC_Email $email ) {
+
+		// Order has local pickup
+		if ( $order->has_shipping_method( 'local_pickup' ) ) {
+			$heading = __( 'Your {site_title} order is available for local pickup', 'tmsm-admin-cleanup' );
+		}
+		else{
+			// Order is virtual
+			if ( $order->needs_shipping_address() == false){
+				$heading = __( 'Thank you for your order', 'tmsm-admin-cleanup' );
+			}
+		}
+
+		return $heading;
+	}
+
+	/**
+	 * WooCommerce: customize email additional content for customer completed email
+	 *
+	 * @param string   $additional_content
+	 * @param WC_Order $order
+	 * @param WC_Email $email
+	 *
+	 * @return string
+	 */
+	public function woocommerce_email_additional_content_customer_completed_order( string $additional_content, WC_Order $order, WC_Email $email ) {
+
+		// Order has local pickup
+		if ( $order->has_shipping_method( 'local_pickup' ) ) {
+			$additional_content = '';
+		}
+		else{
+			// Order is virtual
+			if ( $order->needs_shipping_address() == false){
+				$additional_content = '';
+			}
+		}
+
+		return $additional_content;
 	}
 
 	/**
