@@ -389,7 +389,7 @@ class Tmsm_Admin_Cleanup_Admin {
 	 */
 	public function hide_woocommerce() {
 		global $woocommerce;
-		if(version_compare($woocommerce->version, '4.5', '<')){
+		if ( ! empty( $woocommerce ) && version_compare( $woocommerce->version, '4.5', '<' ) ) {
 			$roles = wp_get_current_user()->roles;
 			if ( is_array( $roles ) && isset( $roles[0] ) && $roles[0] == 'shop_order_manager' ):
 				echo '<style type="text/css">';

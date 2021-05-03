@@ -1,3 +1,5 @@
+* Fix global $woocommerce must be defined
+
 ### 1.3.8: May 3rd, 2021
 * WooCommerce: Fix Customize order completed and processing customer emails to protect local pickup and virtual informations
 
