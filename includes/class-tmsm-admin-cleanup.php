@@ -227,10 +227,17 @@ class Tmsm_Admin_Cleanup {
 		$this->loader->add_filter( 'views_edit-shop_order', $plugin_admin, 'woocommerce_orders_sort_views', 50, 1 );
 		remove_action( 'admin_notices', 'woothemes_updater_notice');
 		$this->loader->add_action( 'post_submitbox_misc_actions', $plugin_admin, 'woocommerce_product_report_button', -10, 1 );
+		remove_action( 'admin_notices', 'woothemes_updater_notice');
+
+		// WooCommerce Emails
+		$this->loader->add_filter( 'woocommerce_email_heading_customer_processing_order', $plugin_admin, 'woocommerce_email_heading_customer_processing_order', 50, 3 );
+		$this->loader->add_filter( 'woocommerce_email_subject_customer_processing_order', $plugin_admin, 'woocommerce_email_subject_customer_processing_order', 50, 3 );
+		$this->loader->add_filter( 'woocommerce_email_additional_content_customer_processing_order', $plugin_admin, 'woocommerce_email_additional_content_customer_processing_order', 50, 3 );
+
 		$this->loader->add_filter( 'woocommerce_email_heading_customer_completed_order', $plugin_admin, 'woocommerce_email_heading_customer_completed_order', 50, 3 );
 		$this->loader->add_filter( 'woocommerce_email_subject_customer_completed_order', $plugin_admin, 'woocommerce_email_subject_customer_completed_order', 50, 3 );
 		$this->loader->add_filter( 'woocommerce_email_additional_content_customer_completed_order', $plugin_admin, 'woocommerce_email_additional_content_customer_completed_order', 50, 3 );
-		remove_action( 'admin_notices', 'woothemes_updater_notice');
+
 
 		// WooCommerce Web Hook Order Paid
 		$this->loader->add_filter( 'woocommerce_webhook_topic_hooks', $plugin_admin, 'woocommerce_webhook_topic_hooks_order_paid', 50, 1 );

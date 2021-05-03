@@ -1,3 +1,6 @@
+### 1.3.8: May 3rd, 2021
+* WooCommerce: Fix Customize order completed and processing customer emails to protect local pickup and virtual informations
+
 ### 1.3.7: May 3rd, 2021
 * WooCommerce: Customize order completed and processing customer emails to protect local pickup and virtual informations 
 
