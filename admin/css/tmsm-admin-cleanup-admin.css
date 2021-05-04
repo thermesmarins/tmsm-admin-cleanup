@@ -16,6 +16,9 @@
   font-family: "dashicons" !important;
   font-size: 20px !important;
 }
+.woocommerce-transient-notices {
+  display: none !important;
+}
 /* WooCommerce product report button */
 .misc-pub-section-product-report #timestamp:before {
   content: "\f239";
