@@ -821,6 +821,42 @@ class Tmsm_Admin_Cleanup_Admin {
 	}
 
 	/**
+	 * This action can be used to modify the object further before it is created - it will be passed by reference.
+	 *
+	 * @param WC_Product $duplicate
+	 * @param WC_Product $product
+	 *
+	 */
+	public function woocommerce_product_duplicate_before_save( WC_Product $duplicate, WC_Product $product){
+
+		$last_year_long = date( 'Y' ) - 1;
+		$last_year_short = substr( $last_year_long,-2);
+		$current_year_long =  date( 'Y' );
+		$current_year_short = substr( $current_year_long,-2);
+
+		// Check if the product to be duplicated has a year in the product name
+		if ( substr( $product->get_name(), - 4 ) == ( $last_year_long ) ) {
+
+			// Replace the last year with the new year
+			$duplicate->set_name( sprintf( esc_html__( '%s%s', 'woocommerce' ), substr( $product->get_name(), 0, - 4 ), $current_year_long ) );
+
+		}
+
+		// Product SKU has last year long
+		if ( substr( $product->get_sku( 'edit' ), - 4 ) == ( $last_year_long ) ) {
+			// Replace the last year with the new year
+			$duplicate->set_sku( wc_product_generate_unique_sku( 0, sprintf( esc_html__( '%s%s', 'woocommerce' ), substr( $product->get_sku( 'edit' ), 0, - 4 ), $current_year_long ) ) );
+		}
+
+		// Product SKU has last year short
+		if ( substr( $product->get_sku( 'edit' ), - 2 ) == ( $last_year_short ) ) {
+			// Replace the last year with the new year
+			$duplicate->set_sku( wc_product_generate_unique_sku( 0, sprintf( esc_html__( '%s%s', 'woocommerce' ), substr( $product->get_sku( 'edit' ), 0, - 2 ), $current_year_short ) ) );
+		}
+
+	}
+
+	/**
 	 * WooCommerce: customize email subject for customer processing email
 	 *
 	 * @param string   $subject

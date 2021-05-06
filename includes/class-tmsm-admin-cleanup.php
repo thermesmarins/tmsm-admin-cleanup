@@ -227,6 +227,7 @@ class Tmsm_Admin_Cleanup {
 		$this->loader->add_filter( 'views_edit-shop_order', $plugin_admin, 'woocommerce_orders_sort_views', 50, 1 );
 		remove_action( 'admin_notices', 'woothemes_updater_notice');
 		$this->loader->add_action( 'post_submitbox_misc_actions', $plugin_admin, 'woocommerce_product_report_button', -10, 1 );
+		$this->loader->add_action( 'woocommerce_product_duplicate_before_save', $plugin_admin, 'woocommerce_product_duplicate_before_save', 10, 2 );
 		remove_action( 'admin_notices', 'woothemes_updater_notice');
 
 		// WooCommerce Emails
