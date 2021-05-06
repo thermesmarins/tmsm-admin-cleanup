@@ -1,3 +1,4 @@
+### 1.3.9: May 3rd, 2021
 * Fix global $woocommerce must be defined
 * WooCommerce: Remove snackbar notices
 * WooCommerce: Duplicate product changes the year if last year is present in the name or SKU 
