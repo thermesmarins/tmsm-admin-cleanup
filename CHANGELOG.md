@@ -1,4 +1,5 @@
 * Small CSS fix for complete action button
+* Gravity Forms sub labels are now thin text not bold
 
 ### 1.3.9: May 3rd, 2021
 * Fix global $woocommerce must be defined
