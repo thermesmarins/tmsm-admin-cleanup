@@ -27,6 +27,7 @@
 .column-wc_actions .complete {
   background: #c8d7e1;
   color: #2e4453;
+  border-color: #2e4453;
 }
 .column-wc_actions a.processing {
   background: #c6e1c6;

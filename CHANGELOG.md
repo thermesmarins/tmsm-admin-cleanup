@@ -1,3 +1,5 @@
+* Small CSS fix for complete action button
+
 ### 1.3.9: May 3rd, 2021
 * Fix global $woocommerce must be defined
 * WooCommerce: Remove snackbar notices
