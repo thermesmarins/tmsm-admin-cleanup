@@ -1,3 +1,6 @@
+### 1.4.1: May 17th, 2021
+* WooCommerce Invoice Slips: Keep invoice exist icon difference
+
 ### 1.4.0: May 17th, 2021
 * Small CSS fix for complete action button
 * Gravity Forms sub labels are now thin text not bold

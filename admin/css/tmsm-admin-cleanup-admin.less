@@ -219,6 +219,30 @@ body #customize-theme-controls #accordion-section-oceanwp_upsell_section{
     img{
         display: none !important;
     }
+
+    &.exists{
+        &::after{
+            width: 70% !important;
+        }
+        &::before{
+            content: "\f147" !important;
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100%;
+            padding: 0;
+            text-align: center;
+            line-height: 2.1;
+            font-family: "Dashicons";
+            speak: none;
+            font-weight: 400;
+            font-variant: normal;
+            text-transform: none;
+            margin: 0;
+            text-indent: 0;
+        }
+    }
 }
 
 /* WooCommerce PDF Invoices & Packing Slips: hide meta box Send email */
