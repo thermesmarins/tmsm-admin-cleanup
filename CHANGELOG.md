@@ -1,3 +1,4 @@
+### 1.4.0: May 17th, 2021
 * Small CSS fix for complete action button
 * Gravity Forms sub labels are now thin text not bold
 * WooCommerce: Emails titles and headings were not replaced by placeholders
