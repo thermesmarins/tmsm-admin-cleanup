@@ -870,6 +870,7 @@ class Tmsm_Admin_Cleanup_Admin {
 		// Order has local pickup
 		if ( $order->has_shipping_method( 'local_pickup' ) ) {
 			$subject = __( 'Your {site_title} order has been received!', 'tmsm-admin-cleanup' );
+			$subject = $email->format_string( $subject );
 		}
 
 		return $subject;
@@ -889,6 +890,7 @@ class Tmsm_Admin_Cleanup_Admin {
 		// Order has local pickup
 		if ( $order->has_shipping_method( 'local_pickup' ) ) {
 			$heading = __( 'Thank you for your order', 'tmsm-admin-cleanup' );
+			$heading = $email->format_string( $heading );
 		}
 
 		return $heading;
@@ -935,6 +937,8 @@ class Tmsm_Admin_Cleanup_Admin {
 			}
 		}
 
+		$subject = $email->format_string( $subject );
+
 		return $subject;
 	}
 
@@ -959,6 +963,8 @@ class Tmsm_Admin_Cleanup_Admin {
 				$heading = __( 'Thank you for your order', 'tmsm-admin-cleanup' );
 			}
 		}
+
+		$heading = $email->format_string( $heading );
 
 		return $heading;
 	}
