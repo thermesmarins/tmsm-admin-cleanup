@@ -1,3 +1,4 @@
+### 1.4.3: June 3rd, 2021
 * WooCommerce: Going back to original subject/heading for local pickup email
 
 ### 1.4.2: June 3rd, 2021
