@@ -1,3 +1,4 @@
+### 1.4.2: June 3rd, 2021
 * WooCommerce: Roll Back email subject/heading for local pickup 
 
 ### 1.4.1: May 17th, 2021
