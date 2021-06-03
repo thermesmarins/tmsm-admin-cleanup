@@ -929,6 +929,7 @@ class Tmsm_Admin_Cleanup_Admin {
 		// Order has local pickup
 		if ( $order->has_shipping_method( 'local_pickup' ) ) {
 			//$subject = __( 'Your {site_title} order is available for local pickup', 'tmsm-admin-cleanup' );
+			$subject = __( 'Your {site_title} order is now complete', 'tmsm-admin-cleanup' );
 		}
 		else{
 			// Order is virtual
@@ -956,6 +957,7 @@ class Tmsm_Admin_Cleanup_Admin {
 		// Order has local pickup
 		if ( $order->has_shipping_method( 'local_pickup' ) ) {
 			//$heading = __( 'Your {site_title} order is available for local pickup', 'tmsm-admin-cleanup' );
+			$heading = __( 'Thank you for your order', 'tmsm-admin-cleanup' );
 		}
 		else{
 			// Order is virtual
