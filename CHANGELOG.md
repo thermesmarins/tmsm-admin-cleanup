@@ -1,3 +1,5 @@
+* WooCommerce: Roll Back email subject/heading for local pickup 
+
 ### 1.4.1: May 17th, 2021
 * WooCommerce Invoice Slips: Keep invoice exist icon difference
 
