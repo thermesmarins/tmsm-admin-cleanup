@@ -1,3 +1,6 @@
+### 1.4.4: June 14th, 2021
+* Redirect to orders only if WooCommerce is enabled
+
 ### 1.4.3: June 3rd, 2021
 * WooCommerce: Going back to original subject/heading for local pickup email
 

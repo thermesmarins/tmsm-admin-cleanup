@@ -356,6 +356,7 @@ class Tmsm_Admin_Cleanup_Admin {
 	 * @return string
 	 */
 	public function redirect_shop_managers( $redirect_to, $request, $user ) {
+		global $woocommerce;
 
 		$redirect_to_orders = admin_url( 'edit.php?post_type=shop_order' );
 
@@ -366,7 +367,7 @@ class Tmsm_Admin_Cleanup_Admin {
 			     || in_array( 'author', $user->roles )
 			) {
 				return $redirect_to;
-			} elseif ( in_array( 'shop_manager', $user->roles ) || in_array( 'shop_order_manager', $user->roles ) ) {
+			} elseif ( ( in_array( 'shop_manager', $user->roles ) || in_array( 'shop_order_manager', $user->roles) &&  ! empty( $woocommerce ) ) ) {
 				// Redirect shop_manager and shop_order_manager to the orders page
 				return $redirect_to_orders;
 			} else {
