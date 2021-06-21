@@ -1,3 +1,6 @@
+### 1.4.5: June 14th, 2021
+* Fix redirect to orders only if WooCommerce is enabled
+
 ### 1.4.4: June 14th, 2021
 * Redirect to orders only if WooCommerce is enabled
 
