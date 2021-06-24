@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: TMSM Admin Cleanup\n"
-"POT-Creation-Date: 2021-05-03 13:57+0200\n"
+"POT-Creation-Date: 2021-06-22 11:33+0200\n"
 "PO-Revision-Date: 2014-10-24 21:08+0100\n"
 "Last-Translator: Nicolas Mollet <nico.mollet@gmail.com>\n"
 "Language-Team: Nicolas Mollet <nico.mollet@gmail.com>\n"
@@ -132,38 +132,42 @@ msgstr ""
 msgid "View report"
 msgstr ""
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:836
+#: ../admin/class-tmsm-admin-cleanup-admin.php:841
+#: ../admin/class-tmsm-admin-cleanup-admin.php:848
+#: ../admin/class-tmsm-admin-cleanup-admin.php:854
+#, php-format
+msgid "%s%s"
+msgstr ""
+
+#: ../admin/class-tmsm-admin-cleanup-admin.php:872
 msgid "Your {site_title} order has been received!"
 msgstr ""
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:855
-#: ../admin/class-tmsm-admin-cleanup-admin.php:923
+#: ../admin/class-tmsm-admin-cleanup-admin.php:892
+#: ../admin/class-tmsm-admin-cleanup-admin.php:960
+#: ../admin/class-tmsm-admin-cleanup-admin.php:965
 msgid "Thank you for your order"
 msgstr ""
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:893
-#: ../admin/class-tmsm-admin-cleanup-admin.php:918
-msgid "Your {site_title} order is available for local pickup"
-msgstr ""
-
-#: ../admin/class-tmsm-admin-cleanup-admin.php:898
+#: ../admin/class-tmsm-admin-cleanup-admin.php:932
+#: ../admin/class-tmsm-admin-cleanup-admin.php:937
 msgid "Your {site_title} order is now complete"
 msgstr ""
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:994
+#: ../admin/class-tmsm-admin-cleanup-admin.php:1038
 msgid "Order paid"
 msgstr ""
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:1012
+#: ../admin/class-tmsm-admin-cleanup-admin.php:1056
 msgctxt "Admin menu name"
 msgid "Orders"
 msgstr ""
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:1030
+#: ../admin/class-tmsm-admin-cleanup-admin.php:1074
 msgid "Order Receipt"
 msgstr ""
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:1093
+#: ../admin/class-tmsm-admin-cleanup-admin.php:1137
 msgid "Used coupons"
 msgstr ""
 
