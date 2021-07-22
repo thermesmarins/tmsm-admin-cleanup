@@ -169,7 +169,7 @@ class Tmsm_Admin_Cleanup {
 		$this->loader->add_filter( 'admin_email_check_interval', $plugin_admin, 'admin_email_check_interval', 10, 1 );
 
 		// Post Expirator
-		remove_filter ('manage_posts_columns', 'expirationdate_add_column', 10, 2);
+		remove_filter ('manage_posts_columns', 'expirationdate_add_column');
 		remove_filter ('manage_pages_columns', 'expirationdate_add_column_page');
 		$this->loader->add_filter( 'display_post_states', $plugin_admin, 'display_post_states_expire', 10, 2 );
 
@@ -264,6 +264,10 @@ class Tmsm_Admin_Cleanup {
 
 		// BackUpWordPress / Fix disk_free_space banned function
 		remove_action( 'admin_init', 'HM\BackUpWordPress\set_server_config_notices' );
+
+		// Plugin Updates: Disable for some plugins
+		$this->loader->add_filter( 'site_transient_update_plugins', $plugin_admin, 'site_transient_update_plugins_disable_specific', 50, 3 );
+
 
 	}
 
