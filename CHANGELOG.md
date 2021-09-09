@@ -1,3 +1,4 @@
+### 1.4.7: September 9th, 2021
 * Rank Math remove pro notice nag
 
 ### 1.4.6: July 22nd, 2021
