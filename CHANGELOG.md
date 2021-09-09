@@ -1,3 +1,5 @@
+* Rank Math remove pro notice nag
+
 ### 1.4.6: July 22nd, 2021
 * Prevent Github Updater from updating
 

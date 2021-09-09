@@ -270,7 +270,8 @@ body #customize-theme-controls #accordion-section-oceanwp_upsell_section {
   display: none;
 }
 /* Rank Math */
-#rank_math_review_plugin_notice {
+#rank_math_review_plugin_notice,
+#rank_math_pro_notice {
   display: none !important;
 }
 #adminmenu #toplevel_page_rank-math .wp-has-submenu div.wp-menu-image {
