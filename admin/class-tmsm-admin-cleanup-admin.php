@@ -1228,6 +1228,7 @@ class Tmsm_Admin_Cleanup_Admin {
 
 		$pluginsToDisable = [
 			'github-updater/github-updater.php',
+			'woo-in-stock-notifier/instock-init.php',
 		];
 
 		if ( isset($value) && is_object($value) ) {
