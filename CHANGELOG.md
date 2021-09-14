@@ -1,3 +1,5 @@
+* Disable updates from "Woo In Stock Notifier" plugin
+
 ### 1.4.7: September 9th, 2021
 * Rank Math remove pro notice nag
 
