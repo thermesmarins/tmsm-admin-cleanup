@@ -1,3 +1,4 @@
+### 1.4.8: October 25th, 2021
 * Disable updates from "Woo In Stock Notifier" plugin
 * WooCommerce 5.8: Hide add-ons menus (Marketplace & My Subscriptions)
 
