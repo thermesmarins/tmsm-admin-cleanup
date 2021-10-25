@@ -691,6 +691,17 @@ class Tmsm_Admin_Cleanup_Admin {
 	}
 
 	/**
+	 * Hide add-ons menus (Marketplace & My Subscriptions)
+	 *
+	 * @since 1.4.8
+	 *
+	 * @return bool
+	 */
+	public function woocommerce_show_addons_page(){
+		return false;
+	}
+
+	/**
 	 * Disable Connect your store to WooCommerce.com to receive extensions updates and support admin notice
 	 *
 	 * @since 1.1.0

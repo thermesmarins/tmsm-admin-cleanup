@@ -1,4 +1,5 @@
 * Disable updates from "Woo In Stock Notifier" plugin
+* WooCommerce 5.8: Hide add-ons menus (Marketplace & My Subscriptions)
 
 ### 1.4.7: September 9th, 2021
 * Rank Math remove pro notice nag

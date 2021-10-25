@@ -217,6 +217,7 @@ class Tmsm_Admin_Cleanup {
 		$this->loader->add_filter( 'gform_enable_field_label_visibility_settings', $plugin_admin, 'gravityforms_label_visibility', 10 ); // Label Visibility
 
 		// WooCommerce
+		$this->loader->add_filter( 'woocommerce_show_addons_page', $plugin_admin, 'woocommerce_show_addons_page', 10 );
 		$this->loader->add_filter( 'woocommerce_helper_suppress_admin_notices', $plugin_admin, 'woocommerce_helper_suppress_admin_notices', 10 );
 		$this->loader->add_filter( 'woocommerce_enable_admin_help_tab', $plugin_admin, 'woocommerce_enable_admin_help_tab' );
 		$this->loader->add_action( 'woocommerce_admin_process_product_object', $plugin_admin, 'wprocket_empty_cache_on_save_product' );
