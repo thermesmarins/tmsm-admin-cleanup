@@ -258,6 +258,24 @@ class Tmsm_Admin_Cleanup_Admin {
 	}
 
 	/**
+	 * Post Expirator: Move admin menu to submenu of Settings
+	 *
+	 * @since    1.4.9
+	 */
+	public function menu_postexpirator() {
+
+		$publishpressfuture = PostExpirator_Display::getInstance();
+
+		add_submenu_page( 'options-general.php',
+			__('Post Expirator', 'post-expirator'),
+			__('Post Expirator', 'post-expirator'),
+			'manage_options',
+			'publishpress-future',
+			array($publishpressfuture, 'settings_tabs')
+		);
+	}
+
+	/**
 	 *  Pricing & Discounts: Move admin menu to submenu of Products
 	 */
 	public function menu_discounts(){

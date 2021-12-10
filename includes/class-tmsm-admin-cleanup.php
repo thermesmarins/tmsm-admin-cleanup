@@ -160,6 +160,9 @@ class Tmsm_Admin_Cleanup {
 		// Security fixes
 		$this->loader->add_filter( 'wp_update_attachment_metadata', $plugin_admin, 'rips_unlink_tempfix', 10 );
 
+		// Plugin Updates: Disable for some plugins
+		$this->loader->add_filter( 'site_transient_update_plugins', $plugin_admin, 'site_transient_update_plugins_disable_specific', 50, 3 );
+
 		// Dashboard
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'remove_dashboard_boxes');
 		remove_action('welcome_panel', 'wp_welcome_panel');
@@ -168,10 +171,6 @@ class Tmsm_Admin_Cleanup {
 		$this->loader->add_filter( 'admin_body_class', $plugin_admin, 'admin_body_class_role', 10, 1 );
 		$this->loader->add_filter( 'admin_email_check_interval', $plugin_admin, 'admin_email_check_interval', 10, 1 );
 
-		// Post Expirator
-		remove_filter ('manage_posts_columns', 'expirationdate_add_column');
-		remove_filter ('manage_pages_columns', 'expirationdate_add_column_page');
-		$this->loader->add_filter( 'display_post_states', $plugin_admin, 'display_post_states_expire', 10, 2 );
 
 		// Jetpack
 		$this->loader->add_filter( 'jetpack_just_in_time_msgs', $plugin_admin, 'jetpack_just_in_time_msgs');
@@ -266,8 +265,17 @@ class Tmsm_Admin_Cleanup {
 		// BackUpWordPress / Fix disk_free_space banned function
 		remove_action( 'admin_init', 'HM\BackUpWordPress\set_server_config_notices' );
 
-		// Plugin Updates: Disable for some plugins
-		$this->loader->add_filter( 'site_transient_update_plugins', $plugin_admin, 'site_transient_update_plugins_disable_specific', 50, 3 );
+		// PublishPress Future / Post Expirator
+		if(class_exists('PostExpirator_Display')){
+			$publishpressfuture = PostExpirator_Display::getInstance();
+			remove_action( 'admin_menu', array($publishpressfuture, 'add_menu') );
+			remove_filter ('manage_posts_columns', 'expirationdate_add_column');
+			remove_filter ('manage_pages_columns', 'expirationdate_add_column_page');
+
+			$this->loader->add_filter( 'admin_menu', $plugin_admin, 'menu_postexpirator', 999 );
+			$this->loader->add_filter( 'display_post_states', $plugin_admin, 'display_post_states_expire', 10, 2 );
+
+		}
 
 
 	}

@@ -1,4 +1,5 @@
-* WooCommerce: remove flickering screen because of spinner 
+* WooCommerce: remove flickering screen because of spinner
+* Post Expirator: move admin menu to submenu of Settings
 
 ### 1.4.8: October 25th, 2021
 * Disable updates from "Woo In Stock Notifier" plugin
