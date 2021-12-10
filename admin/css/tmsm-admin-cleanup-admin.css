@@ -418,4 +418,7 @@ body #customize-theme-controls #accordion-section-oceanwp_upsell_section {
 .wp-admin.post-type-shop_order #wpo_wcpdf_send_emails {
   display: none;
 }
+.settings_page_publishpress-future footer {
+  display: none;
+}
 /*# sourceMappingURL=tmsm-admin-cleanup-admin.css.map */

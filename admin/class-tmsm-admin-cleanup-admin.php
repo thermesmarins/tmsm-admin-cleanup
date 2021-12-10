@@ -577,6 +577,7 @@ class Tmsm_Admin_Cleanup_Admin {
 	 * @param WP_Post  $post        The current post object.
 	 *
 	 * @return array
+	 * @throws Exception
 	 */
 	public function display_post_states_expire( array $post_states, WP_Post $post ){
 
@@ -615,10 +616,10 @@ class Tmsm_Admin_Cleanup_Admin {
 	 * @return string
 	 * @throws Exception
 	 */
-	private function expiration_date_label( int $post_id){
+	private function expiration_date_label( int $post_id): string {
 
 		$label = '';
-		if ( function_exists( 'expirationdate_add_column_page' ) ) {
+		if ( function_exists( 'postexpirator_add_column_page' ) ) {
 			$date_format = sprintf( __( '%1$s at %2$s', 'tmsm-admin-cleanup' ), get_option( 'date_format' ), get_option( 'time_format' ) );
 			$expirationdate_timestamp = get_post_meta( $post_id, '_expiration-date', true );
 

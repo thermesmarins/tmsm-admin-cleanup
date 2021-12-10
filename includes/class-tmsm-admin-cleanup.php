@@ -271,6 +271,8 @@ class Tmsm_Admin_Cleanup {
 			remove_action( 'admin_menu', array($publishpressfuture, 'add_menu') );
 			remove_filter ('manage_posts_columns', 'expirationdate_add_column');
 			remove_filter ('manage_pages_columns', 'expirationdate_add_column_page');
+			remove_filter ('manage_posts_columns', 'postexpirator_add_column');
+			remove_filter ('manage_pages_columns', 'postexpirator_add_column_page');
 
 			$this->loader->add_filter( 'admin_menu', $plugin_admin, 'menu_postexpirator', 999 );
 			$this->loader->add_filter( 'display_post_states', $plugin_admin, 'display_post_states_expire', 10, 2 );
