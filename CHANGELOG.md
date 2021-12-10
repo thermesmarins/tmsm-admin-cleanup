@@ -1,3 +1,4 @@
+### 1.4.9: December 10th, 2021
 * WooCommerce: remove flickering screen because of spinner
 * Post Expirator: move admin menu to submenu of Settings
 * Post Expirator: update functions and column names
