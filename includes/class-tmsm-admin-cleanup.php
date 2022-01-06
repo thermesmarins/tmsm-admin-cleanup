@@ -163,6 +163,9 @@ class Tmsm_Admin_Cleanup {
 		// Plugin Updates: Disable for some plugins
 		$this->loader->add_filter( 'site_transient_update_plugins', $plugin_admin, 'site_transient_update_plugins_disable_specific', 50, 3 );
 
+		// Core Updates: disable wp_version_check single event creation
+		$this->loader->add_filter( 'pre_schedule_event', $plugin_admin, 'pre_schedule_event_disableversioncheck', 10, 3 );
+
 		// Dashboard
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'remove_dashboard_boxes');
 		remove_action('welcome_panel', 'wp_welcome_panel');

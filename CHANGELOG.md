@@ -1,3 +1,5 @@
+* Core Updates: disable wp_version_check single event creation (forced ttl to 3600 prevented the weekly schedule of the updates)
+
 ### 1.4.9: December 10th, 2021
 * WooCommerce: remove flickering screen because of spinner
 * Post Expirator: move admin menu to submenu of Settings
