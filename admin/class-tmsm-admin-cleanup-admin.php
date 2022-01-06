@@ -1273,6 +1273,7 @@ class Tmsm_Admin_Cleanup_Admin {
 
 /**
  * Core Updates: disable wp_version_check single event creation
+ * @since    1.5.0
  *
  * @param null|bool|WP_Error $pre       Value to return instead. Default null to continue adding the event.
  * @param stdClass           $event     {

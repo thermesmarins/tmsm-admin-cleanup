@@ -16,7 +16,7 @@
  * Plugin Name:       TMSM Admin Cleanup
  * Plugin URI:        https://github.com/thermesmarins/tmsm-admin-cleanup
  * Description:       Customization and Cleanup of the admin for Thermes Marins de Saint-Malo
- * Version:           1.4.9
+ * Version:           1.5.0
  * Author:            Nicolas Mollet
  * Author URI:        https://github.com/nicomollet
  * License:           GPL-3.0+
@@ -25,7 +25,7 @@
  * Domain Path:       /languages
  * Github Plugin URI: https://github.com/thermesmarins/tmsm-admin-cleanup
  * Github Branch:     master
- * Requires PHP:      7.0
+ * Requires PHP:      7.4
  */
 
 // If this file is called directly, abort.
@@ -38,7 +38,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'TMSM_ADMIN_CLEANUP_VERSION', '1.4.9' );
+define( 'TMSM_ADMIN_CLEANUP_VERSION', '1.5.0' );
 
 /**
  * The code that runs during plugin activation.
