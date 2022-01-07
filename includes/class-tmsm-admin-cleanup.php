@@ -164,7 +164,7 @@ class Tmsm_Admin_Cleanup {
 		$this->loader->add_filter( 'site_transient_update_plugins', $plugin_admin, 'site_transient_update_plugins_disable_specific', 50, 3 );
 
 		// Cores Updates: disable auto updates after wp_version_check
-		remove_action('wp_maybe_auto_update', 'wp_maybe_auto_update');
+		//remove_action('wp_maybe_auto_update', 'wp_maybe_auto_update');
 
 		// Core Updates: disable wp_version_check single event creation (removed because it prevents core security from being applied with a ttl
 		//$this->loader->add_filter( 'pre_schedule_event', $plugin_admin, 'pre_schedule_event_disableversioncheck', 10, 3 );

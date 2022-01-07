@@ -1256,15 +1256,15 @@ class Tmsm_Admin_Cleanup_Admin {
 	 */
 	function site_transient_update_plugins_disable_specific( $value ) {
 
-		$pluginsToDisable = [
+		$plugins_to_disable = [
 			'github-updater/github-updater.php',
 			'woo-in-stock-notifier/instock-init.php',
 		];
 
-		if ( isset($value) && is_object($value) ) {
-			foreach ($pluginsToDisable as $plugin) {
-				if ( isset( $value->response[$plugin] ) ) {
-					unset( $value->response[$plugin] );
+		if ( isset( $value ) && is_object( $value ) ) {
+			foreach ( $plugins_to_disable as $plugin ) {
+				if ( isset( $value->response[ $plugin ] ) ) {
+					unset( $value->response[ $plugin ] );
 				}
 			}
 		}

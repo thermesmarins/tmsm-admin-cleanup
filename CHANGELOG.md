@@ -1,3 +1,5 @@
+* *Revert* Disable `wp_maybe_auto_update` action to prevent `wp_update_plugins` from being triggered after `wp_version_check`
+
 ### 1.5.1: January 7th, 2022
 * *Revert* Core Updates: disable `wp_version_check` single event creation (forced ttl to 3600 prevented the weekly schedule of the updates)
 * Instead disable `wp_maybe_auto_update` action to prevent `wp_update_plugins` from being triggered after `wp_version_check`
