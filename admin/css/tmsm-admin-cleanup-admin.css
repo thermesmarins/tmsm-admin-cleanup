@@ -421,4 +421,7 @@ body #customize-theme-controls #accordion-section-oceanwp_upsell_section {
 .settings_page_publishpress-future footer {
   display: none;
 }
+.thpladmin-notice {
+  display: none !important;
+}
 /*# sourceMappingURL=tmsm-admin-cleanup-admin.css.map */

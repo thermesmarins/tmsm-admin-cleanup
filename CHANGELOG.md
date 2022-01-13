@@ -1,3 +1,5 @@
+* Checkout Field Editor for WooCommerce: remove notices
+
 ### 1.5.2: January 7th, 2022
 * *Revert* Disable `wp_maybe_auto_update` action to prevent `wp_update_plugins` from being triggered after `wp_version_check`
 
