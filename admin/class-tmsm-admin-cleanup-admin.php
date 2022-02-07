@@ -1258,7 +1258,7 @@ class Tmsm_Admin_Cleanup_Admin {
 
 		$plugins_to_disable = [
 			'github-updater/github-updater.php',
-			'woo-in-stock-notifier/instock-init.php',
+			'backupwordpress/backupwordpress.php',
 		];
 
 		if ( isset( $value ) && is_object( $value ) ) {
@@ -1271,33 +1271,33 @@ class Tmsm_Admin_Cleanup_Admin {
 		return $value;
 	}
 
-/**
- * Core Updates: disable wp_version_check single event creation
- * @since    1.5.0
- *
- * @param null|bool|WP_Error $pre       Value to return instead. Default null to continue adding the event.
- * @param stdClass           $event     {
- *                                      An object containing an event's data.
- *
- * @type string              $hook      Action hook to execute when the event is run.
- * @type int                 $timestamp Unix timestamp (UTC) for when to next run the event.
- * @type string|false        $schedule  How often the event should subsequently recur.
- * @type array               $args      Array containing each separate argument to pass to the hook's callback function.
- * @type int                 $interval  The interval time in seconds for the schedule. Only present for recurring events.
- * }
- *
- * @param bool               $wp_error  Whether to return a WP_Error on failure.
- */
-function pre_schedule_event_disableversioncheck( $pre, $event, $wp_error ) {
+	/**
+	 * Core Updates: disable wp_version_check single event creation
+	 * @since    1.5.0
+	 *
+	 * @param null|bool|WP_Error $pre       Value to return instead. Default null to continue adding the event.
+	 * @param stdClass           $event     {
+	 *                                      An object containing an event's data.
+	 *
+	 * @type string              $hook      Action hook to execute when the event is run.
+	 * @type int                 $timestamp Unix timestamp (UTC) for when to next run the event.
+	 * @type string|false        $schedule  How often the event should subsequently recur.
+	 * @type array               $args      Array containing each separate argument to pass to the hook's callback function.
+	 * @type int                 $interval  The interval time in seconds for the schedule. Only present for recurring events.
+	 * }
+	 *
+	 * @param bool               $wp_error  Whether to return a WP_Error on failure.
+	 */
+	function pre_schedule_event_disableversioncheck( $pre, $event, $wp_error ) {
 
-	if ( $event->hook === 'wp_version_check' && $event->schedule === false ) {
-		return new WP_Error(
-			'pre_schedule_event_false',
-			__( 'Disabling wp_version_check single event.' )
-		);
+		if ( $event->hook === 'wp_version_check' && $event->schedule === false ) {
+			return new WP_Error(
+				'pre_schedule_event_false',
+				__( 'Disabling wp_version_check single event.' )
+			);
+		}
+
+		return $pre;
 	}
-
-	return $pre;
-}
 
 }
