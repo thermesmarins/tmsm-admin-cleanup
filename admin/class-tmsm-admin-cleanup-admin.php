@@ -173,8 +173,8 @@ class Tmsm_Admin_Cleanup_Admin {
 				add_submenu_page( 'options-general.php',
 					__( 'Change your mailjet settings', 'wp-mailjet' ),
 					__( 'Mailjet', 'wp-mailjet' ),
-					'manage_options',
-					'mailjet_dashboard_page',
+					'read',
+					'mailjet_settings_page',
 					''
 				);
 			}
