@@ -758,7 +758,7 @@ class Tmsm_Admin_Cleanup_Admin
 		$fields['form_basics']['fields']['legal_notice'] = [
 			'name' => 'legal_notice',
 			'type' => 'textarea',
-			'tooltip' => gform_tooltip( 'add_legal_notice_tooltips', '', true ),
+			'tooltip' => gform_tooltip('add_legal_notice_tooltips', '', true),
 			'label' => __('Legal Notice', 'tmsm-admin-cleanup')
 		];
 		return $fields;
