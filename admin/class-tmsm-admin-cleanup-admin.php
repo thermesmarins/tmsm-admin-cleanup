@@ -788,7 +788,7 @@ class Tmsm_Admin_Cleanup_Admin
 	 *
 	 * @return array
 	 */
-	public static function gravityforms_save_Legal_Notice_Form_Settings(array $form): array
+	public static function gravityforms_save_Form_Settings(array $form): array
 	{
 		$form['legal_notice'] = rgpost('legal_notice');
 		return $form;
