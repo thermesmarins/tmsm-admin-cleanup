@@ -71,9 +71,25 @@ class Tmsm_Admin_Cleanup_Admin
 		$fields["form_basics"]["fields"]["legal_notice"] = [
 			'name' => 'legal_notice',
 			'type' => 'textarea',
+			'tooltip' => gform_tooltip( 'add_legal_notice_tooltips', '', true ),
 			'label' => __('Mentions légales', 'tmsm-admin-cleanup')
 		];
 		return $fields;
+	}
+
+	/**
+	 * Adds new tooltip to the list
+	 *
+	 * @param array $tooltips
+	 *
+	 * @implements add_tooltips
+	 *
+	 * @return array
+	 */
+	function add_tooltips(array $tooltips): array
+	{
+		$tooltips['add_legal_notice_tooltips'] = 'Les mentions légales s’affichent après le bouton d’envoi de formulaire.';
+		return $tooltips;
 	}
 
 	/**
@@ -91,7 +107,15 @@ class Tmsm_Admin_Cleanup_Admin
 		return $form;
 
 	}
+    /////////////////////////////////////////////////////////////////////////////
 
+	function add_legal_notice_tooltips( $tooltips ) {
+		$tooltips['form_field_block_email_domains'] = "<h6>Block Email Domains</h6>Add a comma separated list of email domains to block. Example: gmail.com, yahoo.com, outlook.com";
+		$tooltips['form_field_block_email_domains_validation'] = "<h6>Block Email Domains Validation Message</h6>The message that will show if a blocked email domain is entered.";
+		return $tooltips;
+	}
+
+    /////////////////////////////////////////////////////////////////////////////
 	/**
 	 * Register the stylesheets for the admin area.
 	 *
