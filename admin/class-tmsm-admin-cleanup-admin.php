@@ -765,7 +765,7 @@ class Tmsm_Admin_Cleanup_Admin
 	}
 
 	/**
-	 * Adds new tooltip to the list
+	 * Gravity Forms: Adds new tooltip to the list
 	 *
 	 * @param array $tooltips
 	 *
@@ -780,7 +780,7 @@ class Tmsm_Admin_Cleanup_Admin
 	}
 
 	/**
-	 * Save extra settings added to form.
+	 * Gravity Forms: Save extra settings added to form.
 	 *
 	 * @param array $form
 	 *
@@ -796,7 +796,7 @@ class Tmsm_Admin_Cleanup_Admin
 	}
 
 	/**
-	 * Hide add-ons menus (Marketplace & My Subscriptions)
+	 * Gravity Forms: Hide add-ons menus (Marketplace & My Subscriptions)
 	 *
 	 * @return bool
 	 * @since 1.4.8

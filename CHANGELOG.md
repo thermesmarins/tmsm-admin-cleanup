@@ -1,4 +1,4 @@
-### 1.5.3: May 4th, 2022
+
 * Gravity Forms: Adds custom field 'legal notice' to all form
 * Gravity Forms: Adds tooltip to legal notice form field
 
