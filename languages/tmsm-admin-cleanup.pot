@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: TMSM Admin Cleanup\n"
-"POT-Creation-Date: 2021-06-22 11:33+0200\n"
+"POT-Creation-Date: 2022-05-04 09:11+0200\n"
 "PO-Revision-Date: 2014-10-24 21:08+0100\n"
 "Last-Translator: Nicolas Mollet <nico.mollet@gmail.com>\n"
 "Language-Team: Nicolas Mollet <nico.mollet@gmail.com>\n"
@@ -10,7 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 3.0\n"
 "X-Poedit-KeywordsList: _e;__;_n:1,2;_x:1,2c;esc_attr__;esc_attr_e;"
 "esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-Basepath: .\n"
@@ -48,127 +48,140 @@ msgstr ""
 msgid "Smush"
 msgstr ""
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:268
-#: ../admin/class-tmsm-admin-cleanup-admin.php:269
+#: ../admin/class-tmsm-admin-cleanup-admin.php:270
+#: ../admin/class-tmsm-admin-cleanup-admin.php:271
+msgid "Post Expirator"
+msgstr ""
+
+#: ../admin/class-tmsm-admin-cleanup-admin.php:286
+#: ../admin/class-tmsm-admin-cleanup-admin.php:287
 msgid "Pricing & Discounts"
 msgstr ""
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:287
+#: ../admin/class-tmsm-admin-cleanup-admin.php:305
 msgid "Orders"
 msgstr ""
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:301
+#: ../admin/class-tmsm-admin-cleanup-admin.php:319
 msgid "Backups"
 msgstr ""
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:313
+#: ../admin/class-tmsm-admin-cleanup-admin.php:331
 msgid "Ocean"
 msgstr ""
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:414
-#: ../admin/class-tmsm-admin-cleanup-admin.php:415
+#: ../admin/class-tmsm-admin-cleanup-admin.php:432
+#: ../admin/class-tmsm-admin-cleanup-admin.php:433
 msgid "Export Orders"
 msgstr ""
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:431
+#: ../admin/class-tmsm-admin-cleanup-admin.php:449
 msgid "Registered"
 msgstr ""
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:460
+#: ../admin/class-tmsm-admin-cleanup-admin.php:478
 msgid "Y/m/d"
 msgstr ""
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:462
+#: ../admin/class-tmsm-admin-cleanup-admin.php:480
 msgid "Y/m/d g:i:s a"
 msgstr ""
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:565
-#: ../admin/class-tmsm-admin-cleanup-admin.php:604
+#: ../admin/class-tmsm-admin-cleanup-admin.php:584
+#: ../admin/class-tmsm-admin-cleanup-admin.php:623
 #, php-format
 msgid "%1$s at %2$s"
 msgstr ""
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:574
+#: ../admin/class-tmsm-admin-cleanup-admin.php:593
 #, php-format
 msgctxt "post status"
 msgid "Scheduled on %s"
 msgstr ""
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:614
+#: ../admin/class-tmsm-admin-cleanup-admin.php:633
 #, php-format
 msgctxt "post status"
 msgid "Expires on %s"
 msgstr ""
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:672
+#: ../admin/class-tmsm-admin-cleanup-admin.php:691
 msgid "Cache"
 msgstr ""
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:724
-#: ../admin/class-tmsm-admin-cleanup-admin.php:751
+#: ../admin/class-tmsm-admin-cleanup-admin.php:728
+msgid "Mentions légales"
+msgstr ""
+
+#: ../admin/class-tmsm-admin-cleanup-admin.php:792
+#: ../admin/class-tmsm-admin-cleanup-admin.php:819
 msgctxt "Order status"
 msgid "Paid"
 msgstr ""
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:738
+#: ../admin/class-tmsm-admin-cleanup-admin.php:806
 msgid "M j, Y"
 msgstr ""
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:751
+#: ../admin/class-tmsm-admin-cleanup-admin.php:819
 msgctxt "Order status"
 msgid "Processing"
 msgstr ""
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:764
+#: ../admin/class-tmsm-admin-cleanup-admin.php:832
 msgid "Mark paid"
 msgstr ""
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:813
+#: ../admin/class-tmsm-admin-cleanup-admin.php:881
 #, php-format
 msgid "Total sales: %s"
 msgstr ""
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:816
+#: ../admin/class-tmsm-admin-cleanup-admin.php:884
 msgid "View report"
 msgstr ""
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:841
-#: ../admin/class-tmsm-admin-cleanup-admin.php:848
-#: ../admin/class-tmsm-admin-cleanup-admin.php:854
+#: ../admin/class-tmsm-admin-cleanup-admin.php:909
+#: ../admin/class-tmsm-admin-cleanup-admin.php:916
+#: ../admin/class-tmsm-admin-cleanup-admin.php:922
 #, php-format
 msgid "%s%s"
 msgstr ""
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:872
+#: ../admin/class-tmsm-admin-cleanup-admin.php:940
 msgid "Your {site_title} order has been received!"
 msgstr ""
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:892
 #: ../admin/class-tmsm-admin-cleanup-admin.php:960
-#: ../admin/class-tmsm-admin-cleanup-admin.php:965
+#: ../admin/class-tmsm-admin-cleanup-admin.php:1028
+#: ../admin/class-tmsm-admin-cleanup-admin.php:1033
 msgid "Thank you for your order"
 msgstr ""
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:932
-#: ../admin/class-tmsm-admin-cleanup-admin.php:937
+#: ../admin/class-tmsm-admin-cleanup-admin.php:1000
+#: ../admin/class-tmsm-admin-cleanup-admin.php:1005
 msgid "Your {site_title} order is now complete"
 msgstr ""
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:1038
+#: ../admin/class-tmsm-admin-cleanup-admin.php:1106
 msgid "Order paid"
 msgstr ""
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:1056
+#: ../admin/class-tmsm-admin-cleanup-admin.php:1124
 msgctxt "Admin menu name"
 msgid "Orders"
 msgstr ""
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:1074
+#: ../admin/class-tmsm-admin-cleanup-admin.php:1142
 msgid "Order Receipt"
 msgstr ""
 
-#: ../admin/class-tmsm-admin-cleanup-admin.php:1137
+#: ../admin/class-tmsm-admin-cleanup-admin.php:1205
 msgid "Used coupons"
+msgstr ""
+
+#: ../admin/class-tmsm-admin-cleanup-admin.php:1334
+msgid "Disabling wp_version_check single event."
 msgstr ""
 
 #: ../includes/class-tmsm-admin-cleanup-install.php:65

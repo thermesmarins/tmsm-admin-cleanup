@@ -20,14 +20,15 @@
  * @subpackage Tmsm_Admin_Cleanup/admin
  * @author     Nicolas Mollet <nico.mollet@gmail.com>
  */
-class Tmsm_Admin_Cleanup_Admin {
+class Tmsm_Admin_Cleanup_Admin
+{
 
 	/**
 	 * The ID of this plugin.
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string    $plugin_name    The ID of this plugin.
+	 * @var      string $plugin_name The ID of this plugin.
 	 */
 	private $plugin_name;
 
@@ -36,21 +37,58 @@ class Tmsm_Admin_Cleanup_Admin {
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string    $version    The current version of this plugin.
+	 * @var      string $version The current version of this plugin.
 	 */
 	private $version;
 
 	/**
 	 * Initialize the class and set its properties.
 	 *
+	 * @param string $plugin_name The name of this plugin.
+	 * @param string $version The version of this plugin.
 	 * @since    1.0.0
-	 * @param      string    $plugin_name       The name of this plugin.
-	 * @param      string    $version    The version of this plugin.
 	 */
-	public function __construct( $plugin_name, $version ) {
+	public function __construct($plugin_name, $version)
+	{
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
+
+	}
+
+	/**
+	 * Add extra settings to all forms.
+	 *
+	 * @param array $fields
+	 * @param array $form
+	 *
+	 * @implements gform_form_settings
+	 *
+	 * @return array
+	 */
+	public static function addLegalNoticeFormSettings(array $fields, array $form): array
+	{
+		$fields["form_basics"]["fields"]["legal_notice"] = [
+			'name' => 'legal_notice',
+			'type' => 'textarea',
+			'label' => __('Mentions légales', 'tmsm-admin-cleanup')
+		];
+		return $fields;
+	}
+
+	/**
+	 * Save extra settings added to forms.
+	 *
+	 * @param array $form
+	 *
+	 * @implements gform_pre_form_settings_save
+	 *
+	 * @return array
+	 */
+	public static function saveLegalNoticeFormSettings(array $form): array
+	{
+		$form['legal_notice'] = rgpost('legal_notice');
+		return $form;
 
 	}
 
@@ -59,32 +97,38 @@ class Tmsm_Admin_Cleanup_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_styles() {
+	public function enqueue_styles()
+	{
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/tmsm-admin-cleanup-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/tmsm-admin-cleanup-admin.css', array(), $this->version, 'all');
 
 	}
+
+	/*
+	 * Remove Dashboard Meta Boxes
+	 */
 
 	/**
 	 * Register the JavaScript for the admin area.
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_scripts() {
+	public function enqueue_scripts()
+	{
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/tmsm-admin-cleanup-admin.js', array( 'jquery' ), $this->version, true );
+		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/tmsm-admin-cleanup-admin.js', array('jquery'), $this->version, true);
 
 		$translation_array = array(
 			'urls' => [
 				'export_orders' => 'admin.php?page=wc-order-export'
 			],
 			'strings' => [
-				'export_orders' => __( 'Export', 'woocommerce' )
+				'export_orders' => __('Export', 'woocommerce')
 			],
-			'export_orders' => (class_exists( 'WC_Order_Export_Admin' )),
+			'export_orders' => (class_exists('WC_Order_Export_Admin')),
 
 		);
-		wp_localize_script( $this->plugin_name, 'tmsm_admin_cleanup_i18n', $translation_array );
+		wp_localize_script($this->plugin_name, 'tmsm_admin_cleanup_i18n', $translation_array);
 
 	}
 
@@ -99,17 +143,16 @@ class Tmsm_Admin_Cleanup_Admin {
 	 *
 	 * @return mixed
 	 */
-	public function rips_unlink_tempfix( $data ) {
-		if( isset($data['thumb']) ) {
+	public function rips_unlink_tempfix($data)
+	{
+		if (isset($data['thumb'])) {
 			$data['thumb'] = basename($data['thumb']);
 		}
 		return $data;
 	}
 
-	/*
-	 * Remove Dashboard Meta Boxes
-	 */
-	public function remove_dashboard_boxes(){
+	public function remove_dashboard_boxes()
+	{
 		remove_meta_box('e-dashboard-overview', 'dashboard', 'normal'); // Elementor
 		remove_meta_box('dashboard_primary', 'dashboard', 'normal');
 		remove_meta_box('dashboard_quick_press', 'dashboard', 'normal');
@@ -121,7 +164,8 @@ class Tmsm_Admin_Cleanup_Admin {
 	 *
 	 * @return bool
 	 */
-	public function jetpack_just_in_time_msgs(){
+	public function jetpack_just_in_time_msgs()
+	{
 		return false;
 	}
 
@@ -132,8 +176,9 @@ class Tmsm_Admin_Cleanup_Admin {
 	 *
 	 * @return mixed
 	 */
-	function post_mime_types_pdf( $post_mime_types ) {
-		$post_mime_types['application/pdf'] = array( __( 'PDFs', 'tmsm-admin-cleanup' ), __( 'Manage PDFs', 'tmsm-admin-cleanup' ), _n_noop( 'PDF <span class="count">(%s)</span>', 'PDFs <span class="count">(%s)</span>' ) );
+	function post_mime_types_pdf($post_mime_types)
+	{
+		$post_mime_types['application/pdf'] = array(__('PDFs', 'tmsm-admin-cleanup'), __('Manage PDFs', 'tmsm-admin-cleanup'), _n_noop('PDF <span class="count">(%s)</span>', 'PDFs <span class="count">(%s)</span>'));
 		return $post_mime_types;
 	}
 
@@ -152,11 +197,12 @@ class Tmsm_Admin_Cleanup_Admin {
 	 * @since  1.0.4
 	 * @access public
 	 */
-	public function menu_customers() {
+	public function menu_customers()
+	{
 		add_submenu_page(
 			'woocommerce',
-			__( 'Customers', 'woocommerce' ),
-			__( 'Customers', 'woocommerce' ),
+			__('Customers', 'woocommerce'),
+			__('Customers', 'woocommerce'),
 			'list_users',
 			'admin.php?page=wc-reports&tab=customers&report=customer_list'
 		);
@@ -165,14 +211,15 @@ class Tmsm_Admin_Cleanup_Admin {
 	/**
 	 *  Mailjet: Move admin menu to submenu of Settings
 	 */
-	public function menu_mailjet(){
+	public function menu_mailjet()
+	{
 
-		if ( defined('MAILJET_VERSION')) {
+		if (defined('MAILJET_VERSION')) {
 			global $current_user;
-			if ( user_can( $current_user, 'manage_options' ) ) {
-				add_submenu_page( 'options-general.php',
-					__( 'Change your mailjet settings', 'wp-mailjet' ),
-					__( 'Mailjet', 'wp-mailjet' ),
+			if (user_can($current_user, 'manage_options')) {
+				add_submenu_page('options-general.php',
+					__('Change your mailjet settings', 'wp-mailjet'),
+					__('Mailjet', 'wp-mailjet'),
 					'manage_options',
 					'mailjet_dashboard_page',
 					''
@@ -184,19 +231,19 @@ class Tmsm_Admin_Cleanup_Admin {
 
 	}
 
-
 	/**
 	 * Smush: Move admin menu to submenu of Settings
 	 *
 	 * @since    1.0.8
 	 */
-	public function menu_smush() {
+	public function menu_smush()
+	{
 
-		if(class_exists('WpSmushitAdmin')){
+		if (class_exists('WpSmushitAdmin')) {
 			global $current_user;
-			add_submenu_page( 'options-general.php',
-				esc_html__( "Smush", "wp-smushit" ),
-				esc_html__( "Smush", "wp-smushit" ),
+			add_submenu_page('options-general.php',
+				esc_html__("Smush", "wp-smushit"),
+				esc_html__("Smush", "wp-smushit"),
 				'manage_options',
 				'smush',
 				''
@@ -210,10 +257,11 @@ class Tmsm_Admin_Cleanup_Admin {
 	 *
 	 * @since    1.0.8
 	 */
-	public function menu_kinsta() {
-		if(defined('KINSTAMU_VERSION')){
+	public function menu_kinsta()
+	{
+		if (defined('KINSTAMU_VERSION')) {
 
-			add_submenu_page( 'options-general.php',
+			add_submenu_page('options-general.php',
 				'Kinsta',
 				'Kinsta',
 				'manage_options',
@@ -230,8 +278,9 @@ class Tmsm_Admin_Cleanup_Admin {
 	 *
 	 * @since    1.1.3
 	 */
-	public function menu_crmperks() {
-		if(class_exists('vxg_freshdesk')){
+	public function menu_crmperks()
+	{
+		if (class_exists('vxg_freshdesk')) {
 
 			remove_menu_page('vx-addons');
 		}
@@ -242,10 +291,11 @@ class Tmsm_Admin_Cleanup_Admin {
 	 *
 	 * @since    1.1.3
 	 */
-	public function menu_optinmonster() {
-		if(class_exists('OMAPI')){
+	public function menu_optinmonster()
+	{
+		if (class_exists('OMAPI')) {
 
-			add_submenu_page( 'options-general.php',
+			add_submenu_page('options-general.php',
 				'OptinMonster',
 				'OptinMonster',
 				'manage_options',
@@ -262,11 +312,12 @@ class Tmsm_Admin_Cleanup_Admin {
 	 *
 	 * @since    1.4.9
 	 */
-	public function menu_postexpirator() {
+	public function menu_postexpirator()
+	{
 
 		$publishpressfuture = PostExpirator_Display::getInstance();
 
-		add_submenu_page( 'options-general.php',
+		add_submenu_page('options-general.php',
 			__('Post Expirator', 'post-expirator'),
 			__('Post Expirator', 'post-expirator'),
 			'manage_options',
@@ -278,9 +329,10 @@ class Tmsm_Admin_Cleanup_Admin {
 	/**
 	 *  Pricing & Discounts: Move admin menu to submenu of Products
 	 */
-	public function menu_discounts(){
+	public function menu_discounts()
+	{
 
-		if(class_exists('RP_WCDPD')){
+		if (class_exists('RP_WCDPD')) {
 			add_submenu_page(
 				'edit.php?post_type=product',
 				__('Pricing & Discounts', 'rp_wcdpd'),
@@ -296,24 +348,52 @@ class Tmsm_Admin_Cleanup_Admin {
 	/**
 	 * Rename WooCommerce menu to Orders
 	 */
-	public function menu_woocommerce() {
+	public function menu_woocommerce()
+	{
 		global $menu;
-		$menu_item = self::recursive_array_search( 'WooCommerce', $menu );
-		if ( ! $menu_item ) {
+		$menu_item = self::recursive_array_search('WooCommerce', $menu);
+		if (!$menu_item) {
 			return;
 		}
-		$menu[ $menu_item ][0] = __( 'Orders', 'woocommerce' );
-		$menu[ $menu_item ][4] = 'menu-top menu-icon-generic';
-		$menu[ $menu_item ][6] = 'dashicons-cart';
+		$menu[$menu_item][0] = __('Orders', 'woocommerce');
+		$menu[$menu_item][4] = 'menu-top menu-icon-generic';
+		$menu[$menu_item][6] = 'dashicons-cart';
+	}
+
+	/**
+	 * Recursive array search
+	 *
+	 * @param $needle
+	 * @param $haystack
+	 *
+	 * @return bool|int|string
+	 */
+	private function recursive_array_search($needle, $haystack)
+	{
+		foreach ($haystack as $key => $value) {
+			$current_key = $key;
+			if (
+				$needle === $value
+				|| (
+					is_array($value)
+					&& self::recursive_array_search($needle, $value) !== false
+				)
+			) {
+				return $current_key;
+			}
+		}
+
+		return false;
 	}
 
 	/**
 	 * Rename BackWPup menu to Backup
 	 */
-	public function menu_backwpup() {
+	public function menu_backwpup()
+	{
 		global $menu;
-		$menu_item = self::recursive_array_search( 'BackWPup', $menu );
-		if ( ! $menu_item ) {
+		$menu_item = self::recursive_array_search('BackWPup', $menu);
+		if (!$menu_item) {
 			return;
 		}
 		$menu[$menu_item][0] = __('Backups', 'backwpup');
@@ -322,15 +402,15 @@ class Tmsm_Admin_Cleanup_Admin {
 	/**
 	 * Rename Theme Panel menu to Ocean
 	 */
-	public function menu_ocean() {
+	public function menu_ocean()
+	{
 		global $menu;
-		$menu_item = self::recursive_array_search( 'Theme Panel', $menu );
-		if ( ! $menu_item ) {
+		$menu_item = self::recursive_array_search('Theme Panel', $menu);
+		if (!$menu_item) {
 			return;
 		}
 		$menu[$menu_item][0] = __('Ocean', 'tmsm-frontend-optimizations');
 	}
-
 
 	/**
 	 * Reorder some plugins
@@ -339,7 +419,8 @@ class Tmsm_Admin_Cleanup_Admin {
 	 *
 	 * @return array
 	 */
-	function menu_order(array $menu_order){
+	function menu_order(array $menu_order)
+	{
 
 		$new_positions = array(
 			'rank-math' => 100,  // Rank Math
@@ -349,14 +430,16 @@ class Tmsm_Admin_Cleanup_Admin {
 			'leadin_user_guide' => 100, // Gravity Forms
 		);
 		// helper function to move an element inside an array
-		function move_element(&$array, $a, $b) {
+		function move_element(&$array, $a, $b)
+		{
 			$out = array_splice($array, $a, 1);
 			array_splice($array, $b, 0, $out);
 		}
+
 		// traverse through the new positions and move
 		// the items if found in the original menu_positions
-		foreach( $new_positions as $value => $new_index ) {
-			if( $current_index = array_search( $value, $menu_order ) ) {
+		foreach ($new_positions as $value => $new_index) {
+			if ($current_index = array_search($value, $menu_order)) {
 				move_element($menu_order, $current_index, $new_index);
 			}
 		}
@@ -373,18 +456,19 @@ class Tmsm_Admin_Cleanup_Admin {
 	 *
 	 * @return string
 	 */
-	public function redirect_shop_managers( $redirect_to, $request, $user ) {
+	public function redirect_shop_managers($redirect_to, $request, $user)
+	{
 
-		$redirect_to_orders = admin_url( 'edit.php?post_type=shop_order' );
+		$redirect_to_orders = admin_url('edit.php?post_type=shop_order');
 
 		//is there a user to check?
-		if ( isset( $user->roles ) && is_array( $user->roles ) ) {
+		if (isset($user->roles) && is_array($user->roles)) {
 			// Default redirect for admins
-			if ( in_array( 'administrator', $user->roles ) || in_array( 'editor', $user->roles ) || in_array( 'contributor', $user->roles )
-			     || in_array( 'author', $user->roles )
+			if (in_array('administrator', $user->roles) || in_array('editor', $user->roles) || in_array('contributor', $user->roles)
+				|| in_array('author', $user->roles)
 			) {
 				return $redirect_to;
-			} elseif ( ( in_array( 'shop_manager', $user->roles ) || in_array( 'shop_order_manager', $user->roles) ) &&  class_exists( 'woocommerce' ) ) {
+			} elseif ((in_array('shop_manager', $user->roles) || in_array('shop_order_manager', $user->roles)) && class_exists('woocommerce')) {
 				// Redirect shop_manager and shop_order_manager to the orders page
 				return $redirect_to_orders;
 			} else {
@@ -397,19 +481,18 @@ class Tmsm_Admin_Cleanup_Admin {
 		}
 	}
 
-
-
 	/**
 	 * Hide WooCommerce menu for shop_order_manager
 	 *
 	 * @since  1.0.4
 	 * @access public
 	 */
-	public function hide_woocommerce() {
+	public function hide_woocommerce()
+	{
 		global $woocommerce;
-		if ( ! empty( $woocommerce ) && version_compare( $woocommerce->version, '4.5', '<' ) ) {
+		if (!empty($woocommerce) && version_compare($woocommerce->version, '4.5', '<')) {
 			$roles = wp_get_current_user()->roles;
-			if ( is_array( $roles ) && isset( $roles[0] ) && $roles[0] == 'shop_order_manager' ):
+			if (is_array($roles) && isset($roles[0]) && $roles[0] == 'shop_order_manager'):
 				echo '<style type="text/css">';
 				echo '#adminmenu #toplevel_page_woocommerce {display: none !important;}';
 				echo '</style>';
@@ -424,13 +507,14 @@ class Tmsm_Admin_Cleanup_Admin {
 	 * @since  1.0.4
 	 * @access public
 	 */
-	public function order_export() {
+	public function order_export()
+	{
 
-		if ( class_exists( 'WC_Order_Export_Admin' ) ):
+		if (class_exists('WC_Order_Export_Admin')):
 			add_submenu_page(
 				'edit.php?post_type=shop_order',
-				__( 'Export Orders', 'woo-order-export-lite' ),
-				__( 'Export Orders', 'woo-order-export-lite' ),
+				__('Export Orders', 'woo-order-export-lite'),
+				__('Export Orders', 'woo-order-export-lite'),
 				'view_woocommerce_reports',
 				'admin.php?page=wc-order-export'
 
@@ -445,8 +529,9 @@ class Tmsm_Admin_Cleanup_Admin {
 	 * @since  1.0.4
 	 * @access public
 	 */
-	public function users_columns( $columns ) {
-		$columns['registered'] = __( 'Registered', 'tmsm-admin-cleanup' );
+	public function users_columns($columns)
+	{
+		$columns['registered'] = __('Registered', 'tmsm-admin-cleanup');
 
 		return $columns;
 	}
@@ -463,23 +548,24 @@ class Tmsm_Admin_Cleanup_Admin {
 	 *
 	 * @return bool|int|string
 	 */
-	public function users_custom_column( $value, $column_name, $user_id ) {
+	public function users_custom_column($value, $column_name, $user_id)
+	{
 
 		global $mode;
-		$mode = empty( $_REQUEST['mode'] ) ? 'list' : $_REQUEST['mode'];
+		$mode = empty($_REQUEST['mode']) ? 'list' : $_REQUEST['mode'];
 
 
-		if ( 'registered' != $column_name ) {
+		if ('registered' != $column_name) {
 			return $value;
 		} else {
-			$user = get_userdata( $user_id );
+			$user = get_userdata($user_id);
 
-			if ( is_multisite() && ( 'list' == $mode ) ) {
-				$formated_date = __( 'Y/m/d', 'tmsm-admin-cleanup' );
+			if (is_multisite() && ('list' == $mode)) {
+				$formated_date = __('Y/m/d', 'tmsm-admin-cleanup');
 			} else {
-				$formated_date = __( 'Y/m/d g:i:s a', 'tmsm-admin-cleanup' );
+				$formated_date = __('Y/m/d g:i:s a', 'tmsm-admin-cleanup');
 			}
-			$registerdate = mysql2date( $formated_date, $user->user_registered );
+			$registerdate = mysql2date($formated_date, $user->user_registered);
 
 			return $registerdate;
 		}
@@ -491,45 +577,21 @@ class Tmsm_Admin_Cleanup_Admin {
 	 * @since  1.0.4
 	 * @access public
 	 */
-	public function users_sortable_columns( $columns ) {
+	public function users_sortable_columns($columns)
+	{
 		$custom = array(
 			// meta column id => sortby value used in query
 			'registered' => 'id',
 		);
 
-		return wp_parse_args( $custom, $columns );
-	}
-
-
-	/**
-	 * Recursive array search
-	 *
-	 * @param $needle
-	 * @param $haystack
-	 *
-	 * @return bool|int|string
-	 */
-	private function recursive_array_search( $needle, $haystack ) {
-		foreach ( $haystack as $key => $value ) {
-			$current_key = $key;
-			if (
-				$needle === $value
-				|| (
-					is_array( $value )
-					&& self::recursive_array_search( $needle, $value ) !== false
-				)
-			) {
-				return $current_key;
-			}
-		}
-
-		return false;
+		return wp_parse_args($custom, $columns);
 	}
 
 	/**
 	 * OceanWP: Disables Dashboard Widget News
 	 */
-	public function oceanwp_news_enabled(){
+	public function oceanwp_news_enabled()
+	{
 		return true;
 	}
 
@@ -538,22 +600,24 @@ class Tmsm_Admin_Cleanup_Admin {
 	 *
 	 * @since 1.1.0
 	 */
-	public function woocommerce_remove_dashboard_widgets(){
-		remove_meta_box( 'woocommerce_dashboard_recent_reviews', 'dashboard', 'normal' );
-		remove_meta_box( 'woocommerce_dashboard_status', 'dashboard', 'normal' );
+	public function woocommerce_remove_dashboard_widgets()
+	{
+		remove_meta_box('woocommerce_dashboard_recent_reviews', 'dashboard', 'normal');
+		remove_meta_box('woocommerce_dashboard_status', 'dashboard', 'normal');
 	}
 
 	/**
 	 * Admin Body Class: Add Role
 	 *
-	 * @param string    $classes An array of classes
+	 * @param string $classes An array of classes
 	 *
 	 * @return string Returned classes
 	 */
-	public function admin_body_class_role( $classes ) {
+	public function admin_body_class_role($classes)
+	{
 		$current_user = new WP_User(get_current_user_id());
 		$user_role = array_shift($current_user->roles);
-		$classes .= ' role-'. $user_role;
+		$classes .= ' role-' . $user_role;
 		return $classes;
 	}
 
@@ -565,7 +629,8 @@ class Tmsm_Admin_Cleanup_Admin {
 	 *
 	 * @return int
 	 */
-	public function admin_email_check_interval( $interval ) {
+	public function admin_email_check_interval($interval)
+	{
 		$interval = 0;
 		return $interval;
 	}
@@ -574,31 +639,31 @@ class Tmsm_Admin_Cleanup_Admin {
 	 * Filters the default post display states used in the posts list table.
 	 *
 	 * @param string[] $post_states An array of post display states.
-	 * @param WP_Post  $post        The current post object.
+	 * @param WP_Post $post The current post object.
 	 *
 	 * @return array
 	 * @throws Exception
 	 */
-	public function display_post_states_expire( array $post_states, WP_Post $post ){
+	public function display_post_states_expire(array $post_states, WP_Post $post)
+	{
 
-		$date_string = __( '%1$s at %2$s', 'tmsm-admin-cleanup' );
+		$date_string = __('%1$s at %2$s', 'tmsm-admin-cleanup');
 
-		if(!empty($post_states['scheduled'])){
+		if (!empty($post_states['scheduled'])) {
 
 			$date = sprintf(
 				$date_string,
-				date_i18n( get_option( 'date_format' ), strtotime( $post->post_date ) ),
-				date_i18n( get_option( 'time_format' ), strtotime( $post->post_date ) )
+				date_i18n(get_option('date_format'), strtotime($post->post_date)),
+				date_i18n(get_option('time_format'), strtotime($post->post_date))
 			);
-			$post_states['scheduled'] = sprintf(_x( 'Scheduled on %s', 'post status', 'tmsm-admin-cleanup' ), $date);
+			$post_states['scheduled'] = sprintf(_x('Scheduled on %s', 'post status', 'tmsm-admin-cleanup'), $date);
 		}
 
 
-		if($expiration_date_label = $this->expiration_date_label( $post->ID )){
-			if(!empty($post_states['scheduled'])){
-				$post_states['scheduled'] .=' , '.$expiration_date_label;
-			}
-			else{
+		if ($expiration_date_label = $this->expiration_date_label($post->ID)) {
+			if (!empty($post_states['scheduled'])) {
+				$post_states['scheduled'] .= ' , ' . $expiration_date_label;
+			} else {
 				$post_states['scheduled'] = $expiration_date_label;
 			}
 		}
@@ -616,41 +681,41 @@ class Tmsm_Admin_Cleanup_Admin {
 	 * @return string
 	 * @throws Exception
 	 */
-	private function expiration_date_label( int $post_id): string {
+	private function expiration_date_label(int $post_id): string
+	{
 
 		$label = '';
-		if ( function_exists( 'postexpirator_add_column_page' ) ) {
-			$date_format = sprintf( __( '%1$s at %2$s', 'tmsm-admin-cleanup' ), get_option( 'date_format' ), get_option( 'time_format' ) );
-			$expirationdate_timestamp = get_post_meta( $post_id, '_expiration-date', true );
+		if (function_exists('postexpirator_add_column_page')) {
+			$date_format = sprintf(__('%1$s at %2$s', 'tmsm-admin-cleanup'), get_option('date_format'), get_option('time_format'));
+			$expirationdate_timestamp = get_post_meta($post_id, '_expiration-date', true);
 
-			if ( ! empty( $expirationdate_timestamp ) ) {
+			if (!empty($expirationdate_timestamp)) {
 
-				$date_in_local_timezone = get_date_from_gmt( date( 'Y-m-d H:i:s', $expirationdate_timestamp ) );
+				$date_in_local_timezone = get_date_from_gmt(date('Y-m-d H:i:s', $expirationdate_timestamp));
 
-				$seconds_since_local_1_jan_1970 = (new DateTime( $date_in_local_timezone, new DateTimeZone( 'UTC' ) ))->getTimestamp();
+				$seconds_since_local_1_jan_1970 = (new DateTime($date_in_local_timezone, new DateTimeZone('UTC')))->getTimestamp();
 
 
-				$label = sprintf( _x( 'Expires on %s', 'post status', 'tmsm-admin-cleanup' ), date_i18n( $date_format, $seconds_since_local_1_jan_1970 ) );
+				$label = sprintf(_x('Expires on %s', 'post status', 'tmsm-admin-cleanup'), date_i18n($date_format, $seconds_since_local_1_jan_1970));
 			}
 
 		}
 		return $label;
 	}
 
-
-
 	/**
 	 * Polylang: Display a country flag or the name of the language as a "post state"
 	 *
-	 * @param array   $post_states An array of post display states.
-	 * @param WP_Post $post        The current post object.
+	 * @param array $post_states An array of post display states.
+	 * @param WP_Post $post The current post object.
 	 *
 	 * @return array A filtered array of post display states.
 	 */
-	public function polylang_display_post_states_language( $post_states, $post ) {
-		if ( function_exists( 'pll_get_post_language' ) ) {
-			if ( ! empty( pll_get_post_language( $post->ID, 'flag' ) ) ) {
-				$post_states['polylang'] = pll_get_post_language( $post->ID, 'flag' );
+	public function polylang_display_post_states_language($post_states, $post)
+	{
+		if (function_exists('pll_get_post_language')) {
+			if (!empty(pll_get_post_language($post->ID, 'flag'))) {
+				$post_states['polylang'] = pll_get_post_language($post->ID, 'flag');
 			}
 		}
 		return $post_states;
@@ -663,10 +728,11 @@ class Tmsm_Admin_Cleanup_Admin {
 	 *
 	 * @param WP_Query $query
 	 */
-	function polylang_elementor_library_conditions_parse_query( $query ) {
-		if ( is_admin() && ! empty( $query->query_vars['post_type'] ) && $query->query_vars['post_type'] === 'elementor_library'
-		     && ! empty( $query->query_vars['meta_key'] ) && $query->query_vars['meta_key'] === '_elementor_conditions' ) {
-			$query->set( 'lang', '' );
+	function polylang_elementor_library_conditions_parse_query($query)
+	{
+		if (is_admin() && !empty($query->query_vars['post_type']) && $query->query_vars['post_type'] === 'elementor_library'
+			&& !empty($query->query_vars['meta_key']) && $query->query_vars['meta_key'] === '_elementor_conditions') {
+			$query->set('lang', '');
 		}
 	}
 
@@ -675,9 +741,10 @@ class Tmsm_Admin_Cleanup_Admin {
 	 *
 	 * @param $product
 	 */
-	public function wprocket_empty_cache_on_save_product($product){
+	public function wprocket_empty_cache_on_save_product($product)
+	{
 		// clear cache of the default domain
-		if(function_exists('rocket_clean_domain')){
+		if (function_exists('rocket_clean_domain')) {
 			rocket_clean_domain();
 		}
 	}
@@ -687,8 +754,9 @@ class Tmsm_Admin_Cleanup_Admin {
 	 *
 	 * @return string
 	 */
-	public function wprocket_name(){
-		return __( 'Cache', 'tmsm-admin-cleanup' );
+	public function wprocket_name()
+	{
+		return __('Cache', 'tmsm-admin-cleanup');
 	}
 
 	/**
@@ -696,7 +764,8 @@ class Tmsm_Admin_Cleanup_Admin {
 	 *
 	 * @return bool
 	 */
-	public function content_block_post_type_public(){
+	public function content_block_post_type_public()
+	{
 		return true;
 	}
 
@@ -705,40 +774,44 @@ class Tmsm_Admin_Cleanup_Admin {
 	 *
 	 * @return bool
 	 */
-	public function gravityforms_label_visibility(){
+	public function gravityforms_label_visibility()
+	{
 		return true;
 	}
 
 	/**
 	 * Hide add-ons menus (Marketplace & My Subscriptions)
 	 *
+	 * @return bool
 	 * @since 1.4.8
 	 *
-	 * @return bool
 	 */
-	public function woocommerce_show_addons_page(){
+	public function woocommerce_show_addons_page()
+	{
 		return false;
 	}
 
 	/**
 	 * Disable Connect your store to WooCommerce.com to receive extensions updates and support admin notice
 	 *
+	 * @return bool
 	 * @since 1.1.0
 	 *
-	 * @return bool
 	 */
-	public function woocommerce_helper_suppress_admin_notices(){
+	public function woocommerce_helper_suppress_admin_notices()
+	{
 		return true;
 	}
 
 	/**
 	 * Remove tour guide
 	 *
+	 * @return bool
 	 * @since 1.0.7
 	 *
-	 * @return bool
 	 */
-	public function woocommerce_enable_admin_help_tab(){
+	public function woocommerce_enable_admin_help_tab()
+	{
 		return false;
 	}
 
@@ -749,9 +822,10 @@ class Tmsm_Admin_Cleanup_Admin {
 	 *
 	 * @return array
 	 */
-	public function woocommerce_rename_order_statuses_processing($statuses){
+	public function woocommerce_rename_order_statuses_processing($statuses)
+	{
 
-		$statuses['wc-processing'] = _x( 'Paid', 'Order status', 'tmsm-admin-cleanup' );
+		$statuses['wc-processing'] = _x('Paid', 'Order status', 'tmsm-admin-cleanup');
 
 		return $statuses;
 	}
@@ -763,9 +837,10 @@ class Tmsm_Admin_Cleanup_Admin {
 	 *
 	 * @return mixed
 	 */
-	function woocommerce_admin_order_date_format($date_format){
+	function woocommerce_admin_order_date_format($date_format)
+	{
 
-		$date_format = __( 'M j, Y', 'tmsm-admin-cleanup' );
+		$date_format = __('M j, Y', 'tmsm-admin-cleanup');
 		return $date_format;
 	}
 
@@ -776,9 +851,10 @@ class Tmsm_Admin_Cleanup_Admin {
 	 *
 	 * @return array
 	 */
-	public function woocommerce_rename_views_filters_processing($views){
-		foreach($views as &$view){
-			$view = str_replace(_x( 'Processing', 'Order status', 'woocommerce' ), _x( 'Paid', 'Order status', 'tmsm-admin-cleanup' ), $view);
+	public function woocommerce_rename_views_filters_processing($views)
+	{
+		foreach ($views as &$view) {
+			$view = str_replace(_x('Processing', 'Order status', 'woocommerce'), _x('Paid', 'Order status', 'tmsm-admin-cleanup'), $view);
 		}
 		return $views;
 	}
@@ -790,8 +866,9 @@ class Tmsm_Admin_Cleanup_Admin {
 	 *
 	 * @return array
 	 */
-	public function woocommerce_rename_bulk_actions_processing(array $actions){
-		$actions['mark_processing'] = __( 'Mark paid', 'tmsm-admin-cleanup' );
+	public function woocommerce_rename_bulk_actions_processing(array $actions)
+	{
+		$actions['mark_processing'] = __('Mark paid', 'tmsm-admin-cleanup');
 
 		return $actions;
 	}
@@ -803,14 +880,15 @@ class Tmsm_Admin_Cleanup_Admin {
 	 *
 	 * @return mixed
 	 */
-	public function woocommerce_orders_sort_views($views){
+	public function woocommerce_orders_sort_views($views)
+	{
 
 		$sorted_keys_default = ['all', 'wc-failed', 'wc-refunded', 'wc-cancelled', 'wc-pending', 'wc-on-hold', 'wc-processing', 'wc-completed', 'wc-processed'];
 		$sorted_keys = [];
 
-		foreach($sorted_keys_default as $sorted_key){
-			if(isset($views[$sorted_key])){
-				array_push($sorted_keys, $sorted_key );
+		foreach ($sorted_keys_default as $sorted_key) {
+			if (isset($views[$sorted_key])) {
+				array_push($sorted_keys, $sorted_key);
 			}
 		}
 
@@ -822,30 +900,33 @@ class Tmsm_Admin_Cleanup_Admin {
 	/**
 	 * WooCommerce: on product admin page, create a button leading to product report
 	 *
+	 * @param WP_Post $post The post being edited.
 	 * @since 1.1.11
 	 *
-	 * @param WP_Post $post The post being edited.
 	 */
-	function woocommerce_product_report_button( $post ) {
-		if ( get_post_type($post) == 'product' ) {
+	function woocommerce_product_report_button($post)
+	{
+		if (get_post_type($post) == 'product') {
 			$product = wc_get_product($post->ID);
 
-			$link             = add_query_arg( 'page', 'wc-reports', admin_url( 'admin.php' ) );
-			$link             = add_query_arg( 'tab', 'orders', $link );
-			$link             = add_query_arg( 'report', 'sales_by_product', $link );
-			$link             = add_query_arg( 'range', 'year', $link );
-			$link             = add_query_arg( 'product_ids', [$product->get_id()], $link );
+			$link = add_query_arg('page', 'wc-reports', admin_url('admin.php'));
+			$link = add_query_arg('tab', 'orders', $link);
+			$link = add_query_arg('report', 'sales_by_product', $link);
+			$link = add_query_arg('range', 'year', $link);
+			$link = add_query_arg('product_ids', [$product->get_id()], $link);
 			?>
 
-			<div class="misc-pub-section curtime misc-pub-curtime misc-pub-section-product-report">
+            <div class="misc-pub-section curtime misc-pub-curtime misc-pub-section-product-report">
 				<span id="timestamp">
 					<?php
-					printf( __( 'Total sales: %s', 'tmsm-admin-cleanup' ), '<b>' . number_format_i18n( $product->get_total_sales() ) . '</b>' );
+					printf(__('Total sales: %s', 'tmsm-admin-cleanup'), '<b>' . number_format_i18n($product->get_total_sales()) . '</b>');
 					?>
 				</span>
-				<a href="<?php echo $link;?>" class="" role="button"><span aria-hidden="true"><?php _e( 'View report', 'tmsm-admin-cleanup' ); ?></span> <span class="screen-reader-text"><?php _e( 'View report', 'tmsm-admin-cleanup' ); ?></span></a>
+                <a href="<?php echo $link; ?>" class="" role="button"><span
+                            aria-hidden="true"><?php _e('View report', 'tmsm-admin-cleanup'); ?></span> <span
+                            class="screen-reader-text"><?php _e('View report', 'tmsm-admin-cleanup'); ?></span></a>
 
-			</div>
+            </div>
 			<?php
 		}
 	}
@@ -857,31 +938,32 @@ class Tmsm_Admin_Cleanup_Admin {
 	 * @param WC_Product $product
 	 *
 	 */
-	public function woocommerce_product_duplicate_before_save( WC_Product $duplicate, WC_Product $product){
+	public function woocommerce_product_duplicate_before_save(WC_Product $duplicate, WC_Product $product)
+	{
 
-		$last_year_long = date( 'Y' ) - 1;
-		$last_year_short = substr( $last_year_long,-2);
-		$current_year_long =  date( 'Y' );
-		$current_year_short = substr( $current_year_long,-2);
+		$last_year_long = date('Y') - 1;
+		$last_year_short = substr($last_year_long, -2);
+		$current_year_long = date('Y');
+		$current_year_short = substr($current_year_long, -2);
 
 		// Check if the product to be duplicated has a year in the product name
-		if ( substr( $product->get_name(), - 4 ) == ( $last_year_long ) ) {
+		if (substr($product->get_name(), -4) == ($last_year_long)) {
 
 			// Replace the last year with the new year
-			$duplicate->set_name( sprintf( esc_html__( '%s%s', 'woocommerce' ), substr( $product->get_name(), 0, - 4 ), $current_year_long ) );
+			$duplicate->set_name(sprintf(esc_html__('%s%s', 'woocommerce'), substr($product->get_name(), 0, -4), $current_year_long));
 
 		}
 
 		// Product SKU has last year long
-		if ( substr( $product->get_sku( 'edit' ), - 4 ) == ( $last_year_long ) ) {
+		if (substr($product->get_sku('edit'), -4) == ($last_year_long)) {
 			// Replace the last year with the new year
-			$duplicate->set_sku( wc_product_generate_unique_sku( 0, sprintf( esc_html__( '%s%s', 'woocommerce' ), substr( $product->get_sku( 'edit' ), 0, - 4 ), $current_year_long ) ) );
+			$duplicate->set_sku(wc_product_generate_unique_sku(0, sprintf(esc_html__('%s%s', 'woocommerce'), substr($product->get_sku('edit'), 0, -4), $current_year_long)));
 		}
 
 		// Product SKU has last year short
-		if ( substr( $product->get_sku( 'edit' ), - 2 ) == ( $last_year_short ) ) {
+		if (substr($product->get_sku('edit'), -2) == ($last_year_short)) {
 			// Replace the last year with the new year
-			$duplicate->set_sku( wc_product_generate_unique_sku( 0, sprintf( esc_html__( '%s%s', 'woocommerce' ), substr( $product->get_sku( 'edit' ), 0, - 2 ), $current_year_short ) ) );
+			$duplicate->set_sku(wc_product_generate_unique_sku(0, sprintf(esc_html__('%s%s', 'woocommerce'), substr($product->get_sku('edit'), 0, -2), $current_year_short)));
 		}
 
 	}
@@ -889,18 +971,19 @@ class Tmsm_Admin_Cleanup_Admin {
 	/**
 	 * WooCommerce: customize email subject for customer processing email
 	 *
-	 * @param string   $subject
+	 * @param string $subject
 	 * @param WC_Order $order
 	 * @param WC_Email $email
 	 *
 	 * @return string
 	 */
-	public function woocommerce_email_subject_customer_processing_order( string $subject, WC_Order $order, WC_Email $email ) {
+	public function woocommerce_email_subject_customer_processing_order(string $subject, WC_Order $order, WC_Email $email)
+	{
 
 		// Order has local pickup
-		if ( $order->has_shipping_method( 'local_pickup' ) ) {
-			$subject = __( 'Your {site_title} order has been received!', 'tmsm-admin-cleanup' );
-			$subject = $email->format_string( $subject );
+		if ($order->has_shipping_method('local_pickup')) {
+			$subject = __('Your {site_title} order has been received!', 'tmsm-admin-cleanup');
+			$subject = $email->format_string($subject);
 		}
 
 		return $subject;
@@ -909,18 +992,19 @@ class Tmsm_Admin_Cleanup_Admin {
 	/**
 	 * WooCommerce: customize email heading for customer processing email
 	 *
-	 * @param string   $heading
+	 * @param string $heading
 	 * @param WC_Order $order
 	 * @param WC_Email $email
 	 *
 	 * @return string
 	 */
-	public function woocommerce_email_heading_customer_processing_order( string $heading, WC_Order $order, WC_Email $email ) {
+	public function woocommerce_email_heading_customer_processing_order(string $heading, WC_Order $order, WC_Email $email)
+	{
 
 		// Order has local pickup
-		if ( $order->has_shipping_method( 'local_pickup' ) ) {
-			$heading = __( 'Thank you for your order', 'tmsm-admin-cleanup' );
-			$heading = $email->format_string( $heading );
+		if ($order->has_shipping_method('local_pickup')) {
+			$heading = __('Thank you for your order', 'tmsm-admin-cleanup');
+			$heading = $email->format_string($heading);
 		}
 
 		return $heading;
@@ -929,16 +1013,17 @@ class Tmsm_Admin_Cleanup_Admin {
 	/**
 	 * WooCommerce: customize email additional content for customer processing email
 	 *
-	 * @param string   $additional_content
+	 * @param string $additional_content
 	 * @param WC_Order $order
 	 * @param WC_Email $email
 	 *
 	 * @return string
 	 */
-	public function woocommerce_email_additional_content_customer_processing_order( string $additional_content, WC_Order $order, WC_Email $email ) {
+	public function woocommerce_email_additional_content_customer_processing_order(string $additional_content, WC_Order $order, WC_Email $email)
+	{
 
 		// Order has local pickup
-		if ( $order->has_shipping_method( 'local_pickup' ) ) {
+		if ($order->has_shipping_method('local_pickup')) {
 			$additional_content = '';
 		}
 
@@ -948,27 +1033,27 @@ class Tmsm_Admin_Cleanup_Admin {
 	/**
 	 * WooCommerce: customize email subject for customer completed email
 	 *
-	 * @param string   $subject
+	 * @param string $subject
 	 * @param WC_Order $order
 	 * @param WC_Email $email
 	 *
 	 * @return string
 	 */
-	public function woocommerce_email_subject_customer_completed_order( string $subject, WC_Order $order, WC_Email $email ) {
+	public function woocommerce_email_subject_customer_completed_order(string $subject, WC_Order $order, WC_Email $email)
+	{
 
 		// Order has local pickup
-		if ( $order->has_shipping_method( 'local_pickup' ) ) {
+		if ($order->has_shipping_method('local_pickup')) {
 			//$subject = __( 'Your {site_title} order is available for local pickup', 'tmsm-admin-cleanup' );
-			$subject = __( 'Your {site_title} order is now complete', 'tmsm-admin-cleanup' );
-		}
-		else{
+			$subject = __('Your {site_title} order is now complete', 'tmsm-admin-cleanup');
+		} else {
 			// Order is virtual
-			if ( $order->needs_shipping_address() == false){
-				$subject = __( 'Your {site_title} order is now complete', 'tmsm-admin-cleanup' );
+			if ($order->needs_shipping_address() == false) {
+				$subject = __('Your {site_title} order is now complete', 'tmsm-admin-cleanup');
 			}
 		}
 
-		$subject = $email->format_string( $subject );
+		$subject = $email->format_string($subject);
 
 		return $subject;
 	}
@@ -976,27 +1061,27 @@ class Tmsm_Admin_Cleanup_Admin {
 	/**
 	 * WooCommerce: customize email heading for customer completed email
 	 *
-	 * @param string   $heading
+	 * @param string $heading
 	 * @param WC_Order $order
 	 * @param WC_Email $email
 	 *
 	 * @return string
 	 */
-	public function woocommerce_email_heading_customer_completed_order( string $heading, WC_Order $order, WC_Email $email ) {
+	public function woocommerce_email_heading_customer_completed_order(string $heading, WC_Order $order, WC_Email $email)
+	{
 
 		// Order has local pickup
-		if ( $order->has_shipping_method( 'local_pickup' ) ) {
+		if ($order->has_shipping_method('local_pickup')) {
 			//$heading = __( 'Your {site_title} order is available for local pickup', 'tmsm-admin-cleanup' );
-			$heading = __( 'Thank you for your order', 'tmsm-admin-cleanup' );
-		}
-		else{
+			$heading = __('Thank you for your order', 'tmsm-admin-cleanup');
+		} else {
 			// Order is virtual
-			if ( $order->needs_shipping_address() == false){
-				$heading = __( 'Thank you for your order', 'tmsm-admin-cleanup' );
+			if ($order->needs_shipping_address() == false) {
+				$heading = __('Thank you for your order', 'tmsm-admin-cleanup');
 			}
 		}
 
-		$heading = $email->format_string( $heading );
+		$heading = $email->format_string($heading);
 
 		return $heading;
 	}
@@ -1004,21 +1089,21 @@ class Tmsm_Admin_Cleanup_Admin {
 	/**
 	 * WooCommerce: customize email additional content for customer completed email
 	 *
-	 * @param string   $additional_content
+	 * @param string $additional_content
 	 * @param WC_Order $order
 	 * @param WC_Email $email
 	 *
 	 * @return string
 	 */
-	public function woocommerce_email_additional_content_customer_completed_order( string $additional_content, WC_Order $order, WC_Email $email ) {
+	public function woocommerce_email_additional_content_customer_completed_order(string $additional_content, WC_Order $order, WC_Email $email)
+	{
 
 		// Order has local pickup
-		if ( $order->has_shipping_method( 'local_pickup' ) ) {
+		if ($order->has_shipping_method('local_pickup')) {
 			$additional_content = '';
-		}
-		else{
+		} else {
 			// Order is virtual
-			if ( $order->needs_shipping_address() == false){
+			if ($order->needs_shipping_address() == false) {
 				$additional_content = '';
 			}
 		}
@@ -1033,13 +1118,14 @@ class Tmsm_Admin_Cleanup_Admin {
 	 *
 	 * @return array
 	 */
-	function woocommerce_webhook_topic_hooks_order_paid( $topic_hooks ) {
+	function woocommerce_webhook_topic_hooks_order_paid($topic_hooks)
+	{
 		$new_hooks = array(
 			'order.paid' => array(
 				'woocommerce_payment_complete',
 			),
 		);
-		return array_merge( $topic_hooks, $new_hooks );
+		return array_merge($topic_hooks, $new_hooks);
 	}
 
 	/**
@@ -1049,11 +1135,12 @@ class Tmsm_Admin_Cleanup_Admin {
 	 *
 	 * @return array
 	 */
-	function woocommerce_valid_webhook_events_paid( $topic_events ) {
+	function woocommerce_valid_webhook_events_paid($topic_events)
+	{
 		$new_events = array(
 			'paid',
 		);
-		return array_merge( $topic_events, $new_events );
+		return array_merge($topic_events, $new_events);
 	}
 
 	/**
@@ -1063,28 +1150,30 @@ class Tmsm_Admin_Cleanup_Admin {
 	 *
 	 * @return array
 	 */
-	function woocommerce_webhook_topics_order_paid( $topics ) {
+	function woocommerce_webhook_topics_order_paid($topics)
+	{
 		$new_topics = array(
-			'order.paid' => __( 'Order paid', 'tmsm-admin-cleanup' ),
+			'order.paid' => __('Order paid', 'tmsm-admin-cleanup'),
 		);
-		return array_merge( $topics, $new_topics );
+		return array_merge($topics, $new_topics);
 	}
 
 
 	/**
 	 * WooCommerce: Adds the order processing count to the menu.
 	 */
-	public function woocommerce_menu_order_count() {
+	public function woocommerce_menu_order_count()
+	{
 		global $submenu;
 
-		if ( isset( $submenu['edit.php?post_type=shop_order'] ) ) {
-			unset( $submenu['edit.php?post_type=shop_order'][0] );
+		if (isset($submenu['edit.php?post_type=shop_order'])) {
+			unset($submenu['edit.php?post_type=shop_order'][0]);
 			$order_count = wc_processing_order_count();
 
-			foreach ( $submenu['edit.php?post_type=shop_order'] as $key => $menu_item ) {
+			foreach ($submenu['edit.php?post_type=shop_order'] as $key => $menu_item) {
 
-				if ( 0 === strpos( $menu_item[0], _x( 'Orders', 'Admin menu name', 'woocommerce' ) ) ) {
-					$submenu['edit.php?post_type=shop_order'][ $key ][0] .= ' <span class="awaiting-mod update-plugins count-' . esc_attr( $order_count ) . '"><span class="processing-count">' . number_format_i18n( $order_count ) . '</span></span>'; // WPCS: override ok.
+				if (0 === strpos($menu_item[0], _x('Orders', 'Admin menu name', 'woocommerce'))) {
+					$submenu['edit.php?post_type=shop_order'][$key][0] .= ' <span class="awaiting-mod update-plugins count-' . esc_attr($order_count) . '"><span class="processing-count">' . number_format_i18n($order_count) . '</span></span>'; // WPCS: override ok.
 					break;
 				}
 			}
@@ -1100,10 +1189,11 @@ class Tmsm_Admin_Cleanup_Admin {
 	 *
 	 * @return string
 	 */
-	public function wpo_wcpdf_invoice_title($title, $document){
+	public function wpo_wcpdf_invoice_title($title, $document)
+	{
 		$title = __('Order Receipt', 'tmsm-admin-cleanup');
-		if(!empty($document->order_id)){
-			$title .= ' ('.$document->order_id.')';
+		if (!empty($document->order_id)) {
+			$title .= ' (' . $document->order_id . ')';
 		}
 		return $title;
 	}
@@ -1116,15 +1206,26 @@ class Tmsm_Admin_Cleanup_Admin {
 	 *
 	 * @return mixed
 	 */
-	function wpo_wcpdf_process_order_ids_paid( $order_ids, $document_type ) {
+	function wpo_wcpdf_process_order_ids_paid($order_ids, $document_type)
+	{
 		foreach ($order_ids as $key => $order_id) {
-			$order = wc_get_order( $order_id );
+			$order = wc_get_order($order_id);
 
-			if ( !in_array($order->get_status(), self::wpo_wcpdf_allowed_statuses()) ) {
-				unset( $order_ids[$key] );
+			if (!in_array($order->get_status(), self::wpo_wcpdf_allowed_statuses())) {
+				unset($order_ids[$key]);
 			}
 		}
 		return $order_ids;
+	}
+
+	/**
+	 * WooCommerce PDF Invoices & Packing Slips: Allowed Statuses
+	 *
+	 * @return array
+	 */
+	static function wpo_wcpdf_allowed_statuses()
+	{
+		return array('completed', 'processing', 'processed', 'on-hold', 'pending', 'preparation');
 	}
 
 	/**
@@ -1135,7 +1236,8 @@ class Tmsm_Admin_Cleanup_Admin {
 	 *
 	 * @return string
 	 */
-	function wpo_wcpdf_template_styles($css, $document){
+	function wpo_wcpdf_template_styles($css, $document)
+	{
 		$css .= '
 		body{font-size: 11pt; color: #666}
 		.wc-item-meta{font-size: 11pt;}
@@ -1161,10 +1263,11 @@ class Tmsm_Admin_Cleanup_Admin {
 	 * @param $type
 	 * @param WC_Order $order
 	 */
-	function wpo_wcpdf_after_customer_notes( $type, $order){
-		if($order->get_coupon_codes()){
+	function wpo_wcpdf_after_customer_notes($type, $order)
+	{
+		if ($order->get_coupon_codes()) {
 			echo '<h3>';
-			_e( 'Used coupons', 'tmsm-admin-cleanup' );
+			_e('Used coupons', 'tmsm-admin-cleanup');
 			echo '</h3>';
 			echo implode("-", $order->get_coupon_codes());
 		}
@@ -1173,15 +1276,16 @@ class Tmsm_Admin_Cleanup_Admin {
 	/**
 	 * WooCommerce PDF Invoices & Packing Slips: Remove Action button
 	 *
-	 * @param array    $listing_actions
+	 * @param array $listing_actions
 	 * @param WC_Order $order
 	 *
 	 * @return array
 	 */
-	public function wpo_wcpdf_listing_actions( array $listing_actions, WC_Order $order){
+	public function wpo_wcpdf_listing_actions(array $listing_actions, WC_Order $order)
+	{
 
-		if(!empty($listing_actions['invoice'])){
-			if(!in_array($order->get_status(), self::wpo_wcpdf_allowed_statuses() ) ){
+		if (!empty($listing_actions['invoice'])) {
+			if (!in_array($order->get_status(), self::wpo_wcpdf_allowed_statuses())) {
 				unset($listing_actions['invoice']);
 			}
 		}
@@ -1190,25 +1294,17 @@ class Tmsm_Admin_Cleanup_Admin {
 	}
 
 	/**
-	 * WooCommerce PDF Invoices & Packing Slips: Allowed Statuses
-	 *
-	 * @return array
-	 */
-	static function wpo_wcpdf_allowed_statuses(){
-		return array( 'completed', 'processing', 'processed', 'on-hold', 'pending', 'preparation' );
-	}
-
-	/**
 	 * ACF Disable Autocomplete
 	 */
-	function acf_input_disable_autocomplete() {
+	function acf_input_disable_autocomplete()
+	{
 
 		?>
-		<script type="text/javascript">
-          (function($) {
-            $('.acf-input-wrap input, .acf-input textarea').attr('autocomplete', 'disableacf');
-          })(jQuery);
-		</script>
+        <script type="text/javascript">
+            (function ($) {
+                $('.acf-input-wrap input, .acf-input textarea').attr('autocomplete', 'disableacf');
+            })(jQuery);
+        </script>
 		<?php
 
 	}
@@ -1219,29 +1315,31 @@ class Tmsm_Admin_Cleanup_Admin {
 	 * @param string $column_name
 	 * @param int $post_id
 	 */
-	public function elementor_admin_columns_content( $column_name, $post_id ) {
-		if ( 'shortcode' === $column_name ) {
+	public function elementor_admin_columns_content($column_name, $post_id)
+	{
+		if ('shortcode' === $column_name) {
 			// %s = shortcode, %d = post_id
 			$post = get_post($post_id);
-			$slug = get_post_field( 'post_name', $post );
+			$slug = get_post_field('post_name', $post);
 
-			$shortcode = esc_attr( sprintf( '[%s id="%d" hint="%s"]', 'elementor-template', $post_id, $slug ) );
-			printf( '<input class="elementor-shortcode-input" type="text" readonly onfocus="this.select()" value="%s" />', $shortcode );
+			$shortcode = esc_attr(sprintf('[%s id="%d" hint="%s"]', 'elementor-template', $post_id, $slug));
+			printf('<input class="elementor-shortcode-input" type="text" readonly onfocus="this.select()" value="%s" />', $shortcode);
 		}
 	}
 
 	/**
 	 * YoastSEO: do not copy title and metadesc
 	 *
+	 * @param mixed $value Meta value
+	 * @param string $key Meta key
+	 * @param string $lang Language of target
+	 * @return mixed
 	 * @since 1.0.9
 	 *
-	 * @param mixed  $value Meta value
-	 * @param string $key   Meta key
-	 * @param string $lang  Language of target
-	 * @return mixed
 	 */
-	public function yoast_translate_meta( $value, $key, $lang ) {
-		if ( '_yoast_wpseo_title' === $key || '_yoast_wpseo_metadesc' === $key ) {
+	public function yoast_translate_meta($value, $key, $lang)
+	{
+		if ('_yoast_wpseo_title' === $key || '_yoast_wpseo_metadesc' === $key) {
 			$value = null;
 		}
 		return $value;
@@ -1254,50 +1352,52 @@ class Tmsm_Admin_Cleanup_Admin {
 	 *
 	 * @return mixed
 	 */
-	function site_transient_update_plugins_disable_specific( $value ) {
+	function site_transient_update_plugins_disable_specific($value)
+	{
 
 		$plugins_to_disable = [
 			'github-updater/github-updater.php',
 			'woo-in-stock-notifier/instock-init.php',
 		];
 
-		if ( isset( $value ) && is_object( $value ) ) {
-			foreach ( $plugins_to_disable as $plugin ) {
-				if ( isset( $value->response[ $plugin ] ) ) {
-					unset( $value->response[ $plugin ] );
+		if (isset($value) && is_object($value)) {
+			foreach ($plugins_to_disable as $plugin) {
+				if (isset($value->response[$plugin])) {
+					unset($value->response[$plugin]);
 				}
 			}
 		}
 		return $value;
 	}
 
-/**
- * Core Updates: disable wp_version_check single event creation
- * @since    1.5.0
- *
- * @param null|bool|WP_Error $pre       Value to return instead. Default null to continue adding the event.
- * @param stdClass           $event     {
- *                                      An object containing an event's data.
- *
- * @type string              $hook      Action hook to execute when the event is run.
- * @type int                 $timestamp Unix timestamp (UTC) for when to next run the event.
- * @type string|false        $schedule  How often the event should subsequently recur.
- * @type array               $args      Array containing each separate argument to pass to the hook's callback function.
- * @type int                 $interval  The interval time in seconds for the schedule. Only present for recurring events.
- * }
- *
- * @param bool               $wp_error  Whether to return a WP_Error on failure.
- */
-function pre_schedule_event_disableversioncheck( $pre, $event, $wp_error ) {
+	/**
+	 * Core Updates: disable wp_version_check single event creation
+	 * @param null|bool|WP_Error $pre Value to return instead. Default null to continue adding the event.
+	 * @param stdClass $event {
+	 *                                      An object containing an event's data.
+	 *
+	 * @type string $hook Action hook to execute when the event is run.
+	 * @type int $timestamp Unix timestamp (UTC) for when to next run the event.
+	 * @type string|false $schedule How often the event should subsequently recur.
+	 * @type array $args Array containing each separate argument to pass to the hook's callback function.
+	 * @type int $interval The interval time in seconds for the schedule. Only present for recurring events.
+	 * }
+	 *
+	 * @param bool $wp_error Whether to return a WP_Error on failure.
+	 * @since    1.5.0
+	 *
+	 */
+	function pre_schedule_event_disableversioncheck($pre, $event, $wp_error)
+	{
 
-	if ( $event->hook === 'wp_version_check' && $event->schedule === false ) {
-		return new WP_Error(
-			'pre_schedule_event_false',
-			__( 'Disabling wp_version_check single event.' )
-		);
+		if ($event->hook === 'wp_version_check' && $event->schedule === false) {
+			return new WP_Error(
+				'pre_schedule_event_false',
+				__('Disabling wp_version_check single event.')
+			);
+		}
+
+		return $pre;
 	}
-
-	return $pre;
-}
 
 }
