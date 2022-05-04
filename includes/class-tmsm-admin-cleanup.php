@@ -225,9 +225,9 @@ class Tmsm_Admin_Cleanup
 
 		// Gravity Forms
 		$this->loader->add_filter('gform_enable_field_label_visibility_settings', $plugin_admin, 'gravityforms_label_visibility', 10); // Label Visibility
-		$this->loader->add_filter('gform_form_settings_fields', $plugin_admin, 'addLegalNoticeFormSettings', 10, 2);
-		$this->loader->add_filter('gform_pre_form_settings_save', $plugin_admin, 'saveLegalNoticeFormSettings');
-		$this->loader->add_filter( 'gform_tooltips',$plugin_admin,'add_tooltips' );
+		$this->loader->add_filter('gform_form_settings_fields', $plugin_admin, 'gravityforms_add_extra_settings', 10, 2);
+		$this->loader->add_filter('gform_tooltips',$plugin_admin,'gravityforms_add_custom_tooltips',10,1 );
+		$this->loader->add_filter('gform_pre_form_settings_save', $plugin_admin, 'gravityforms_save_Legal_Notice_Form_Settings',10,1);
 
 		// WooCommerce
 		$this->loader->add_filter('woocommerce_show_addons_page', $plugin_admin, 'woocommerce_show_addons_page', 10);

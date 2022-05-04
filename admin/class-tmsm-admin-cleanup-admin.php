@@ -57,66 +57,6 @@ class Tmsm_Admin_Cleanup_Admin
 	}
 
 	/**
-	 * Add extra settings to all forms.
-	 *
-	 * @param array $fields
-	 * @param array $form
-	 *
-	 * @implements gform_form_settings
-	 *
-	 * @return array
-	 */
-	public static function addLegalNoticeFormSettings(array $fields, array $form): array
-	{
-		$fields["form_basics"]["fields"]["legal_notice"] = [
-			'name' => 'legal_notice',
-			'type' => 'textarea',
-			'tooltip' => gform_tooltip( 'add_legal_notice_tooltips', '', true ),
-			'label' => __('Mentions légales', 'tmsm-admin-cleanup')
-		];
-		return $fields;
-	}
-
-	/**
-	 * Adds new tooltip to the list
-	 *
-	 * @param array $tooltips
-	 *
-	 * @implements add_tooltips
-	 *
-	 * @return array
-	 */
-	function add_tooltips(array $tooltips): array
-	{
-		$tooltips['add_legal_notice_tooltips'] = 'Les mentions légales s’affichent après le bouton d’envoi de formulaire.';
-		return $tooltips;
-	}
-
-	/**
-	 * Save extra settings added to forms.
-	 *
-	 * @param array $form
-	 *
-	 * @implements gform_pre_form_settings_save
-	 *
-	 * @return array
-	 */
-	public static function saveLegalNoticeFormSettings(array $form): array
-	{
-		$form['legal_notice'] = rgpost('legal_notice');
-		return $form;
-
-	}
-    /////////////////////////////////////////////////////////////////////////////
-
-	function add_legal_notice_tooltips( $tooltips ) {
-		$tooltips['form_field_block_email_domains'] = "<h6>Block Email Domains</h6>Add a comma separated list of email domains to block. Example: gmail.com, yahoo.com, outlook.com";
-		$tooltips['form_field_block_email_domains_validation'] = "<h6>Block Email Domains Validation Message</h6>The message that will show if a blocked email domain is entered.";
-		return $tooltips;
-	}
-
-    /////////////////////////////////////////////////////////////////////////////
-	/**
 	 * Register the stylesheets for the admin area.
 	 *
 	 * @since    1.0.0
@@ -801,6 +741,58 @@ class Tmsm_Admin_Cleanup_Admin
 	public function gravityforms_label_visibility()
 	{
 		return true;
+	}
+
+	/**
+	 * Add extra settings to all forms.
+	 *
+	 * @param array $fields
+	 * @param array $form
+	 *
+	 * @hooked gform_form_settings_fields
+	 *
+	 * @return array
+	 */
+	public static function gravityforms_add_extra_settings(array $fields, array $form): array
+	{
+		$fields['form_basics']['fields']['legal_notice'] = [
+			'name' => 'legal_notice',
+			'type' => 'textarea',
+			'tooltip' => gform_tooltip( 'add_legal_notice_tooltips', '', true ),
+			'label' => __('Legal Notice', 'tmsm-admin-cleanup')
+		];
+		return $fields;
+	}
+
+	/**
+	 * Adds new tooltip to the list
+	 *
+	 * @param array $tooltips
+	 *
+	 * @hooked gform_tooltips
+	 *
+	 * @return array
+	 */
+	function gravityforms_add_custom_tooltips(array $tooltips): array
+	{
+		$tooltips['add_legal_notice_tooltips'] = __('The legal notices are displayed after the submit form button.', 'tmsm-admin-cleanup');
+		return $tooltips;
+	}
+
+	/**
+	 * Save extra settings added to form.
+	 *
+	 * @param array $form
+	 *
+	 * @implements gform_pre_form_settings_save
+	 *
+	 * @return array
+	 */
+	public static function gravityforms_save_Legal_Notice_Form_Settings(array $form): array
+	{
+		$form['legal_notice'] = rgpost('legal_notice');
+		return $form;
+
 	}
 
 	/**
