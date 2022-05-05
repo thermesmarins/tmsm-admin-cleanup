@@ -753,7 +753,7 @@ class Tmsm_Admin_Cleanup_Admin
 	 *
 	 * @return array
 	 */
-	public static function gravityforms_add_extra_settings(array $fields, array $form): array
+	public function gravityforms_add_extra_settings(array $fields, array $form): array
 	{
 		$fields['form_basics']['fields']['legal_notice'] = [
 			'name' => 'legal_notice',
@@ -784,19 +784,34 @@ class Tmsm_Admin_Cleanup_Admin
 	 *
 	 * @param array $form
 	 *
-	 * @implements gform_pre_form_settings_save
+	 * @hooked gform_pre_form_settings_save
 	 *
 	 * @return array
 	 */
-	public static function gravityforms_save_Form_Settings(array $form): array
+    public static function gravityforms_save_form_settings(array $form): array
 	{
-		$form['legal_notice'] = rgpost('legal_notice');
+	        $_POST['legal_notice'] = rgpost('legal_notice');
 		return $form;
+	}
 
+
+	/**
+	 * Gravity Forms: Adds Legal Notice under submit button.
+	 *
+	 * @param array $form
+     * @param string $button
+	 *
+	 * @hooked gform_submit_button
+	 *
+	 * @return string
+	 */
+	function gravityforms_add_paragraph_below_submit(string $button, array $form ): string
+	{
+		return $button .= "<p>".rgar($form,'legal_notice')."</p>";
 	}
 
 	/**
-	 * Gravity Forms: Hide add-ons menus (Marketplace & My Subscriptions)
+	 * Hide add-ons menus (Marketplace & My Subscriptions)
 	 *
 	 * @return bool
 	 * @since 1.4.8
