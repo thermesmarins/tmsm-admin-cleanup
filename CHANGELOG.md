@@ -1,3 +1,6 @@
+* Gravity Forms: "Legal Notice" field to form settings
+* Functions refactoring
+
 ### 1.5.3: April 27th, 2022
 * Checkout Field Editor for WooCommerce: remove notices
 * Disable updates from "BackUpWordPress" plugin

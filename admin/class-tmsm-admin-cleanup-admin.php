@@ -185,6 +185,7 @@ class Tmsm_Admin_Cleanup_Admin {
 	}
 
 
+
 	/**
 	 * Smush: Move admin menu to submenu of Settings
 	 *
@@ -710,8 +711,98 @@ class Tmsm_Admin_Cleanup_Admin {
 	}
 
 	/**
-	 * Hide add-ons menus (Marketplace & My Subscriptions)
+	 * Gravity Forms: Add custom settings to all forms.
 	 *
+	 * @param array $fields
+	 * @param array $form
+	 *
+	 * @hooked gform_form_settings_fields
+	 *
+	 * @return array
+	 */
+	public function gravityforms_add_custom_settings(array $fields, array $form): array
+	{
+
+		// Legal Notice field
+		$fields['form_basics']['fields']['legal_notice'] = [
+			'name'       => 'legal_notice',
+			'type'       => 'textarea',
+			'allow_html' => true,
+			'tooltip'    => gform_tooltip( 'legal_notice', '', true ),
+			'label'      => __( 'Legal Notice', 'tmsm-admin-cleanup' ),
+		];
+
+		return $fields;
+	}
+
+	/**
+	 * Gravity Forms: Adds custom tooltip to the backend fields
+	 *
+	 * @param array $tooltips
+	 *
+	 * @hooked gform_tooltips
+	 *
+	 * @return array
+	 */
+	function gravityforms_add_custom_tooltips(array $tooltips): array
+	{
+		$tooltips['legal_notice'] = __('Legal Notice is displayed below the submit form button.', 'tmsm-admin-cleanup');
+		return $tooltips;
+	}
+
+	/**
+	 * Gravity Forms: Form Filter with the Legal Notice
+	 *
+	 * @param string $form_string
+	 * @param array $form
+	 *
+	 * @hooked gform_get_form_filter
+	 *
+	 * @return string
+	 */
+	function gravityforms_form_filter(string $form_string, array $form): string
+	{
+		$legal_notice = '<div class="gform_legalnotice">' . rgar($form, 'legal_notice') . '</div>';
+		$form_string = str_replace('</form>', $legal_notice . '</form>', $form_string);
+
+		return $form_string;
+	}
+
+	/**
+	 * Hide WooCommerce menu for shop_order_manager
+	 *
+	 * @since  1.0.4
+	 * @access public
+	 */
+	public function woocommerce_hide_menu()
+	{
+		global $woocommerce;
+		if (!empty($woocommerce) && version_compare($woocommerce->version, '4.5', '<')) {
+			$roles = wp_get_current_user()->roles;
+			if (is_array($roles) && isset($roles[0]) && $roles[0] == 'shop_order_manager'):
+				echo '<style type="text/css">';
+				echo '#adminmenu #toplevel_page_woocommerce {display: none !important;}';
+				echo '</style>';
+			endif;
+		}
+
+	}
+
+	/**
+	 * WooCommerce: Disable dashboard widget
+	 *
+	 * @since 1.1.0
+	 */
+	public function woocommerce_remove_dashboard_widgets()
+	{
+		remove_meta_box('woocommerce_dashboard_recent_reviews', 'dashboard', 'normal');
+		remove_meta_box('woocommerce_dashboard_status', 'dashboard', 'normal');
+	}
+
+	/**
+	 * WooCommerce: Hide add-ons menus (Marketplace & My Subscriptions)
+	 *
+	 * @return bool
 	 * @since 1.4.8
 	 *
 	 * @return bool
@@ -822,6 +913,7 @@ class Tmsm_Admin_Cleanup_Admin {
 	/**
 	 * WooCommerce: on product admin page, create a button leading to product report
 	 *
+	 * @param WP_Post $post The post being edited.
 	 * @since 1.1.11
 	 *
 	 * @param WP_Post $post The post being edited.
@@ -1125,6 +1217,16 @@ class Tmsm_Admin_Cleanup_Admin {
 			}
 		}
 		return $order_ids;
+	}
+
+	/**
+	 * WooCommerce PDF Invoices & Packing Slips: Allowed Statuses
+	 *
+	 * @return array
+	 */
+	static function wpo_wcpdf_allowed_statuses()
+	{
+		return array('completed', 'processing', 'processed', 'on-hold', 'pending', 'preparation');
 	}
 
 	/**
