@@ -758,6 +758,7 @@ class Tmsm_Admin_Cleanup_Admin
 		$fields['form_basics']['fields']['legal_notice'] = [
 			'name' => 'legal_notice',
 			'type' => 'textarea',
+			'allow_html' => true,
 			'tooltip' => gform_tooltip('add_legal_notice_tooltips', '', true),
 			'label' => __('Legal Notice', 'tmsm-admin-cleanup')
 		];
@@ -780,34 +781,18 @@ class Tmsm_Admin_Cleanup_Admin
 	}
 
 	/**
-	 * Gravity Forms: Save extra settings added to form.
-	 *
-	 * @param array $form
-	 *
-	 * @hooked gform_pre_form_settings_save
-	 *
-	 * @return array
-	 */
-    public static function gravityforms_save_form_settings(array $form): array
-	{
-	        $_POST['legal_notice'] = rgpost('legal_notice');
-		return $form;
-	}
-
-
-	/**
 	 * Gravity Forms: Adds Legal Notice under submit button.
 	 *
 	 * @param array $form
-     * @param string $button
+	 * @param string $button
 	 *
 	 * @hooked gform_submit_button
 	 *
 	 * @return string
 	 */
-	function gravityforms_add_paragraph_below_submit(string $button, array $form ): string
+	function gravityforms_add_paragraph_below_submit(string $button, array $form): string
 	{
-		return $button .= "<p>".rgar($form,'legal_notice')."</p>";
+		return $button .= "<p>" . rgar($form, 'legal_notice') . "</p>";
 	}
 
 	/**
