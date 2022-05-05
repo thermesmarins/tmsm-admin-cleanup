@@ -29,7 +29,7 @@ class Tmsm_Admin_Cleanup_Admin {
 	 * @access   private
 	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
-	private $plugin_name;
+	private string $plugin_name;
 
 	/**
 	 * The version of this plugin.
@@ -38,7 +38,7 @@ class Tmsm_Admin_Cleanup_Admin {
 	 * @access   private
 	 * @var      string    $version    The current version of this plugin.
 	 */
-	private $version;
+	private string $version;
 
 	/**
 	 * Initialize the class and set its properties.
@@ -99,12 +99,103 @@ class Tmsm_Admin_Cleanup_Admin {
 	 *
 	 * @return mixed
 	 */
-	public function rips_unlink_tempfix( $data ) {
+	public function wp_update_attachment_metadata( $data ) {
 		if( isset($data['thumb']) ) {
 			$data['thumb'] = basename($data['thumb']);
 		}
 		return $data;
 	}
+
+
+	/**
+	 * Recursive array search
+	 *
+	 * @param $needle
+	 * @param $haystack
+	 *
+	 * @return bool|int|string
+	 */
+	private function recursive_array_search( $needle, $haystack ) {
+		foreach ( $haystack as $key => $value ) {
+			$current_key = $key;
+			if (
+				$needle === $value
+				|| (
+					is_array( $value )
+					&& self::recursive_array_search( $needle, $value ) !== false
+				)
+			) {
+				return $current_key;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Admin Body Class: Add Role
+	 *
+	 * @param string    $classes An array of classes
+	 *
+	 * @return string Returned classes
+	 */
+	public function admin_body_class_role( $classes ) {
+		$current_user = new WP_User(get_current_user_id());
+		$user_role = array_shift($current_user->roles);
+		$classes .= ' role-'. $user_role;
+		return $classes;
+	}
+
+	/**
+	 * Filters the interval for redirecting the user to the admin email confirmation screen.
+	 * If `0` (zero) is returned, the user will not be redirected.
+	 *
+	 * @param int Interval time (in seconds).
+	 *
+	 * @return int
+	 */
+	public function admin_email_check_interval( $interval ) {
+		$interval = 0;
+		return $interval;
+	}
+
+	/**
+	 * Filters the default post display states used in the posts list table.
+	 *
+	 * @param string[] $post_states An array of post display states.
+	 * @param WP_Post  $post        The current post object.
+	 *
+	 * @return array
+	 * @throws Exception
+	 */
+	public function display_post_states_expire( array $post_states, WP_Post $post ){
+
+		$date_string = __( '%1$s at %2$s', 'tmsm-admin-cleanup' );
+
+		if(!empty($post_states['scheduled'])){
+
+			$date = sprintf(
+				$date_string,
+				date_i18n( get_option( 'date_format' ), strtotime( $post->post_date ) ),
+				date_i18n( get_option( 'time_format' ), strtotime( $post->post_date ) )
+			);
+			$post_states['scheduled'] = sprintf(_x( 'Scheduled on %s', 'post status', 'tmsm-admin-cleanup' ), $date);
+		}
+
+
+		if($expiration_date_label = $this->expiration_date_label( $post->ID )){
+			if(!empty($post_states['scheduled'])){
+				$post_states['scheduled'] .=' , '.$expiration_date_label;
+			}
+			else{
+				$post_states['scheduled'] = $expiration_date_label;
+			}
+		}
+
+
+		return $post_states;
+	}
+
 
 	/*
 	 * Remove Dashboard Meta Boxes
@@ -398,47 +489,59 @@ class Tmsm_Admin_Cleanup_Admin {
 		}
 	}
 
+	/**
+	 * Prevent update notification for specific plugin
+	 *
+	 * @param $value
+	 *
+	 * @return mixed
+	 */
+	function site_transient_update_plugins_disable_specific( $value ) {
 
+		$plugins_to_disable = [
+			'github-updater/github-updater.php',
+			'backupwordpress/backupwordpress.php',
+		];
+
+		if ( isset( $value ) && is_object( $value ) ) {
+			foreach ( $plugins_to_disable as $plugin ) {
+				if ( isset( $value->response[ $plugin ] ) ) {
+					unset( $value->response[ $plugin ] );
+				}
+			}
+		}
+		return $value;
+	}
 
 	/**
-	 * Hide WooCommerce menu for shop_order_manager
+	 * Core Updates: disable wp_version_check single event creation
+	 * @since    1.5.0
 	 *
-	 * @since  1.0.4
-	 * @access public
+	 * @param null|bool|WP_Error $pre       Value to return instead. Default null to continue adding the event.
+	 * @param stdClass           $event     {
+	 *                                      An object containing an event's data.
+	 *
+	 * @type string              $hook      Action hook to execute when the event is run.
+	 * @type int                 $timestamp Unix timestamp (UTC) for when to next run the event.
+	 * @type string|false        $schedule  How often the event should subsequently recur.
+	 * @type array               $args      Array containing each separate argument to pass to the hook's callback function.
+	 * @type int                 $interval  The interval time in seconds for the schedule. Only present for recurring events.
+	 * }
+	 *
+	 * @param bool               $wp_error  Whether to return a WP_Error on failure.
 	 */
-	public function hide_woocommerce() {
-		global $woocommerce;
-		if ( ! empty( $woocommerce ) && version_compare( $woocommerce->version, '4.5', '<' ) ) {
-			$roles = wp_get_current_user()->roles;
-			if ( is_array( $roles ) && isset( $roles[0] ) && $roles[0] == 'shop_order_manager' ):
-				echo '<style type="text/css">';
-				echo '#adminmenu #toplevel_page_woocommerce {display: none !important;}';
-				echo '</style>';
-			endif;
+	function pre_schedule_event_disableversioncheck( $pre, $event, $wp_error ) {
+
+		if ( $event->hook === 'wp_version_check' && $event->schedule === false ) {
+			return new WP_Error(
+				'pre_schedule_event_false',
+				__( 'Disabling wp_version_check single event.' )
+			);
 		}
 
+		return $pre;
 	}
 
-	/**
-	 * Reports menu for Advanced Order Export For WooCommerce
-	 *
-	 * @since  1.0.4
-	 * @access public
-	 */
-	public function order_export() {
-
-		if ( class_exists( 'WC_Order_Export_Admin' ) ):
-			add_submenu_page(
-				'edit.php?post_type=shop_order',
-				__( 'Export Orders', 'woo-order-export-lite' ),
-				__( 'Export Orders', 'woo-order-export-lite' ),
-				'view_woocommerce_reports',
-				'admin.php?page=wc-order-export'
-
-			);
-		endif;
-
-	}
 
 	/**
 	 * Registered column for display
@@ -503,110 +606,12 @@ class Tmsm_Admin_Cleanup_Admin {
 
 
 	/**
-	 * Recursive array search
-	 *
-	 * @param $needle
-	 * @param $haystack
-	 *
-	 * @return bool|int|string
-	 */
-	private function recursive_array_search( $needle, $haystack ) {
-		foreach ( $haystack as $key => $value ) {
-			$current_key = $key;
-			if (
-				$needle === $value
-				|| (
-					is_array( $value )
-					&& self::recursive_array_search( $needle, $value ) !== false
-				)
-			) {
-				return $current_key;
-			}
-		}
-
-		return false;
-	}
-
-	/**
 	 * OceanWP: Disables Dashboard Widget News
 	 */
 	public function oceanwp_news_enabled(){
 		return true;
 	}
 
-	/**
-	 * Disable WooCommerce dashboard widget
-	 *
-	 * @since 1.1.0
-	 */
-	public function woocommerce_remove_dashboard_widgets(){
-		remove_meta_box( 'woocommerce_dashboard_recent_reviews', 'dashboard', 'normal' );
-		remove_meta_box( 'woocommerce_dashboard_status', 'dashboard', 'normal' );
-	}
-
-	/**
-	 * Admin Body Class: Add Role
-	 *
-	 * @param string    $classes An array of classes
-	 *
-	 * @return string Returned classes
-	 */
-	public function admin_body_class_role( $classes ) {
-		$current_user = new WP_User(get_current_user_id());
-		$user_role = array_shift($current_user->roles);
-		$classes .= ' role-'. $user_role;
-		return $classes;
-	}
-
-	/**
-	 * Filters the interval for redirecting the user to the admin email confirmation screen.
-	 * If `0` (zero) is returned, the user will not be redirected.
-	 *
-	 * @param int Interval time (in seconds).
-	 *
-	 * @return int
-	 */
-	public function admin_email_check_interval( $interval ) {
-		$interval = 0;
-		return $interval;
-	}
-
-	/**
-	 * Filters the default post display states used in the posts list table.
-	 *
-	 * @param string[] $post_states An array of post display states.
-	 * @param WP_Post  $post        The current post object.
-	 *
-	 * @return array
-	 * @throws Exception
-	 */
-	public function display_post_states_expire( array $post_states, WP_Post $post ){
-
-		$date_string = __( '%1$s at %2$s', 'tmsm-admin-cleanup' );
-
-		if(!empty($post_states['scheduled'])){
-
-			$date = sprintf(
-				$date_string,
-				date_i18n( get_option( 'date_format' ), strtotime( $post->post_date ) ),
-				date_i18n( get_option( 'time_format' ), strtotime( $post->post_date ) )
-			);
-			$post_states['scheduled'] = sprintf(_x( 'Scheduled on %s', 'post status', 'tmsm-admin-cleanup' ), $date);
-		}
-
-
-		if($expiration_date_label = $this->expiration_date_label( $post->ID )){
-			if(!empty($post_states['scheduled'])){
-				$post_states['scheduled'] .=' , '.$expiration_date_label;
-			}
-			else{
-				$post_states['scheduled'] = $expiration_date_label;
-			}
-		}
-
-
-		return $post_states;
-	}
 
 	/**
 	 * Get the expiration date label
@@ -1292,15 +1297,6 @@ class Tmsm_Admin_Cleanup_Admin {
 	}
 
 	/**
-	 * WooCommerce PDF Invoices & Packing Slips: Allowed Statuses
-	 *
-	 * @return array
-	 */
-	static function wpo_wcpdf_allowed_statuses(){
-		return array( 'completed', 'processing', 'processed', 'on-hold', 'pending', 'preparation' );
-	}
-
-	/**
 	 * ACF Disable Autocomplete
 	 */
 	function acf_input_disable_autocomplete() {
@@ -1349,57 +1345,5 @@ class Tmsm_Admin_Cleanup_Admin {
 		return $value;
 	}
 
-	/**
-	 * Prevent update notification for specific plugin
-	 *
-	 * @param $value
-	 *
-	 * @return mixed
-	 */
-	function site_transient_update_plugins_disable_specific( $value ) {
-
-		$plugins_to_disable = [
-			'github-updater/github-updater.php',
-			'backupwordpress/backupwordpress.php',
-		];
-
-		if ( isset( $value ) && is_object( $value ) ) {
-			foreach ( $plugins_to_disable as $plugin ) {
-				if ( isset( $value->response[ $plugin ] ) ) {
-					unset( $value->response[ $plugin ] );
-				}
-			}
-		}
-		return $value;
-	}
-
-	/**
-	 * Core Updates: disable wp_version_check single event creation
-	 * @since    1.5.0
-	 *
-	 * @param null|bool|WP_Error $pre       Value to return instead. Default null to continue adding the event.
-	 * @param stdClass           $event     {
-	 *                                      An object containing an event's data.
-	 *
-	 * @type string              $hook      Action hook to execute when the event is run.
-	 * @type int                 $timestamp Unix timestamp (UTC) for when to next run the event.
-	 * @type string|false        $schedule  How often the event should subsequently recur.
-	 * @type array               $args      Array containing each separate argument to pass to the hook's callback function.
-	 * @type int                 $interval  The interval time in seconds for the schedule. Only present for recurring events.
-	 * }
-	 *
-	 * @param bool               $wp_error  Whether to return a WP_Error on failure.
-	 */
-	function pre_schedule_event_disableversioncheck( $pre, $event, $wp_error ) {
-
-		if ( $event->hook === 'wp_version_check' && $event->schedule === false ) {
-			return new WP_Error(
-				'pre_schedule_event_false',
-				__( 'Disabling wp_version_check single event.' )
-			);
-		}
-
-		return $pre;
-	}
 
 }

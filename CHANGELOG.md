@@ -1,3 +1,4 @@
+### 1.5.4: May 5th, 2022
 * Gravity Forms: "Legal Notice" field to form settings
 * Functions refactoring
 

@@ -201,7 +201,6 @@ class Tmsm_Admin_Cleanup
 		$this->loader->add_filter('admin_head', $plugin_admin, 'menu_woocommerce', 999);
 		$this->loader->add_filter('admin_head', $plugin_admin, 'menu_backwpup', 999);
 		$this->loader->add_filter('admin_head', $plugin_admin, 'menu_customers', 999);
-		//$this->loader->add_filter( 'admin_head', $plugin_admin, 'order_export', 999 );
 		$this->loader->add_filter('admin_menu', $plugin_admin, 'menu_mailjet', 999);
 		$this->loader->add_filter('admin_menu', $plugin_admin, 'menu_discounts', 999);
 		$this->loader->add_filter('admin_menu', $plugin_admin, 'menu_ocean', 999);
