@@ -1,6 +1,5 @@
-
-* Gravity Forms: Adds custom field 'legal notice' to all form
-* Gravity Forms: Adds tooltip to legal notice form field
+* Gravity Forms: "Legal Notice" field to form settings
+* Functions refactoring
 
 ### 1.5.2: January 7th, 2022
 * *Revert* Disable `wp_maybe_auto_update` action to prevent `wp_update_plugins` from being triggered after `wp_version_check`

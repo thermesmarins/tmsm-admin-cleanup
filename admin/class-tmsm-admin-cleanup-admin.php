@@ -107,12 +107,66 @@ class Tmsm_Admin_Cleanup_Admin
 	 *
 	 * @return mixed
 	 */
-	public function rips_unlink_tempfix($data)
-	{
-		if (isset($data['thumb'])) {
-			$data['thumb'] = basename($data['thumb']);
+	public function wp_update_attachment_metadata( $data ) {
+		if ( isset( $data['thumb'] ) ) {
+			$data['thumb'] = basename( $data['thumb'] );
 		}
+
 		return $data;
+	}
+	/**
+	 * Prevent update notification for specific plugin
+	 *
+	 * @param $value
+	 *
+	 * @return mixed
+	 */
+	function site_transient_update_plugins_disable_specific($value)
+	{
+
+		$plugins_to_disable = [
+			'github-updater/github-updater.php',
+			'woo-in-stock-notifier/instock-init.php',
+		];
+
+		if (isset($value) && is_object($value)) {
+			foreach ($plugins_to_disable as $plugin) {
+				if (isset($value->response[$plugin])) {
+					unset($value->response[$plugin]);
+				}
+			}
+		}
+		return $value;
+	}
+
+	/**
+	 * Core Updates: disable wp_version_check single event creation
+	 * @param null|bool|WP_Error $pre Value to return instead. Default null to continue adding the event.
+	 * @param stdClass $event {
+	 *                                      An object containing an event's data.
+	 *
+	 * @type string $hook Action hook to execute when the event is run.
+	 * @type int $timestamp Unix timestamp (UTC) for when to next run the event.
+	 * @type string|false $schedule How often the event should subsequently recur.
+	 * @type array $args Array containing each separate argument to pass to the hook's callback function.
+	 * @type int $interval The interval time in seconds for the schedule. Only present for recurring events.
+	 * }
+	 *
+	 * @param bool $wp_error Whether to return a WP_Error on failure.
+	 * @since    1.5.0
+	 *
+	 */
+	function pre_schedule_event_disableversioncheck($pre, $event, $wp_error)
+	{
+
+		if ($event->hook === 'wp_version_check' && $event->schedule === false) {
+			return new WP_Error(
+				'pre_schedule_event_false',
+				__('Disabling wp_version_check single event.')
+			);
+		}
+
+		return $pre;
 	}
 
 	public function remove_dashboard_boxes()
@@ -411,6 +465,74 @@ class Tmsm_Admin_Cleanup_Admin
 		return $menu_order;
 	}
 
+
+
+	/**
+	 * Admin Body Class: Add Role
+	 *
+	 * @param string $classes An array of classes
+	 *
+	 * @return string Returned classes
+	 */
+	public function admin_body_class_role($classes)
+	{
+		$current_user = new WP_User(get_current_user_id());
+		$user_role = array_shift($current_user->roles);
+		$classes .= ' role-' . $user_role;
+		return $classes;
+	}
+
+	/**
+	 * Filters the interval for redirecting the user to the admin email confirmation screen.
+	 * If `0` (zero) is returned, the user will not be redirected.
+	 *
+	 * @param int Interval time (in seconds).
+	 *
+	 * @return int
+	 */
+	public function admin_email_check_interval($interval)
+	{
+		$interval = 0;
+		return $interval;
+	}
+
+	/**
+	 * Filters the default post display states used in the posts list table.
+	 *
+	 * @param string[] $post_states An array of post display states.
+	 * @param WP_Post $post The current post object.
+	 *
+	 * @return array
+	 * @throws Exception
+	 */
+	public function display_post_states_expire(array $post_states, WP_Post $post)
+	{
+
+		$date_string = __('%1$s at %2$s', 'tmsm-admin-cleanup');
+
+		if (!empty($post_states['scheduled'])) {
+
+			$date = sprintf(
+				$date_string,
+				date_i18n(get_option('date_format'), strtotime($post->post_date)),
+				date_i18n(get_option('time_format'), strtotime($post->post_date))
+			);
+			$post_states['scheduled'] = sprintf(_x('Scheduled on %s', 'post status', 'tmsm-admin-cleanup'), $date);
+		}
+
+
+		if ($expiration_date_label = $this->expiration_date_label($post->ID)) {
+			if (!empty($post_states['scheduled'])) {
+				$post_states['scheduled'] .= ' , ' . $expiration_date_label;
+			} else {
+				$post_states['scheduled'] = $expiration_date_label;
+			}
+		}
+
+
+		return $post_states;
+	}
+
 	/**
 	 * Shop Managers: redirect to orders
 	 *
@@ -445,25 +567,7 @@ class Tmsm_Admin_Cleanup_Admin
 		}
 	}
 
-	/**
-	 * Hide WooCommerce menu for shop_order_manager
-	 *
-	 * @since  1.0.4
-	 * @access public
-	 */
-	public function hide_woocommerce()
-	{
-		global $woocommerce;
-		if (!empty($woocommerce) && version_compare($woocommerce->version, '4.5', '<')) {
-			$roles = wp_get_current_user()->roles;
-			if (is_array($roles) && isset($roles[0]) && $roles[0] == 'shop_order_manager'):
-				echo '<style type="text/css">';
-				echo '#adminmenu #toplevel_page_woocommerce {display: none !important;}';
-				echo '</style>';
-			endif;
-		}
 
-	}
 
 	/**
 	 * Reports menu for Advanced Order Export For WooCommerce
@@ -559,82 +663,6 @@ class Tmsm_Admin_Cleanup_Admin
 		return true;
 	}
 
-	/**
-	 * Disable WooCommerce dashboard widget
-	 *
-	 * @since 1.1.0
-	 */
-	public function woocommerce_remove_dashboard_widgets()
-	{
-		remove_meta_box('woocommerce_dashboard_recent_reviews', 'dashboard', 'normal');
-		remove_meta_box('woocommerce_dashboard_status', 'dashboard', 'normal');
-	}
-
-	/**
-	 * Admin Body Class: Add Role
-	 *
-	 * @param string $classes An array of classes
-	 *
-	 * @return string Returned classes
-	 */
-	public function admin_body_class_role($classes)
-	{
-		$current_user = new WP_User(get_current_user_id());
-		$user_role = array_shift($current_user->roles);
-		$classes .= ' role-' . $user_role;
-		return $classes;
-	}
-
-	/**
-	 * Filters the interval for redirecting the user to the admin email confirmation screen.
-	 * If `0` (zero) is returned, the user will not be redirected.
-	 *
-	 * @param int Interval time (in seconds).
-	 *
-	 * @return int
-	 */
-	public function admin_email_check_interval($interval)
-	{
-		$interval = 0;
-		return $interval;
-	}
-
-	/**
-	 * Filters the default post display states used in the posts list table.
-	 *
-	 * @param string[] $post_states An array of post display states.
-	 * @param WP_Post $post The current post object.
-	 *
-	 * @return array
-	 * @throws Exception
-	 */
-	public function display_post_states_expire(array $post_states, WP_Post $post)
-	{
-
-		$date_string = __('%1$s at %2$s', 'tmsm-admin-cleanup');
-
-		if (!empty($post_states['scheduled'])) {
-
-			$date = sprintf(
-				$date_string,
-				date_i18n(get_option('date_format'), strtotime($post->post_date)),
-				date_i18n(get_option('time_format'), strtotime($post->post_date))
-			);
-			$post_states['scheduled'] = sprintf(_x('Scheduled on %s', 'post status', 'tmsm-admin-cleanup'), $date);
-		}
-
-
-		if ($expiration_date_label = $this->expiration_date_label($post->ID)) {
-			if (!empty($post_states['scheduled'])) {
-				$post_states['scheduled'] .= ' , ' . $expiration_date_label;
-			} else {
-				$post_states['scheduled'] = $expiration_date_label;
-			}
-		}
-
-
-		return $post_states;
-	}
 
 	/**
 	 * Get the expiration date label
@@ -686,7 +714,7 @@ class Tmsm_Admin_Cleanup_Admin
 	}
 
 	/**
-	 * Fix for Elementor template conditions not compatible with Polylang
+	 * Polylang: Fix for Elementor template conditions not compatible with Polylang
 	 *
 	 * @link https://github.com/polylang/polylang/issues/152#issuecomment-320602328
 	 *
@@ -701,7 +729,7 @@ class Tmsm_Admin_Cleanup_Admin
 	}
 
 	/**
-	 * Empty WP Rocket cache on save product
+	 * WP Rocket: Empty cache on save product
 	 *
 	 * @param $product
 	 */
@@ -714,7 +742,7 @@ class Tmsm_Admin_Cleanup_Admin
 	}
 
 	/**
-	 * WP Rocket : redefine plugin name
+	 * WP Rocket: redefine plugin name
 	 *
 	 * @return string
 	 */
@@ -744,7 +772,7 @@ class Tmsm_Admin_Cleanup_Admin
 	}
 
 	/**
-	 * Add extra settings to all forms.
+	 * Gravity Forms: Add custom settings to all forms.
 	 *
 	 * @param array $fields
 	 * @param array $form
@@ -753,20 +781,23 @@ class Tmsm_Admin_Cleanup_Admin
 	 *
 	 * @return array
 	 */
-	public function gravityforms_add_extra_settings(array $fields, array $form): array
+	public function gravityforms_add_custom_settings(array $fields, array $form): array
 	{
+
+		// Legal Notice field
 		$fields['form_basics']['fields']['legal_notice'] = [
-			'name' => 'legal_notice',
-			'type' => 'textarea',
+			'name'       => 'legal_notice',
+			'type'       => 'textarea',
 			'allow_html' => true,
-			'tooltip' => gform_tooltip('add_legal_notice_tooltips', '', true),
-			'label' => __('Legal Notice', 'tmsm-admin-cleanup')
+			'tooltip'    => gform_tooltip( 'legal_notice', '', true ),
+			'label'      => __( 'Legal Notice', 'tmsm-admin-cleanup' ),
 		];
+
 		return $fields;
 	}
 
 	/**
-	 * Gravity Forms: Adds new tooltip to the list
+	 * Gravity Forms: Adds custom tooltip to the backend fields
 	 *
 	 * @param array $tooltips
 	 *
@@ -776,27 +807,61 @@ class Tmsm_Admin_Cleanup_Admin
 	 */
 	function gravityforms_add_custom_tooltips(array $tooltips): array
 	{
-		$tooltips['add_legal_notice_tooltips'] = __('The legal notices are displayed after the submit form button.', 'tmsm-admin-cleanup');
+		$tooltips['legal_notice'] = __('Legal Notice is displayed below the submit form button.', 'tmsm-admin-cleanup');
 		return $tooltips;
 	}
 
 	/**
-	 * Gravity Forms: Adds Legal Notice under submit button.
+	 * Gravity Forms: Form Filter with the Legal Notice
 	 *
+	 * @param string $form_string
 	 * @param array $form
-	 * @param string $button
 	 *
-	 * @hooked gform_submit_button
+	 * @hooked gform_get_form_filter
 	 *
 	 * @return string
 	 */
-	function gravityforms_add_paragraph_below_submit(string $button, array $form): string
+	function gravityforms_form_filter(string $form_string, array $form): string
 	{
-		return $button .= "<p>" . rgar($form, 'legal_notice') . "</p>";
+		$legal_notice = '<div class="gform_legalnotice">' . rgar($form, 'legal_notice') . '</div>';
+		$form_string = str_replace('</form>', $legal_notice . '</form>', $form_string);
+
+		return $form_string;
 	}
 
 	/**
-	 * Hide add-ons menus (Marketplace & My Subscriptions)
+	 * Hide WooCommerce menu for shop_order_manager
+	 *
+	 * @since  1.0.4
+	 * @access public
+	 */
+	public function woocommerce_hide_menu()
+	{
+		global $woocommerce;
+		if (!empty($woocommerce) && version_compare($woocommerce->version, '4.5', '<')) {
+			$roles = wp_get_current_user()->roles;
+			if (is_array($roles) && isset($roles[0]) && $roles[0] == 'shop_order_manager'):
+				echo '<style type="text/css">';
+				echo '#adminmenu #toplevel_page_woocommerce {display: none !important;}';
+				echo '</style>';
+			endif;
+		}
+
+	}
+
+	/**
+	 * WooCommerce: Disable dashboard widget
+	 *
+	 * @since 1.1.0
+	 */
+	public function woocommerce_remove_dashboard_widgets()
+	{
+		remove_meta_box('woocommerce_dashboard_recent_reviews', 'dashboard', 'normal');
+		remove_meta_box('woocommerce_dashboard_status', 'dashboard', 'normal');
+	}
+
+	/**
+	 * WooCommerce: Hide add-ons menus (Marketplace & My Subscriptions)
 	 *
 	 * @return bool
 	 * @since 1.4.8
@@ -808,7 +873,7 @@ class Tmsm_Admin_Cleanup_Admin
 	}
 
 	/**
-	 * Disable Connect your store to WooCommerce.com to receive extensions updates and support admin notice
+	 * WooCommerce: Disable Connect your store to WooCommerce.com to receive extensions updates and support admin notice
 	 *
 	 * @return bool
 	 * @since 1.1.0
@@ -820,7 +885,7 @@ class Tmsm_Admin_Cleanup_Admin
 	}
 
 	/**
-	 * Remove tour guide
+	 * WooCommerce: Remove tour guide
 	 *
 	 * @return bool
 	 * @since 1.0.7
@@ -847,7 +912,7 @@ class Tmsm_Admin_Cleanup_Admin
 	}
 
 	/**
-	 * Order date format
+	 * WooCommerce: Order date format
 	 *
 	 * @param $date_format
 	 *
@@ -1361,59 +1426,5 @@ class Tmsm_Admin_Cleanup_Admin
 		return $value;
 	}
 
-	/**
-	 * Prevent update notification for specific plugin
-	 *
-	 * @param $value
-	 *
-	 * @return mixed
-	 */
-	function site_transient_update_plugins_disable_specific($value)
-	{
-
-		$plugins_to_disable = [
-			'github-updater/github-updater.php',
-			'woo-in-stock-notifier/instock-init.php',
-		];
-
-		if (isset($value) && is_object($value)) {
-			foreach ($plugins_to_disable as $plugin) {
-				if (isset($value->response[$plugin])) {
-					unset($value->response[$plugin]);
-				}
-			}
-		}
-		return $value;
-	}
-
-	/**
-	 * Core Updates: disable wp_version_check single event creation
-	 * @param null|bool|WP_Error $pre Value to return instead. Default null to continue adding the event.
-	 * @param stdClass $event {
-	 *                                      An object containing an event's data.
-	 *
-	 * @type string $hook Action hook to execute when the event is run.
-	 * @type int $timestamp Unix timestamp (UTC) for when to next run the event.
-	 * @type string|false $schedule How often the event should subsequently recur.
-	 * @type array $args Array containing each separate argument to pass to the hook's callback function.
-	 * @type int $interval The interval time in seconds for the schedule. Only present for recurring events.
-	 * }
-	 *
-	 * @param bool $wp_error Whether to return a WP_Error on failure.
-	 * @since    1.5.0
-	 *
-	 */
-	function pre_schedule_event_disableversioncheck($pre, $event, $wp_error)
-	{
-
-		if ($event->hook === 'wp_version_check' && $event->schedule === false) {
-			return new WP_Error(
-				'pre_schedule_event_false',
-				__('Disabling wp_version_check single event.')
-			);
-		}
-
-		return $pre;
-	}
 
 }

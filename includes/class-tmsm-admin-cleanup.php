@@ -163,7 +163,7 @@ class Tmsm_Admin_Cleanup
 		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts');
 
 		// Security fixes
-		$this->loader->add_filter('wp_update_attachment_metadata', $plugin_admin, 'rips_unlink_tempfix', 10);
+		$this->loader->add_filter('wp_update_attachment_metadata', $plugin_admin, 'wp_update_attachment_metadata', 10);
 
 		// Plugin Updates: Disable for some plugins
 		$this->loader->add_filter('site_transient_update_plugins', $plugin_admin, 'site_transient_update_plugins_disable_specific', 50, 3);
@@ -197,7 +197,7 @@ class Tmsm_Admin_Cleanup
 
 		// Menu
 		$this->loader->add_action('wp_before_admin_bar_render', $plugin_admin, 'remove_wp_logo_from_admin_bar', 999);
-		$this->loader->add_filter('admin_head', $plugin_admin, 'hide_woocommerce', 999);
+		$this->loader->add_filter('admin_head', $plugin_admin, 'woocommerce_hide_menu', 999);
 		$this->loader->add_filter('admin_head', $plugin_admin, 'menu_woocommerce', 999);
 		$this->loader->add_filter('admin_head', $plugin_admin, 'menu_backwpup', 999);
 		$this->loader->add_filter('admin_head', $plugin_admin, 'menu_customers', 999);
@@ -224,10 +224,11 @@ class Tmsm_Admin_Cleanup
 		$this->loader->add_filter('content_block_post_type', $plugin_admin, 'content_block_post_type_public', 10);
 
 		// Gravity Forms
-		$this->loader->add_filter('gform_enable_field_label_visibility_settings', $plugin_admin, 'gravityforms_label_visibility', 10); // Label Visibility
-		$this->loader->add_filter('gform_form_settings_fields', $plugin_admin, 'gravityforms_add_extra_settings', 10, 2);
-		$this->loader->add_filter('gform_tooltips', $plugin_admin, 'gravityforms_add_custom_tooltips', 10, 1);
-		$this->loader->add_filter('gform_submit_button',$plugin_admin,'gravityforms_add_paragraph_below_submit', 10, 2 );
+		$this->loader->add_filter( 'gform_enable_field_label_visibility_settings', $plugin_admin, 'gravityforms_label_visibility',
+			10 ); // Label Visibility
+		$this->loader->add_filter( 'gform_form_settings_fields', $plugin_admin, 'gravityforms_add_custom_settings', 10, 2 );
+		$this->loader->add_filter( 'gform_tooltips', $plugin_admin, 'gravityforms_add_custom_tooltips', 10, 1 );
+		$this->loader->add_filter( 'gform_get_form_filter', $plugin_admin, 'gravityforms_form_filter', 20, 2 );
 
 		// WooCommerce
 		$this->loader->add_filter('woocommerce_show_addons_page', $plugin_admin, 'woocommerce_show_addons_page', 10);
