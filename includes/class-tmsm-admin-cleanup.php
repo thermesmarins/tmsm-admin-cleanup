@@ -177,6 +177,7 @@ class Tmsm_Admin_Cleanup
 		// Dashboard
 		$this->loader->add_action('admin_init', $plugin_admin, 'remove_dashboard_boxes');
 		remove_action('welcome_panel', 'wp_welcome_panel');
+		remove_action('admin_notices', 'ocean_theme_is_outdated_admin_notice');
 		$this->loader->add_filter('oceanwp_news_enabled', $plugin_admin, 'oceanwp_news_enabled', 10);
 		$this->loader->add_action('wp_dashboard_setup', $plugin_admin, 'woocommerce_remove_dashboard_widgets', 10);
 		$this->loader->add_filter('admin_body_class', $plugin_admin, 'admin_body_class_role', 10, 1);
