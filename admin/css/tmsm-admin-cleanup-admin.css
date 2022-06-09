@@ -424,4 +424,7 @@ body #customize-theme-controls #accordion-section-oceanwp_upsell_section {
 .thpladmin-notice {
   display: none !important;
 }
+.notice-need-update-pro {
+  display: none !important;
+}
 /*# sourceMappingURL=tmsm-admin-cleanup-admin.css.map */
