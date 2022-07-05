@@ -137,10 +137,16 @@
 }
 
 /* Ocean */
-#toplevel_page_oceanwp-panel div.wp-menu-image:before {
-  content: "\f538" !important;
-  font-family: "dashicons" !important;
+#toplevel_page_oceanwp-panel, #toplevel_page_oceanwp {
+    div.wp-menu-image:before{
+        content: "\f538" !important;
+        font-family: "dashicons" !important;
+    }
+    img{
+        display: none !important;
+    }
 }
+
 .oceanwp-review, .oceanwp-octify, .oceanwp-kinsta, .owp-sticky-notice, .oe-rating-notice{
   display: none;
 }

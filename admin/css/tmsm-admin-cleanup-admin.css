@@ -123,9 +123,14 @@
   font-size: 20px;
 }
 /* Ocean */
-#toplevel_page_oceanwp-panel div.wp-menu-image:before {
+#toplevel_page_oceanwp-panel div.wp-menu-image:before,
+#toplevel_page_oceanwp div.wp-menu-image:before {
   content: "\f538" !important;
   font-family: "dashicons" !important;
+}
+#toplevel_page_oceanwp-panel img,
+#toplevel_page_oceanwp img {
+  display: none !important;
 }
 .oceanwp-review,
 .oceanwp-octify,
