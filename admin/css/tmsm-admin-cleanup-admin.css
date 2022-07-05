@@ -137,6 +137,9 @@
 body #customize-theme-controls #accordion-section-oceanwp_upsell_section {
   display: none !important;
 }
+#accordion-section-oceanwp_freemius_section {
+  display: none !important;
+}
 /* iThemes Security */
 #toplevel_page_itsec div.wp-menu-image:before,
 .it-icon-itsec:before {

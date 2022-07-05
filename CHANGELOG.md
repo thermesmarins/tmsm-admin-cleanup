@@ -1,3 +1,5 @@
+* Ocean: removed customizer ad
+
 ### 1.5.5: June 9th, 2022
 * Ocean: removed outdated theme notice
 * WPvivid: removed plugin update notice
