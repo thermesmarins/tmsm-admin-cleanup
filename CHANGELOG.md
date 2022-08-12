@@ -1,7 +1,10 @@
 * Ocean: removed customizer ad
+* Ocean: moved menu item from top to above appearance
+* Ocean: removed menu in admin top bar
 
 ### 1.5.5: June 9th, 2022
 * Ocean: removed outdated theme notice
+* Ocean: removed ugly menu icon
 * WPvivid: removed plugin update notice
 
 ### 1.5.4: May 5th, 2022

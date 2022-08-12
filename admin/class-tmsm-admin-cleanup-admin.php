@@ -416,7 +416,7 @@ class Tmsm_Admin_Cleanup_Admin {
 	 */
 	public function menu_ocean() {
 		global $menu;
-		$menu_item = self::recursive_array_search( 'Theme Panel', $menu );
+		$menu_item = self::recursive_array_search( 'OceanWP', $menu );
 		if ( ! $menu_item ) {
 			return;
 		}
@@ -439,6 +439,7 @@ class Tmsm_Admin_Cleanup_Admin {
 			'jetpack' => 200,  // Jetpack
 			'gf_edit_forms' => 8, // Gravity Forms
 			'leadin_user_guide' => 100, // Gravity Forms
+			'oceanwp' => 20, // Gravity Forms
 		);
 		// helper function to move an element inside an array
 		function move_element(&$array, $a, $b) {
