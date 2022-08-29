@@ -1,3 +1,4 @@
+### 1.5.6: August 29th, 2022
 * Ocean: removed customizer ad
 * Ocean: moved menu item from top to above appearance
 * Ocean: removed menu in admin top bar
