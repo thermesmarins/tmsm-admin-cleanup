@@ -1,3 +1,4 @@
+### 1.5.7: November 30th, 2022
 * WooCommerce: customize "To" recipient with billing firstname and lastname along to the email for better email delivrability
 
 ### 1.5.6: August 29th, 2022
