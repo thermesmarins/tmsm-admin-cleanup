@@ -1,3 +1,5 @@
+* WooCommerce: customize "To" recipient with billing firstname and lastname along to the email for better email delivrability
+
 ### 1.5.6: August 29th, 2022
 * Ocean: removed customizer ad
 * Ocean: moved menu item from top to above appearance

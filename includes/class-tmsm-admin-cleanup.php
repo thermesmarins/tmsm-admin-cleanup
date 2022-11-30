@@ -231,6 +231,7 @@ class Tmsm_Admin_Cleanup
 		$this->loader->add_filter( 'gform_get_form_filter', $plugin_admin, 'gravityforms_form_filter', 20, 2 );
 
 		// WooCommerce
+		$this->loader->add_filter('woocommerce_mail_callback_params', $plugin_admin, 'woocommerce_mail_callback_params', 20, 2);
 		$this->loader->add_filter('woocommerce_show_addons_page', $plugin_admin, 'woocommerce_show_addons_page', 10);
 		$this->loader->add_filter('woocommerce_helper_suppress_admin_notices', $plugin_admin, 'woocommerce_helper_suppress_admin_notices', 10);
 		$this->loader->add_filter('woocommerce_enable_admin_help_tab', $plugin_admin, 'woocommerce_enable_admin_help_tab');

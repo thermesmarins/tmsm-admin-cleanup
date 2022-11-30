@@ -775,6 +775,33 @@ class Tmsm_Admin_Cleanup_Admin {
 	}
 
 	/**
+	 * WooCommerce: override mail params, customize "To" recipient with billing firstname and lastname along to the email for better email delivrability
+	 * @param          $params
+	 * @param WC_Email $email
+	 *
+	 * @return mixed
+	 */
+	public function woocommerce_mail_callback_params( $params, WC_Email $email ){
+
+		$recipient = $params[0];
+		$before_recipient = '';
+
+		// Only do this if recipient is an email only, and just for customer emails (not admin emails)
+		if( is_email($recipient) && $email->object instanceof WC_Order && str_contains($email->id, 'customer') ){
+			if(method_exists($email->object, 'get_billing_first_name') && method_exists($email->object, 'get_billing_last_name') ){
+				$before_recipient = $email->object->get_billing_first_name() . ' ' .  $email->object->get_billing_last_name();
+			}
+		}
+
+		// Complete recipient if not empty
+		if($before_recipient != ''){
+			$params[0] = $before_recipient . ' <'.$recipient.'>';
+		}
+
+		return $params;
+	}
+
+	/**
 	 * Hide WooCommerce menu for shop_order_manager
 	 *
 	 * @since  1.0.4
