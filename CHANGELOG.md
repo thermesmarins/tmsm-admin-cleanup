@@ -1,3 +1,4 @@
+### 1.5.8: January 24th, 2023
 * Prevent Mailjet from upgrading
 
 ### 1.5.7: November 30th, 2022
