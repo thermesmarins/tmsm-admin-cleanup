@@ -502,6 +502,7 @@ class Tmsm_Admin_Cleanup_Admin {
 		$plugins_to_disable = [
 			'github-updater/github-updater.php',
 			'backupwordpress/backupwordpress.php',
+			'mailjet-for-wordpress/wp-mailjet.php',
 		];
 
 		if ( isset( $value ) && is_object( $value ) ) {
