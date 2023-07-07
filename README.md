@@ -1,7 +1,7 @@
 TMSM Admin Cleanup
 =================
 
-Admin cleanup for Thermes Marins de Saint-Malo
+Admin cleanup for The Thermes Marins de Saint-Malo
 
 Features
 -----------
