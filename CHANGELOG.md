@@ -1,3 +1,6 @@
+### 1.5.9: October 22th, 2024
+* Fix the pdf for woocommerce style.
+
 ### 1.5.8: January 24th, 2023
 * Prevent Mailjet from upgrading
 

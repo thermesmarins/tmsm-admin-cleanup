@@ -1273,10 +1273,14 @@ class Tmsm_Admin_Cleanup_Admin {
 	 */
 	function wpo_wcpdf_template_styles($css, $document){
 		$css .= '
-		body{font-size: 11pt; color: #666}
-		.wc-item-meta{font-size: 11pt;}
-		.shop-address{font-size:10px}
-		#footer{font-size:10px}
+		body{font-size: 10pt; color: #666}
+		tr td{font-size:9pt; !important}
+		td.order-data table th,td.order-data table td{padding-right: 1mm; !important}
+		p.item-name{padding-top:1mm; !important}
+		td.product{line-height:4pt; !important}
+		div.item-meta{line-height:4pt; !important}
+		ul.wc-item-meta{font-size:9pt; !important}
+		#footer{font-size:10px; !important}
 		.order-number th, .order-number td{font-weight: bold}
 		.order-details thead th {
 			background-color: #666;
@@ -1285,6 +1289,7 @@ class Tmsm_Admin_Cleanup_Admin {
 		table.totals tr.order_total * {
 			border-color: #666;
 		}
+		p.sku{display:none; !important}
 		.invoice-number{display: none; !important}
 		.invoice-date{display: none; !important}
 		';
